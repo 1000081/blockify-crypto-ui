@@ -14,6 +14,7 @@ import Navbar from "../../Navbar";
 import CoinTable from "../../components/CoinTable";
 import TopCarousel from "../../components/TopCarousel";
 import Footer from "../../components/Footer";
+import CoinSidebar from "./../../components/CoinSidebar";
 
 export const Home = () => {
   const data = {
@@ -89,7 +90,9 @@ export const Home = () => {
 
   return (
     <div className="dashboard d-flex">
-      <div>{/* <Sidebar /> */}</div>
+      <div>
+        <CoinSidebar />
+      </div>
       <div
         style={{
           flex: "1 1 auto",
@@ -104,11 +107,11 @@ export const Home = () => {
           <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
             <div className="d-flex card-section">
               <div className="cards-container">
-                <div
+                {/* <div
                   className="card-bg w-100 d-flex flex-column border d-flex flex-column"
-                  style={{ gridRow: "span 3" }}
-                >
-                  <div className="p-4 d-flex flex-column h-100">
+                  style={{ gridRow: "span 2" }}
+                > */}
+                {/* <div className="p-4 d-flex flex-column h-100">
                     <div className="d-flex align-items-center justify-content-between">
                       <h4 className="m-0 h5 font-weight-bold text-dark">
                         Total Orders
@@ -158,16 +161,19 @@ export const Home = () => {
                       More Details
                       <i className="fas fa-arrow-right ml-1"></i>
                     </p>
-                  </div>
-                </div>
+                  </div> */}
+                {/* <TopCarousel />
+                  <TopCarousel />
+                  <TopCarousel /> */}
+                {/* </div> */}
 
-                <div className="card-bg w-100 d-flex flex-column wide border d-flex flex-column">
+                {/* <div className="card-bg w-100 d-flex flex-column wide border d-flex flex-column">
                   <div className="d-flex flex-column p-0 h-100">
                     <div className="mx-4 mt-3 d-flex justify-content-between align-items-center">
                       <TopCarousel />
                     </div>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="card-bg w-100 d-flex flex-column wide border d-flex flex-column">
                   <div className="d-flex flex-column p-0 h-100">
