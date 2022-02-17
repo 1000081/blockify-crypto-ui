@@ -7,7 +7,7 @@ import {
   CDBLink,
   CDBContainer,
 } from "cdbreact";
-import { SocialMediaIconsReact } from "social-media-icons-react";
+// import { SocialMediaIconsReact } from "social-media-icons-react";
 import SocialSignin from "./SocialMediaSignin";
 
 const Login = () => {

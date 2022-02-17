@@ -22,7 +22,7 @@ const CoinSidebar = () => {
             className="text-decoration-none"
             style={{ color: "inherit" }}
           >
-            Contrast
+            Blockify
           </a>
         </CDBSidebarHeader>
 
