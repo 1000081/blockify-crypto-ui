@@ -7,6 +7,15 @@
 	grid-template-rows:1fr;
 }
 
+.dashboard .tab-cards-container {
+	margin:25px auto;
+	display:grid;
+	width:100%;
+	grid-template-columns:repeat(3, minmax(300px, 1fr));
+	grid-gap:25px;
+	grid-template-rows:1fr;
+}
+
 .dashboard .card-bg {
 	border:1px solid #f0e9e9;
 	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);

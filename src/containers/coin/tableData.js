@@ -1,0 +1,92 @@
+export const coinTable = {
+  headers: [
+    {
+      name: "Name",
+      style: "",
+      cssClass: "",
+    },
+    {
+      name: "Symbol",
+      style: "",
+      cssClass: "",
+    },
+    {
+      name: "Chain",
+      style: "",
+      cssClass: "",
+    },
+    {
+      name: "Launch",
+      style: "",
+      cssClass: "",
+    },
+    {
+      name: "Price",
+      style: "",
+      cssClass: "",
+    },
+    {
+      name: "Market Cap.",
+      style: "",
+      cssClass: "",
+    },
+    {
+      name: "Vote",
+      style: "",
+      cssClass: "",
+    },
+  ],
+
+  data: [
+    {
+      name: "Name1",
+      symbol: "Symbol1",
+      chain: "Chain123",
+      launchDt: "05/05/2022",
+      price: "0.000000098",
+      marketCap: "0.000000098",
+      vote: "1234",
+      logo: "https://storage.googleapis.com/coinsniper-assets/images/BehMPjEhRYhONRQS7MM5Ltf1KaI7DgzPfdUzvjn4.jpg",
+    },
+    {
+      name: "Name2",
+      symbol: "Symbol1",
+      chain: "Chain123",
+      launchDt: "05/05/2022",
+      price: "0.000000098",
+      marketCap: "0.000000098",
+      vote: "1234",
+      logo: "https://storage.googleapis.com/coinsniper-assets/images/TmQy2NtCzqHLYRNuSUKRMN69maicHcC9SGA9P1PZ.png",
+    },
+    {
+      name: "Name3",
+      symbol: "Symbol1",
+      chain: "Chain123",
+      launchDt: "02/16/2022",
+      price: "0.000000098",
+      marketCap: "0.000000098",
+      vote: "1234",
+      logo: "https://cdn.coinmooner.com/logo/10586.webp?v=1",
+    },
+    {
+      name: "Name4",
+      symbol: "Symbol1",
+      chain: "Chain123",
+      launchDt: "01/05/2021",
+      price: "0.000000098",
+      marketCap: "0.000000098",
+      vote: "12343231231",
+      logo: "https://storage.googleapis.com/coinsniper-assets/images/TmQy2NtCzqHLYRNuSUKRMN69maicHcC9SGA9P1PZ.png",
+    },
+    {
+      name: "Name5",
+      symbol: "Symbol1",
+      chain: "Chain123",
+      launchDt: "01/05/2021",
+      price: "0.000000098",
+      marketCap: "0.000000098",
+      vote: "12343231231",
+      logo: "https://storage.googleapis.com/coinsniper-assets/images/FeK5CReaGWYs2iFbomPoUpl60Kyl9cYUQkF8Fafw.png",
+    },
+  ],
+};
