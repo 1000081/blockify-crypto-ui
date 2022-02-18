@@ -10,13 +10,10 @@ import {
 
 import "./Home.css";
 import { coinTable } from "./tableData";
-import Navbar from "../../Navbar";
 import CoinTable from "../../components/CoinTable";
-// import TopCarousel from "../../components/TopCarousel";
 import Footer from "../../components/Footer";
 import CoinSidebar from "./../../components/CoinSidebar";
 import CoinNavbar from "../../components/CoinNavbar";
-import ReactSearchBox from "react-search-box";
 
 export const Home = () => {
   // const data = {
@@ -89,29 +86,6 @@ export const Home = () => {
     }
     setFillActive(value);
   };
-
-  const data = [
-    {
-      key: "john",
-      value: "John Doe",
-    },
-    {
-      key: "jane",
-      value: "Jane Doe",
-    },
-    {
-      key: "mary",
-      value: "Mary Phillips",
-    },
-    {
-      key: "robert",
-      value: "Robert",
-    },
-    {
-      key: "karius",
-      value: "Karius",
-    },
-  ];
 
   return (
     <div className="dashboard d-flex">
