@@ -36,7 +36,12 @@ const Login = () => {
               <p className="m-0">Remember me</p>
               <CDBLink to="#">Forgot Password ?</CDBLink>
             </div>
-            <CDBBtn color="dark" outline className="btn-block my-3 mx-0">
+            <CDBBtn
+              color="dark"
+              outline
+              className="btn-block my-3 mx-0"
+              action="/"
+            >
               Sign in
             </CDBBtn>
             <p className="text-center">

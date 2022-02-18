@@ -1,34 +1,12 @@
-import React, { useState } from "react";
-import {
-  MDBTabs,
-  MDBTabsItem,
-  MDBTabsLink,
-  MDBTabsContent,
-  MDBTabsPane,
-} from "mdb-react-ui-kit";
-// import { Bar } from "react-chartjs-2";
-
+import React from "react";
 import "./Home.css";
-import { coinTable } from "./tableData";
-import Navbar from "../../Navbar";
-import CoinTable from "../../components/CoinTable";
-// import TopCarousel from "../../components/TopCarousel";
 import Footer from "../../components/Footer";
 import CoinSidebar from "../../components/CoinSidebar";
 import CoinNavbar from "../../components/CoinNavbar";
-import { CDBBtn, CDBInput, CDBLink } from "cdbreact";
-import DatePicker from "react-datepicker";
+import { CDBBtn, CDBInput } from "cdbreact";
 import "react-datepicker/dist/react-datepicker.css";
 
 const AddCoin = () => {
-  const [fillActive, setFillActive] = useState("newTab");
-  const handleFillClick = (value) => {
-    if (value === fillActive) {
-      return;
-    }
-    setFillActive(value);
-  };
-  const [startDate, setStartDate] = useState(new Date());
   return (
     <div className="dashboard d-flex">
       <div className="table-rem">
@@ -73,7 +51,7 @@ const AddCoin = () => {
                     </div>
                   </div>
                   <div className="form-row mb-n4">
-                    <div className="col">
+                    <div className="col d-flex flex-wrap justify-content-center align-items-center">
                       <CDBInput label="Presale" type="checkbox" />
                     </div>
                     <div className="col">
@@ -187,6 +165,12 @@ const AddCoin = () => {
                   <div className="mx-4 mt-3 d-flex justify-content-between align-items-center">
                     <h4 className="font-weight-bold text-dark h5">&nbsp;</h4>
                   </div>
+                  <CDBBtn
+                    color="dark"
+                    className="btn-block my-3 mx-0 d-flex justify-content-center align-items-center"
+                  >
+                    Add Coin
+                  </CDBBtn>
                 </div>
               </div>
             </div>
