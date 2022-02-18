@@ -9,7 +9,7 @@ import {
 } from "cdbreact";
 import { NavLink } from "react-router-dom";
 
-const CoinSidebar = () => {
+const Sidebar = () => {
   return (
     <div
       className={`app`}
@@ -27,12 +27,14 @@ const CoinSidebar = () => {
         </CDBSidebarHeader>
 
         <CDBSidebarContent className="sidebar-content">
-          <CDBSidebarMenu>
-            <NavLink exact to="/" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="columns">dashboard</CDBSidebarMenuItem>
+          {/* <CDBSidebarMenu>
+            <NavLink exact to="/signup" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="columns">Sign Up</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/tables" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="table">tables</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="table">
+                Forget Password
+              </CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/profile" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="user">profile</CDBSidebarMenuItem>
@@ -48,22 +50,22 @@ const CoinSidebar = () => {
               </CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
-          <CDBSidebarMenu></CDBSidebarMenu>
+          <CDBSidebarMenu></CDBSidebarMenu> */}
         </CDBSidebarContent>
 
         <CDBSidebarFooter style={{ textAlign: "center" }}>
-          <div
+          {/* <div
             className="sidebar-btn-wrapper"
             style={{
               padding: "20px 5px",
             }}
           >
             Sidebar Footer
-          </div>
+          </div> */}
         </CDBSidebarFooter>
       </CDBSidebar>
     </div>
   );
 };
 
-export default CoinSidebar;
+export default Sidebar;

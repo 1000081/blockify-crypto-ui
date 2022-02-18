@@ -15,6 +15,8 @@ import CoinTable from "../../components/CoinTable";
 // import TopCarousel from "../../components/TopCarousel";
 import Footer from "../../components/Footer";
 import CoinSidebar from "./../../components/CoinSidebar";
+import CoinNavbar from "../../components/CoinNavbar";
+import ReactSearchBox from "react-search-box";
 
 export const Home = () => {
   // const data = {
@@ -88,9 +90,32 @@ export const Home = () => {
     setFillActive(value);
   };
 
+  const data = [
+    {
+      key: "john",
+      value: "John Doe",
+    },
+    {
+      key: "jane",
+      value: "Jane Doe",
+    },
+    {
+      key: "mary",
+      value: "Mary Phillips",
+    },
+    {
+      key: "robert",
+      value: "Robert",
+    },
+    {
+      key: "karius",
+      value: "Karius",
+    },
+  ];
+
   return (
     <div className="dashboard d-flex">
-      <div>
+      <div className="table-rem">
         <CoinSidebar />
       </div>
       <div
@@ -102,7 +127,7 @@ export const Home = () => {
           overflowY: "hidden",
         }}
       >
-        <Navbar />
+        <CoinNavbar />
         <div style={{ height: "100%" }}>
           <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
             <div className="d-flex card-section">
@@ -182,7 +207,12 @@ export const Home = () => {
                         Promoted
                       </h4>
                       <div className="p-1 bg-grey rounded-circle">
-                        <i className="fas fa-sticky-note"></i>
+                        {/* <ReactSearchBox
+                          placeholder="Placeholder"
+                          value="Doe"
+                          data={data}
+                          callback={(record) => console.log(record)}
+                        /> */}
                       </div>
                     </div>
                     <CoinTable values={coinTable} />

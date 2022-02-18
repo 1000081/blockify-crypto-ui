@@ -6,13 +6,6 @@ const Navbar = () => {
   return (
     <Header style={{ background: "#333", color: "#fff" }}>
       <CDBNavbar dark expand="md" scrolling className="justify-content-start">
-        <a
-          href="/"
-          className="text-decoration-none"
-          style={{ color: "inherit" }}
-        >
-          Blockify
-        </a>
         <CDBInput
           type="search"
           size="md"

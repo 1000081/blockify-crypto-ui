@@ -2,7 +2,7 @@
 	margin:25px auto;
 	display:grid;
 	width:100%;
-	grid-template-columns:repeat(1, minmax(300px, 1fr));
+	grid-template-columns:repeat(2, minmax(300px, 1fr));
 	grid-gap:25px;
 	grid-template-rows:1fr;
 }
@@ -10,8 +10,8 @@
 .dashboard .tab-cards-container {
 	margin:25px auto;
 	display:grid;
-	width:100%;
-	grid-template-columns:repeat(3, minmax(300px, 1fr));
+	width:30%;
+	grid-template-columns:repeat(1, minmax(300px, 1fr));
 	grid-gap:25px;
 	grid-template-rows:1fr;
 }
@@ -110,3 +110,12 @@
 		margin:10px 0;
 	}
 }
+
+.main-body{
+	padding: 20px;
+  }
+  
+  .text-error{
+	font-weight: 600;
+	color: red;
+  }
