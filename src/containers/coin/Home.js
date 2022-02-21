@@ -16,69 +16,11 @@ import CoinSidebar from "./../../components/CoinSidebar";
 import CoinNavbar from "../../components/CoinNavbar";
 
 export const Home = () => {
-  // const data = {
-  //   chart1: {
-  //     labels: ["Eating", "Drinking", "Sleeping"],
-  //     datasets: [
-  //       {
-  //         label: "My First dataset",
-  //         backgroundColor: ["#F2C94C", "#2F80ED", "#9B51E0"],
-  //         borderWidth: 0,
-  //         data: [9, 22, 7],
-  //       },
-  //     ],
-  //   },
-  //   chart2: {
-  //     labels: [
-  //       "Eating",
-  //       "Drinking",
-  //       "Sleeping",
-  //       "Designing",
-  //       "Coding",
-  //       "Cycling",
-  //       "Running",
-  //     ],
-  //     datasets: [
-  //       {
-  //         label: "My First dataset",
-  //         backgroundColor: "rgba(255, 153, 51, 0.8)",
-  //         borderColor: "rgb(102, 51, 0)",
-  //         data: [65, 59, 75, 81, 56, 55, 40],
-  //       },
-  //       {
-  //         label: "My Second dataset",
-  //         backgroundColor: "#2F80ED",
-  //         borderColor: "rgb(0, 41, 102)",
-  //         data: [38, 48, 60, 79, 96, 47, 80],
-  //       },
-  //     ],
-  //   },
-  // };
-  // const options = {
-  //   responsive: true,
-  //   maintainAspectRatio: false,
-  //   legend: { display: false },
-  //   scales: {
-  //     xAxes: [
-  //       {
-  //         ticks: {
-  //           display: false,
-  //         },
-  //       },
-  //     ],
-  //     yAxes: [
-  //       {
-  //         gridLines: {
-  //           display: false,
-  //         },
-  //         ticks: {
-  //           display: false,
-  //         },
-  //       },
-  //     ],
-  //   },
-  // };
-
+  const tabSelected = {
+    fontWeight: "bold",
+    color: "black",
+    bgcolor: "elegant-color-dark",
+  };
   const [fillActive, setFillActive] = useState("newTab");
   const handleFillClick = (value) => {
     if (value === fillActive) {
@@ -187,6 +129,19 @@ export const Home = () => {
                           data={data}
                           callback={(record) => console.log(record)}
                         /> */}
+                        <input
+                          type="search"
+                          class="form-control rounded"
+                          placeholder="Search"
+                          aria-label="Search"
+                          aria-describedby="search-addon"
+                        />
+                        <span
+                          class="input-group-text border-0"
+                          id="search-addon"
+                        >
+                          <i class="fas fa-search"></i>
+                        </span>
                       </div>
                     </div>
                     <CoinTable values={coinTable} />
@@ -210,6 +165,7 @@ export const Home = () => {
                         <MDBTabsLink
                           onClick={() => handleFillClick("newTab")}
                           active={fillActive === "newTab"}
+                          style={fillActive === "newTab" ? tabSelected : {}}
                         >
                           New
                         </MDBTabsLink>
@@ -218,6 +174,7 @@ export const Home = () => {
                         <MDBTabsLink
                           onClick={() => handleFillClick("altTab")}
                           active={fillActive === "altTab"}
+                          style={fillActive === "altTab" ? tabSelected : {}}
                         >
                           All Time Best
                         </MDBTabsLink>
@@ -226,6 +183,7 @@ export const Home = () => {
                         <MDBTabsLink
                           onClick={() => handleFillClick("normalTab")}
                           active={fillActive === "normalTab"}
+                          style={fillActive === "normalTab" ? tabSelected : {}}
                         >
                           Normal
                         </MDBTabsLink>
@@ -234,6 +192,7 @@ export const Home = () => {
                         <MDBTabsLink
                           onClick={() => handleFillClick("presaleTab")}
                           active={fillActive === "presaleTab"}
+                          style={fillActive === "presaleTab" ? tabSelected : {}}
                         >
                           Presale
                         </MDBTabsLink>

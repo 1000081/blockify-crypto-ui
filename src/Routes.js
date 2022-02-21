@@ -8,6 +8,7 @@ import Login from "./containers/auth/Login";
 import Register from "./containers/auth/Register";
 import AddCoin from "./containers/coin/AddCoin";
 import EditCoin from "./containers/coin/EditCoin";
+import CoinDetails from "./containers/coin/CoinDetails";
 
 const Routes = () => {
   return (
@@ -21,6 +22,7 @@ const Routes = () => {
         <Route path="/signup" component={Register} />
         <Route path="/addCoin" component={AddCoin} />
         <Route path="/editCoin" component={EditCoin} />
+        <Route path="/coinDetails" component={CoinDetails} />
       </BrowserRouter>
     </Fragment>
   );
