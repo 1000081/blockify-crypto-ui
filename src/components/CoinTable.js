@@ -1,32 +1,29 @@
 import { CDBTable, CDBTableHeader, CDBTableBody } from "cdbreact";
 import CoinRow from "./CoinRow";
+import { coinTableMeta } from "./TableMetaData";
 
-const CoinTable = (values) => {
+const CoinTable = (data) => {
   return (
     <>
       <CDBTable borderless responsive>
         <CDBTableHeader color="light">
           <tr>
-            <th>{values.values.headers[0].name}</th>
-            <th className="table-rem">{values.values.headers[1].name}</th>
-            <th className="table-rem">{values.values.headers[2].name}</th>
-            <th>{values.values.headers[3].name}</th>
-            <th className="table-rem">{values.values.headers[4].name}</th>
-            <th>{values.values.headers[5].name}</th>
-            <th>{values.values.headers[6].name}</th>
+            <th>{coinTableMeta[0].header}</th>
+            <th className="table-rem">{coinTableMeta[1].header}</th>
+            <th className="table-rem">{coinTableMeta[2].header}</th>
+            <th>{coinTableMeta[3].header}</th>
+            <th className="table-rem">{coinTableMeta[4].header}</th>
+            <th>{coinTableMeta[5].header}</th>
+            <th>{coinTableMeta[6].header}</th>
           </tr>
-          {/* <tr>
-            {values.values.headers.map((header) => (
-              <th>{header.name}</th>
-            ))}
-          </tr> */}
         </CDBTableHeader>
         <CDBTableBody>
-          {values.values.data.map((coin) => (
-            <tr key={coin.name}>
-              <CoinRow coin={coin} />
-            </tr>
-          ))}
+          {data &&
+            data.values.map((coin) => (
+              <tr key={coin.name}>
+                <CoinRow coin={coin} />
+              </tr>
+            ))}
         </CDBTableBody>
       </CDBTable>
     </>

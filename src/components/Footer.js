@@ -6,7 +6,7 @@ const Footer = () => {
       <footer className="footer">
         <div className="d-flex align-items-center">
           <CDBLink to="/" className="text-dark footer-link">
-            <i class="fas fa-link"></i>
+            <i className="fas fa-link"></i>
             <span className="ml-4 lead mb-0 font-weight-bold">Blockify</span>
           </CDBLink>
           <span

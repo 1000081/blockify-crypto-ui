@@ -1,17 +1,33 @@
 import { formatDate } from "../util/Stringutil";
-
+import { CoinContext } from "../containers/contexts/CoinContext";
+import { useContext } from "react";
+import { MDBLink } from "mdbreact";
+import { useHistory } from "react-router-dom";
 const CoinRow = ({ coin }) => {
-  //"MM/DD/YYYY"
+  const { voteCoin, showCoinDetails } = useContext(CoinContext);
+
+  const handleVoteButtonClick = (vote) => {
+    voteCoin(vote);
+  };
+
+  const history = useHistory();
+  const handleDetailClick = (coin) => {
+    showCoinDetails(coin);
+    history.push("/coinDetails");
+  };
+
   return (
     <>
       <td>
-        <img
-          alt="panelImage"
-          src={coin.logo}
-          className="pane-image"
-          size="md"
-        />
-        {coin.name}
+        <MDBLink onClick={() => handleDetailClick(coin)}>
+          <img
+            alt="panelImage"
+            src={coin.logo}
+            className="pane-image"
+            size="md"
+          />
+          {coin.name}
+        </MDBLink>
       </td>
       <td className="table-rem">{coin.symbol}</td>
       <td className="table-rem">{coin.chain}</td>
@@ -24,11 +40,12 @@ const CoinRow = ({ coin }) => {
       <td>
         <button
           type="button"
-          class="btn btn-outline-dark"
+          className="btn btn-outline-dark"
           data-mdb-ripple-color="dark"
+          onClick={() => handleVoteButtonClick(coin)}
         >
           <span>🚀</span>
-          {/* <i class="fas fa-rocket"></i> */}
+          {/* <i className="fas fa-rocket"></i> */}
           {coin.vote}
         </button>
       </td>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   CDBBtn,
   CDBTable,
@@ -10,40 +10,11 @@ import Sidebar from "../../components/CoinSidebar";
 import Navbar from "../../components/CoinNavbar";
 import "../coin/Home.css";
 import CopyToClipboard from "react-copy-to-clipboard";
+import { CoinContext } from "../contexts/CoinContext";
 // import { SocialMediaIconsReact } from "social-media-icons-react";
 
 const CoinDetails = () => {
-  const coin = {
-    coinType: "P",
-    _id: "620497d7b7cfe7e9a8f22def",
-    name: "Name01",
-    logo: "https://storage.googleapis.com/coinsniper-assets/images/TmQy2NtCzqHLYRNuSUKRMN69maicHcC9SGA9P1PZ.png",
-    chain: "BSC",
-    presale: "on",
-    description:
-      "The Highest Returning Rewards Coin that Earns You Up To 15% Per Month. Just For Owning It\n" +
-      "MetaGold Rewards is a new coin that provides a passive income stream to it’s holders\n" +
-      "AN EASIER WAY TO REACH FINANCIAL FREEDOM…\n" +
-      "You earn passive income because of the fees on every transaction.\n" +
-      "These are: 14% on buys (11% rewards + 3% Liquidity Pool) and 19% on every sell (16% rewards + 3% Liquidity Pool). This means every time you check your wallet, you’re going to see more rewards in USDT.\n" +
-      "Because of the Binance Smart Chain system, you can rely on your USDT coins being delivered to you daily.\n" +
-      "MetaGold gives you the opportunity to achieve financial freedom, whatever that means to you: sitting on the beach or doing whatever it is you want! Especially as an early investor!\n",
-    contAddress: "0x5a119762B09Ed0bcB3b16075159AE43A62651383",
-    launchDt: "2001-06-01T05:00:00.000Z",
-    marketCap: "5959284.00",
-    price: "0.000000026825",
-    telegram: "qwee@telegeram",
-    twitter: "21313@twitter",
-    reddit: "23@reditt",
-    discord: "@discord",
-    otherChains: "23123/23213/213123/12313/123",
-    dexToools: "123123Dextools",
-    swap: "swap1234",
-    vote: 23,
-    symbol: "BTC",
-    listedDt: "2022-02-09T04:43:00.000Z",
-    __v: 0,
-  };
+  const { coin } = useContext(CoinContext);
 
   const leftSecAlign = {
     marginLeft: 0,
@@ -51,6 +22,8 @@ const CoinDetails = () => {
     fontSize: "1.0em",
     fontWeight: "bold",
   };
+
+  const headerBadgeStyle = { width: "100px", color: "white" };
 
   const rightSecAlign = { marginLeft: "auto", marginRight: 0 };
 
@@ -126,7 +99,7 @@ const CoinDetails = () => {
                       <CDBTable borderless responsive>
                         <CDBTableHeader color="light">
                           <tr>
-                            <th>Status:</th>
+                            <th>Status</th>
                             <th>Votes</th>
                             <th>Votes Today</th>
                             <th>Network</th>
@@ -134,10 +107,46 @@ const CoinDetails = () => {
                         </CDBTableHeader>
                         <CDBTableBody>
                           <tr>
-                            <td>listed</td>
-                            <td>{coin.vote}</td>
-                            <td>{coin.vote}</td>
-                            <td>{coin.chain}</td>
+                            <td>
+                              <h4>
+                                <span
+                                  className="badge rounded-pill bg-success"
+                                  style={headerBadgeStyle}
+                                >
+                                  listed
+                                </span>
+                              </h4>
+                            </td>
+                            <td>
+                              <h4>
+                                <span
+                                  className="badge rounded-pill bg-secondary h4"
+                                  style={headerBadgeStyle}
+                                >
+                                  {coin.vote}
+                                </span>
+                              </h4>
+                            </td>
+                            <td>
+                              <h4>
+                                <span
+                                  className="badge rounded-pill bg-secondary"
+                                  style={headerBadgeStyle}
+                                >
+                                  {coin.vote}
+                                </span>
+                              </h4>
+                            </td>
+                            <td>
+                              <h4>
+                                <span
+                                  className="badge rounded-pill bg-secondary"
+                                  style={headerBadgeStyle}
+                                >
+                                  {coin.chain}
+                                </span>
+                              </h4>
+                            </td>
                           </tr>
                         </CDBTableBody>
                       </CDBTable>
@@ -208,16 +217,6 @@ const CoinDetails = () => {
                       <CDBBtn color="white" className="m-0" outline>
                         <i className="fab fa-discord fa-2x"></i>
                       </CDBBtn>
-                    </div>
-                  </div>
-                  <div className="d-flex">
-                    <div
-                      style={{
-                        marginLeft: 0,
-                        marginRight: 3,
-                        textAlign: "center",
-                      }}
-                    >
                       <CDBBtn color="white" className="m-0" outline>
                         <i className="fab fa-reddit fa-2x"></i>
                       </CDBBtn>
