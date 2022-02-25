@@ -19,18 +19,20 @@ const Register = () => {
         display: "flex",
         flexFlow: "column",
         height: "100vh",
-        // overflowY: "hidden",
+        overflowY: "hidden",
       }}
     >
-      <CDBContainer>
-        <CDBCard style={{ width: "30rem" }}>
+      <CDBContainer
+        style={{ width: "30rem", align: "center", overflow: "auto" }}
+      >
+        <CDBCard>
           <div
             className="text-center text-white"
-            style={{ background: "black" }}
+            style={{ background: "black", align: "center" }}
           >
             <p className="h5 mt-2 py-4 font-weight-bold"> Sign up </p>
           </div>
-          <CDBCardBody className="mx-4">
+          <CDBCardBody className="mx-4 center">
             <div className="form-row mb-n4">
               <div className="col">
                 <CDBInput label="First name" type="text" />
@@ -44,7 +46,6 @@ const Register = () => {
               At least 8 characters and 1 digit
             </p>
             <CDBInput label="Password" type="password" />
-            <CDBInput label="Phone number" type="text" />
             <CDBBtn color="dark" outline className="btn-block my-3 mx-0">
               Sign up
             </CDBBtn>

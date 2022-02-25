@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   CDBBtn,
   CDBTable,
@@ -16,6 +16,8 @@ import { CoinContext } from "../contexts/CoinContext";
 const CoinDetails = () => {
   const { coin } = useContext(CoinContext);
 
+  const [copied, setCopied] = useState(false);
+
   const leftSecAlign = {
     marginLeft: 0,
     marginRight: 25,
@@ -29,9 +31,9 @@ const CoinDetails = () => {
 
   return (
     <div className="dashboard d-flex">
-      <div className="table-rem">
+      {/* <div className="table-rem">
         <Sidebar />
-      </div>
+      </div> */}
       <div
         style={{
           flex: "1 1 auto",
@@ -67,30 +69,18 @@ const CoinDetails = () => {
                           {coin.contAddress}
                         </p>
                         <div>
-                          {/* <input
-                            value={this.state.value}
-                            onChange={({ target: { value } }) =>
-                              this.setState({ value, copied: false })
-                            }
-                          /> */}
-
                           <CopyToClipboard
-                          // text={this.state.value}
-                          // onCopy={() => this.setState({ copied: true })}
+                            text={coin && coin.contAddres}
+                            onCopy={() => setCopied({ copied: true })}
                           >
-                            <i className="fas fa-clone fa-2x"></i>
+                            <button>
+                              <i class="fas fa-copy"></i>
+                            </button>
                           </CopyToClipboard>
 
-                          {/* <CopyToClipboard
-                            text={this.state.value}
-                            onCopy={() => this.setState({ copied: true })}
-                          >
-                            <button>Copy to clipboard with button</button>
-                          </CopyToClipboard> */}
-
-                          {/* {this.state.copied ? (
+                          {copied ? (
                             <span style={{ color: "red" }}>Copied.</span>
-                          ) : null} */}
+                          ) : null}
                         </div>
                       </div>
                     </div>
@@ -174,23 +164,23 @@ const CoinDetails = () => {
                   </div>
                   <div className="d-flex">
                     <div style={leftSecAlign}>Marketcap</div>
-                    <div style={rightSecAlign}>$ 21,354,104</div>
+                    <div style={rightSecAlign}>$ {coin.marketCap}</div>
                   </div>
                   <div className="d-flex">
                     <div style={leftSecAlign}>Price (USD)</div>
-                    <div style={rightSecAlign}>$ 0.0000000213541040</div>
+                    <div style={rightSecAlign}>$ {coin.price}</div>
                   </div>
                   <div className="d-flex">
                     <div style={leftSecAlign}>Price (BNB) </div>
-                    <div style={rightSecAlign}>0.000000000055 BNB</div>
+                    <div style={rightSecAlign}>{coin.price} BNB</div>
                   </div>
                   <div className="d-flex">
                     <div style={leftSecAlign}>Added</div>
-                    <div style={rightSecAlign}>August 8th 2021</div>
+                    <div style={rightSecAlign}>{coin.listedDt}</div>
                   </div>
                   <div className="d-flex">
                     <div style={leftSecAlign}>Launch</div>
-                    <div style={rightSecAlign}>September 23rd 2021</div>
+                    <div style={rightSecAlign}>{coin.launchDt}</div>
                   </div>
                   <div className="d-flex">&nbsp;</div>
                   <div className="d-flex">
@@ -228,7 +218,10 @@ const CoinDetails = () => {
                   style={{ gridRow: "span 2" }}
                 >
                   <div className="p-4 d-flex flex-column h-100">
-                    <div className="mt-5 d-flex align-items-center justify-content-between">
+                    <div
+                      className="mt-5 d-flex align-items-center justify-content-between"
+                      style={{ whiteSpace: "pre-wrap" }}
+                    >
                       {coin.description}
                     </div>
                     <div className="mt-5 d-flex align-items-center justify-content-between">

@@ -33,9 +33,9 @@ export const Home = () => {
 
   return (
     <div className="dashboard d-flex">
-      <div className="table-rem">
+      {/* <div className="table-rem">
         <CoinSidebar />
-      </div>
+      </div> */}
       <div
         style={{
           flex: "1 1 auto",

@@ -9,10 +9,10 @@ const CoinTable = (data) => {
         <CDBTableHeader color="light">
           <tr>
             <th>{coinTableMeta[0].header}</th>
-            <th className="table-rem">{coinTableMeta[1].header}</th>
-            <th className="table-rem">{coinTableMeta[2].header}</th>
+            <th>{coinTableMeta[1].header}</th>
+            <th>{coinTableMeta[2].header}</th>
             <th>{coinTableMeta[3].header}</th>
-            <th className="table-rem">{coinTableMeta[4].header}</th>
+            <th>{coinTableMeta[4].header}</th>
             <th>{coinTableMeta[5].header}</th>
             <th>{coinTableMeta[6].header}</th>
           </tr>

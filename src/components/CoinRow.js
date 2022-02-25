@@ -29,13 +29,13 @@ const CoinRow = ({ coin }) => {
           {coin.name}
         </MDBLink>
       </td>
-      <td className="table-rem">{coin.symbol}</td>
-      <td className="table-rem">{coin.chain}</td>
+      <td>{coin.symbol}</td>
+      <td>{coin.chain}</td>
       <td className="text-success text-center">
         {/* <i className="fas fa-arrow-up"></i> 20% */}
         {formatDate(coin.launchDt)}
       </td>
-      <td className="table-rem">${coin.price}</td>
+      <td>${coin.price}</td>
       <td>${coin.marketCap}</td>
       <td>
         <button
