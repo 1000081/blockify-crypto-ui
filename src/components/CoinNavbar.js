@@ -6,12 +6,16 @@ const CoinNavbar = () => {
   return (
     <Header style={{ background: "#333", color: "#fff" }}>
       <CDBNavbar dark expand="md" scrolling className="justify-content-start">
-        <CDBInput
-          type="search"
-          size="md"
-          hint="Search"
-          className="mb-n4 mt-n3 input-nav"
-        />
+        <div
+          style={{
+            background: "#333",
+            color: "#fff",
+            fontWeight: "bold",
+            fontSize: 30,
+          }}
+        >
+          ᴄᴏɪɴʟɪsᴛɪɴɢs
+        </div>
         <div className="ml-auto">
           <a
             href="/"
@@ -21,7 +25,6 @@ const CoinNavbar = () => {
             <span className="table-rem">Home</span>&nbsp;
             <i className="fas fa-house-damage"></i>
           </a>
-          &nbsp;
           <a
             href="/login"
             className="text-decoration-none  mx-4"
@@ -30,7 +33,6 @@ const CoinNavbar = () => {
             <span className="table-rem">Login</span>&nbsp;
             <i className="fas fa-sign-in-alt"></i>
           </a>
-          &nbsp;
           <a
             href="/addCoin"
             className="text-decoration-none  mx-4"
@@ -39,8 +41,8 @@ const CoinNavbar = () => {
             <span className="table-rem">Add Coin</span>&nbsp;
             <i className="fas fa-plus-square"></i>
           </a>
-          <i className="fas fa-bell mx-4"></i>
-          <i className="fas fa-comment-alt mx-4"></i>
+          <input type="text" className="table-rem" />
+          <i className="fas fa-search mx-4 table-rem"></i>
           <img
             alt="panelImage"
             src="img/pane/pane4.png"

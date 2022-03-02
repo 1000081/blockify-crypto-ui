@@ -56,9 +56,6 @@ const CoinDetails = () => {
 
   return (
     <div className="dashboard d-flex">
-      <div className="table-rem">
-        <Sidebar />
-      </div>
       <div
         style={{
           flex: "1 1 auto",
@@ -73,7 +70,7 @@ const CoinDetails = () => {
           <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
             <div className="d-flex card-section">
               <div className="detail-cards-container">
-                <div className="card-bg w-80 border d-flex flex-column h-60">
+                <div className="card-bg w-100 border d-flex flex-column">
                   <div className="p-4 d-flex flex-column h-100">
                     <div
                       className="d-flex mt-4"
@@ -93,32 +90,6 @@ const CoinDetails = () => {
                           {coin.chain} &nbsp; Contract Address:{" "}
                           {coin.contAddress}
                         </p>
-                        <div>
-                          {/* <input
-                            value={this.state.value}
-                            onChange={({ target: { value } }) =>
-                              this.setState({ value, copied: false })
-                            }
-                          /> */}
-
-                          <CopyToClipboard
-                          // text={this.state.value}
-                          // onCopy={() => this.setState({ copied: true })}
-                          >
-                            <i className="fas fa-clone fa-2x"></i>
-                          </CopyToClipboard>
-
-                          {/* <CopyToClipboard
-                            text={this.state.value}
-                            onCopy={() => this.setState({ copied: true })}
-                          >
-                            <button>Copy to clipboard with button</button>
-                          </CopyToClipboard> */}
-
-                          {/* {this.state.copied ? (
-                            <span style={{ color: "red" }}>Copied.</span>
-                          ) : null} */}
-                        </div>
                       </div>
                     </div>
                     <div className="table-rem">&nbsp;</div>

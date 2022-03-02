@@ -9,9 +9,9 @@ import "react-datepicker/dist/react-datepicker.css";
 const EditCoin = () => {
   return (
     <div className="dashboard d-flex">
-      <div className="table-rem">
+      {/* <div className="table-rem">
         <CoinSidebar />
-      </div>
+      </div> */}
       <div
         style={{
           flex: "1 1 auto",
