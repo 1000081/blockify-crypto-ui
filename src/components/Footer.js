@@ -1,41 +1,54 @@
-import { CDBLink, CDBBtn } from "cdbreact";
+import React from "react";
+import {
+  MDBFooter,
+  MDBContainer,
+  MDBCol,
+  MDBRow,
+  MDBIcon,
+  MDBInput,
+  MDBBtn,
+} from "mdb-react-ui-kit";
 
 const Footer = () => {
   return (
-    <>
-      <footer className="footer">
-        <div className="d-flex align-items-center">
-          <CDBLink to="/" className="text-dark footer-link">
-            <i class="fas fa-link"></i>
-            <span className="ml-4 lead mb-0 font-weight-bold">Blockify</span>
-          </CDBLink>
-          <span
-            className="footer-rem"
-            style={{
-              fontSize: "3em",
-              margin: "-2rem 0px -1.5rem 1rem",
-              color: "#C4C4C4",
-            }}
-          >
-            &#8226;
-          </span>
-          <small className="ml-2 mt-1">
-            &copy; blockify.com, 2020. All rights reserved.
-          </small>
-        </div>
-        <div className="footer-rem">
-          <CDBBtn flat color="dark" className="py-1 px-2 bg-dark border-0">
-            <i className="fab fa-facebook-f"></i>
-          </CDBBtn>
-          <CDBBtn flat color="dark" className="mx-3 py-1 px-2 bg-dark border-0">
-            <i className="fab fa-twitter"></i>
-          </CDBBtn>
-          <CDBBtn flat color="dark" className="py-1 px-2 bg-dark border-0">
-            <i className="fab fa-instagram"></i>
-          </CDBBtn>
-        </div>
-      </footer>
-    </>
+    <MDBFooter bgColor="dark" className="text-center text-white text-lg-left">
+      {/* <MDBContainer className="p-4 pb-0">
+        <form action="">
+          <MDBRow className="d-flex justify-content-center">
+            <MDBCol size="auto" className="mb-4 mb-md-0">
+              <p className="pt-2">
+                <strong>Sign up for our newsletter</strong>
+              </p>
+            </MDBCol>
+
+            <MDBCol md="5" size="12" className="mb-4 mb-md-0">
+              <MDBInput
+                type="text"
+                id="form5Example2"
+                label="Email address"
+                contrast
+              />
+            </MDBCol>
+
+            <MDBCol size="auto" className="mb-4 mb-md-0">
+              <MDBBtn outline color="light">
+                Subscribe
+              </MDBBtn>
+            </MDBCol>
+          </MDBRow>
+        </form>
+      </MDBContainer> */}
+
+      <div
+        className="text-center p-3"
+        style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
+      >
+        &copy; {new Date().getFullYear()} Copyright:{" "}
+        <a className="text-white" href="https://mdbootstrap.com/">
+          MDBootstrap.com
+        </a>
+      </div>
+    </MDBFooter>
   );
 };
 

@@ -21,7 +21,6 @@ const EditCoin = () => {
           overflowY: "hidden",
         }}
       >
-        <CoinNavbar />
         <div style={{ height: "100%" }}>
           <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
             <div className="d-flex card-section">
@@ -168,7 +167,6 @@ const EditCoin = () => {
                 </div>
               </div>
             </div>
-            <Footer />
           </div>
         </div>
       </div>

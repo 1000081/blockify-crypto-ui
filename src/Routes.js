@@ -9,11 +9,14 @@ import Register from "./containers/auth/Register";
 import AddCoin from "./containers/coin/AddCoin";
 import EditCoin from "./containers/coin/EditCoin";
 import CoinDetails from "./containers/coin/CoinDetails";
+import CoinNavbar from "./components/CoinNavbar";
+import Footer from "./components/Footer";
 
 const Routes = () => {
   return (
     <Fragment>
       <BrowserRouter>
+        <CoinNavbar />
         <Route exact path="/" render={() => <Home />} />
         <Route path="/tables" component={Tables} />
         <Route path="/hero404" component={Hero404} />
@@ -23,6 +26,7 @@ const Routes = () => {
         <Route path="/addCoin" component={AddCoin} />
         <Route path="/editCoin" component={EditCoin} />
         <Route path="/coinDetails" component={CoinDetails} />
+        <Footer />
       </BrowserRouter>
     </Fragment>
   );

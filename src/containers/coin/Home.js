@@ -39,7 +39,6 @@ export const Home = () => {
           overflowY: "hidden",
         }}
       >
-        <CoinNavbar />
         <div style={{ height: "100%" }}>
           <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
             <div className="d-flex card-section">
@@ -170,7 +169,6 @@ export const Home = () => {
                 </div>
               </div>
             </div>
-            <Footer />
           </div>
         </div>
       </div>

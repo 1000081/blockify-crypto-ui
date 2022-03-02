@@ -65,7 +65,6 @@ const CoinDetails = () => {
           overflowY: "hidden",
         }}
       >
-        <Navbar />
         <div style={{ height: "100%" }}>
           <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
             <div className="d-flex card-section">
@@ -179,16 +178,6 @@ const CoinDetails = () => {
                       <CDBBtn color="white" className="m-0" outline>
                         <i className="fab fa-discord fa-2x"></i>
                       </CDBBtn>
-                    </div>
-                  </div>
-                  <div className="d-flex">
-                    <div
-                      style={{
-                        marginLeft: 0,
-                        marginRight: 3,
-                        textAlign: "center",
-                      }}
-                    >
                       <CDBBtn color="white" className="m-0" outline>
                         <i className="fab fa-reddit fa-2x"></i>
                       </CDBBtn>
@@ -235,52 +224,6 @@ const CoinDetails = () => {
                 </div>
               </div>
             </div>
-            <footer className="footer">
-              <div className="d-flex align-items-center">
-                <CDBLink to="/" className="text-dark footer-link">
-                  <img alt="logo" src="/img/pages/logo.png" width="25px" />
-                  <span className="ml-4 lead mb-0 font-weight-bold">
-                    Devwares
-                  </span>
-                </CDBLink>
-                <span
-                  className="footer-rem"
-                  style={{
-                    fontSize: "3em",
-                    margin: "-2rem 0px -1.5rem 1rem",
-                    color: "#C4C4C4",
-                  }}
-                >
-                  &#8226;
-                </span>
-                <small className="ml-2 mt-1">
-                  &copy; Devwares, 2020. All rights reserved.
-                </small>
-              </div>
-              <div className="footer-rem">
-                <CDBBtn
-                  flat
-                  color="dark"
-                  className="py-1 px-2 bg-dark border-0"
-                >
-                  <i className="fab fa-facebook-f"></i>
-                </CDBBtn>
-                <CDBBtn
-                  flat
-                  color="dark"
-                  className="mx-3 py-1 px-2 bg-dark border-0"
-                >
-                  <i className="fab fa-twitter"></i>
-                </CDBBtn>
-                <CDBBtn
-                  flat
-                  color="dark"
-                  className="py-1 px-2 bg-dark border-0"
-                >
-                  <i className="fab fa-instagram"></i>
-                </CDBBtn>
-              </div>
-            </footer>
           </div>
         </div>
       </div>

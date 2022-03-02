@@ -1,6 +1,7 @@
 import React from "react";
 import { Header } from "./../Navbar.style";
 import { CDBNavbar, CDBInput } from "cdbreact";
+import "./../containers/coin/Home.css";
 
 const CoinNavbar = () => {
   return (
@@ -19,10 +20,10 @@ const CoinNavbar = () => {
         <div className="ml-auto">
           <a
             href="/"
-            className="text-decoration-none  mx-4"
+            className="text-decoration-none  mx-6"
             style={{ color: "inherit" }}
           >
-            <span className="table-rem">Home</span>&nbsp;
+            <span className="table-rem element-to-hide">Home</span>&nbsp;
             <i className="fas fa-house-damage"></i>
           </a>
           <a
@@ -30,7 +31,7 @@ const CoinNavbar = () => {
             className="text-decoration-none  mx-4"
             style={{ color: "inherit" }}
           >
-            <span className="table-rem">Login</span>&nbsp;
+            <span className="table-rem element-to-hide">Login</span>&nbsp;
             <i className="fas fa-sign-in-alt"></i>
           </a>
           <a
@@ -38,16 +39,11 @@ const CoinNavbar = () => {
             className="text-decoration-none  mx-4"
             style={{ color: "inherit" }}
           >
-            <span className="table-rem">Add Coin</span>&nbsp;
+            <span className="table-rem element-to-hide">Add Coin</span>&nbsp;
             <i className="fas fa-plus-square"></i>
           </a>
           <input type="text" className="table-rem" />
           <i className="fas fa-search mx-4 table-rem"></i>
-          <img
-            alt="panelImage"
-            src="img/pane/pane4.png"
-            style={{ width: "3rem", height: "3rem" }}
-          />
         </div>
       </CDBNavbar>
     </Header>
