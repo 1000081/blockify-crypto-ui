@@ -7,11 +7,9 @@ import {
   MDBTabsPane,
 } from "mdb-react-ui-kit";
 
+import useBreakpoint from "../../components/Breakpoint";
 import "./Home.css";
 import CoinTable from "../../components/CoinTable";
-import Footer from "../../components/Footer";
-import CoinSidebar from "./../../components/CoinSidebar";
-import CoinNavbar from "../../components/CoinNavbar";
 import { CoinContext } from "../contexts/CoinContext";
 
 export const Home = () => {
@@ -31,11 +29,10 @@ export const Home = () => {
     setFillActive(value);
   };
 
+  const point = useBreakpoint();
+
   return (
     <div className="dashboard d-flex">
-      {/* <div className="table-rem">
-        <CoinSidebar />
-      </div> */}
       <div
         style={{
           flex: "1 1 auto",
@@ -45,11 +42,13 @@ export const Home = () => {
           overflowY: "hidden",
         }}
       >
-        <CoinNavbar />
         <div style={{ height: "100%" }}>
           <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
             <div className="d-flex card-section">
-              <div className="cards-container">
+              <div
+                className="cards-container"
+                style={point !== "sm" ? { width: "80%" } : { width: "100%" }}
+              >
                 <div className="card-bg w-100 d-flex flex-column wide border d-flex flex-column">
                   <div className="d-flex flex-column p-0 h-100">
                     <div className="mx-4 mt-3 d-flex justify-content-between align-items-center">
@@ -57,12 +56,6 @@ export const Home = () => {
                         Promoted
                       </h4>
                       <div className="p-1 bg-grey rounded-circle">
-                        {/* <ReactSearchBox
-                          placeholder="Placeholder"
-                          value="Doe"
-                          data={data}
-                          callback={(record) => console.log(record)}
-                        /> */}
                         <input
                           type="search"
                           className="form-control rounded"
@@ -85,13 +78,6 @@ export const Home = () => {
                     </p>
                   </div>
                 </div>
-                {/* <div className="card-bg w-100 d-flex flex-column wide border d-flex flex-column">
-                  <div className="d-flex flex-column p-0 h-100">
-                    <div className="mx-4 mt-3 d-flex justify-content-between align-items-center">
-                      ADS
-                    </div>
-                  </div>
-                </div> */}
                 <div className="card-bg w-100 d-flex flex-column wide border d-flex flex-column">
                   <div className="d-flex flex-column p-0 h-100">
                     <MDBTabs className="mb-3">
@@ -197,7 +183,6 @@ export const Home = () => {
                 </div>
               </div>
             </div>
-            <Footer />
           </div>
         </div>
       </div>

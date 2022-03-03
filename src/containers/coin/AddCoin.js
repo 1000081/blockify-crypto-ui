@@ -1,12 +1,9 @@
 import React, { useState, useContext, useRef } from "react";
 import "./Home.css";
-import Footer from "../../components/Footer";
-import CoinSidebar from "../../components/CoinSidebar";
-import CoinNavbar from "../../components/CoinNavbar";
-import { CDBBtn, CDBCard, CDBCardBody, CDBContainer, CDBInput } from "cdbreact";
+import { CDBBtn, CDBInput } from "cdbreact";
 import "react-datepicker/dist/react-datepicker.css";
 import { CoinContext } from "../contexts/CoinContext";
-// import "./../../../node_modules/bootstrap-css-only/css/bootstrap-grid.min.css";
+import useBreakpoint from "../../components/Breakpoint";
 
 const AddCoin = () => {
   const { addCoin } = useContext(CoinContext);
@@ -91,6 +88,8 @@ const AddCoin = () => {
     return errors.indexOf(key) !== -1;
   };
 
+  const point = useBreakpoint();
+
   return (
     <div className="dashboard d-flex">
       <div
@@ -102,153 +101,15 @@ const AddCoin = () => {
           overflowY: "hidden",
         }}
       >
-        <CoinNavbar />
-        {/* <div style={{ height: "100%" }}>
-          <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
-            <div className="d-flex card-section">
-              <CDBContainer
-                className="container-sm container-md"
-                style={{ width: "60rem", align: "center", overflow: "auto" }}
-              >
-                <CDBCard>
-                  <CDBCardBody className="mx-8 center">
-                    <h4 className="font-weight-bold text-dark h5">
-                      Coin information
-                    </h4>
-                    <div className="form-row mb-n4">
-                      <div className="col">
-                        <CDBInput
-                          label="Name (Required)"
-                          type="text"
-                          value={coin.name}
-                          id="name"
-                          name="name"
-                          onChange={handleInputChange}
-                          className={
-                            hasError("name")
-                              ? "form-control is-invalid"
-                              : "form-control"
-                          }
-                          ref={inputRef}
-                        >
-                          <span
-                            className={
-                              hasError("name") ? "inline-errormsg" : "hidden"
-                            }
-                          >
-                            * Required
-                          </span>
-                        </CDBInput>
-                      </div>
-                    </div>
-                    <div className="form-row mb-n4">
-                      <div className="col">
-                        <CDBInput
-                          label="Symbol (Required)"
-                          type="text"
-                          value={coin.symbol}
-                          id="symbol"
-                          name="symbol"
-                          onChange={handleInputChange}
-                          className={
-                            hasError("symbol")
-                              ? "form-control is-invalid"
-                              : "form-control"
-                          }
-                        >
-                          <span
-                            className={
-                              hasError("symbol") ? "inline-errormsg" : "hidden"
-                            }
-                          >
-                            * Required
-                          </span>
-                        </CDBInput>
-                      </div>
-                    </div>
-                    <div className="form-row mb-n4">
-                      <div className="col">
-                        <CDBInput
-                          label="Description (Required)"
-                          type="textarea"
-                          rows={5}
-                          cols={10}
-                          value={coin.description}
-                          id="description"
-                          name="description"
-                          onChange={handleInputChange}
-                          className={
-                            hasError("description")
-                              ? "form-control is-invalid"
-                              : "form-control"
-                          }
-                        >
-                          <span
-                            className={
-                              hasError("description")
-                                ? "inline-errormsg"
-                                : "hidden"
-                            }
-                          >
-                            * Required
-                          </span>
-                        </CDBInput>
-                      </div>
-                    </div>
-                    <div className="form-row mb-n4">
-                      <div className="col d-flex flex-wrap justify-content-center align-items-center">
-                        <CDBInput
-                          label="Project in presale phase?"
-                          type="checkbox"
-                        />
-                      </div>
-                      <div className="col">
-                        <CDBInput
-                          label="Launch Date (Required)"
-                          type="text"
-                          value={coin.launchDt}
-                          id="launchDt"
-                          name="launchDt"
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                    </div>
-                    <div className="form-row mb-n4">
-                      <div className="col">
-                        <CDBInput
-                          label="Market Cap in USD"
-                          type="text"
-                          value={coin.marketCap}
-                          id="marketCap"
-                          name="marketCap"
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                    </div>
-                    <div className="form-row mb-n4">
-                      <div className="col">
-                        <CDBInput
-                          label="Price in USD"
-                          type="text"
-                          value={coin.price}
-                          id="price"
-                          name="price"
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                    </div>
-                  </CDBCardBody>
-                </CDBCard>
-              </CDBContainer>
-            </div>
-          </div>
-        </div> */}
         <div style={{ height: "100%" }}>
           <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
             <div className="d-flex card-section">
-              <div className="add-cards-container w-100">
+              <div
+                className="add-cards-container"
+                style={point !== "sm" ? { width: "60%" } : { width: "100%" }}
+              >
                 <div className="col-md-12 card-bg w-100 d-flex flex-column wide border d-flex flex-column">
-                  <div className="mx-4 mt-3 d-flex justify-content-between align-items-center">
+                  <div className="mx-0 mt-3 d-flex justify-content-between">
                     <h4 className="font-weight-bold text-dark h5">
                       Coin information
                     </h4>
@@ -333,6 +194,7 @@ const AddCoin = () => {
                       </CDBInput>
                     </div>
                   </div>
+
                   <div className="form-row mb-n4">
                     <div className="col d-flex flex-wrap justify-content-center align-items-center">
                       <CDBInput
@@ -340,6 +202,9 @@ const AddCoin = () => {
                         type="checkbox"
                       />
                     </div>
+                  </div>
+
+                  <div className="form-row mb-n4">
                     <div className="col">
                       <CDBInput
                         label="Launch Date (Required)"
@@ -351,6 +216,7 @@ const AddCoin = () => {
                       />
                     </div>
                   </div>
+
                   <div className="form-row mb-n4">
                     <div className="col">
                       <CDBInput
@@ -380,7 +246,7 @@ const AddCoin = () => {
                   </div>
                 </div>
                 <div className="col-md-12 card-bg w-100 d-flex flex-column wide border d-flex flex-column">
-                  <div className="mx-4 mt-3 d-flex justify-content-between align-items-center">
+                  <div className="mx-0 mt-3 d-flex justify-content-between align-items-center">
                     <h4 className="font-weight-bold text-dark h5">
                       Contract address
                     </h4>
@@ -443,7 +309,7 @@ const AddCoin = () => {
                   </div>
                 </div>
                 <div className="col-md-12 card-bg w-100 d-flex flex-column wide border d-flex flex-column">
-                  <div className="mx-4 mt-3 d-flex justify-content-between align-items-center">
+                  <div className="mx-0 mt-3 d-flex justify-content-between align-items-center">
                     <h4 className="font-weight-bold text-dark h5">Links</h4>
                   </div>
                   <div className="form-row mb-n4">
@@ -561,7 +427,7 @@ const AddCoin = () => {
                   </div>
                 </div>
                 <div className="col-md-12 card-bg w-100 d-flex flex-column wide border d-flex flex-column">
-                  <div className="mx-4 mt-3 d-flex justify-content-between align-items-center">
+                  <div className="mx-0 mt-3 d-flex justify-content-between align-items-center">
                     <h4 className="font-weight-bold text-dark h5">
                       Additional Information
                     </h4>
@@ -590,9 +456,6 @@ const AddCoin = () => {
                       />
                     </div>
                   </div>
-                  <div className="mx-4 mt-3 d-flex justify-content-between align-items-center">
-                    <h4 className="font-weight-bold text-dark h5">&nbsp;</h4>
-                  </div>
                   <CDBBtn
                     type="submit"
                     color="dark"
@@ -604,7 +467,7 @@ const AddCoin = () => {
                 </div>
               </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </div>
       </div>

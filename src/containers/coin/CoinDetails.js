@@ -1,17 +1,10 @@
 import React, { useContext, useState } from "react";
-import {
-  CDBBtn,
-  CDBTable,
-  CDBTableHeader,
-  CDBTableBody,
-  CDBLink,
-} from "cdbreact";
-import Sidebar from "../../components/CoinSidebar";
-import Navbar from "../../components/CoinNavbar";
+import { CDBBtn, CDBTable, CDBTableHeader, CDBTableBody } from "cdbreact";
 import "../coin/Home.css";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { CoinContext } from "../contexts/CoinContext";
-// import { SocialMediaIconsReact } from "social-media-icons-react";
+import { MDBNavbarLink } from "mdb-react-ui-kit";
+import { MDBLink } from "mdbreact";
 
 const CoinDetails = () => {
   const { coin } = useContext(CoinContext);
@@ -43,7 +36,6 @@ const CoinDetails = () => {
           overflowY: "hidden",
         }}
       >
-        <Navbar />
         <div style={{ height: "100%" }}>
           <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
             <div className="d-flex card-section">
@@ -195,6 +187,16 @@ const CoinDetails = () => {
                         marginRight: 3,
                       }}
                     >
+                      {/* <a
+                        href="https://elonmoon.games"
+                        target="_blank"
+                        color="white"
+                        className="m-0"
+                        outline
+                        style={{ textDecoration: "none" }}
+                      >
+                        <i className="fas fa-globe-africa fa-2x"></i>
+                      </a> */}
                       <CDBBtn color="white" className="m-0" outline>
                         <i className="fas fa-globe-africa fa-2x"></i>
                       </CDBBtn>
@@ -256,52 +258,6 @@ const CoinDetails = () => {
                 </div>
               </div>
             </div>
-            <footer className="footer">
-              <div className="d-flex align-items-center">
-                <CDBLink to="/" className="text-dark footer-link">
-                  <img alt="logo" src="/img/pages/logo.png" width="25px" />
-                  <span className="ml-4 lead mb-0 font-weight-bold">
-                    Devwares
-                  </span>
-                </CDBLink>
-                <span
-                  className="footer-rem"
-                  style={{
-                    fontSize: "3em",
-                    margin: "-2rem 0px -1.5rem 1rem",
-                    color: "#C4C4C4",
-                  }}
-                >
-                  &#8226;
-                </span>
-                <small className="ml-2 mt-1">
-                  &copy; Devwares, 2020. All rights reserved.
-                </small>
-              </div>
-              <div className="footer-rem">
-                <CDBBtn
-                  flat
-                  color="dark"
-                  className="py-1 px-2 bg-dark border-0"
-                >
-                  <i className="fab fa-facebook-f"></i>
-                </CDBBtn>
-                <CDBBtn
-                  flat
-                  color="dark"
-                  className="mx-3 py-1 px-2 bg-dark border-0"
-                >
-                  <i className="fab fa-twitter"></i>
-                </CDBBtn>
-                <CDBBtn
-                  flat
-                  color="dark"
-                  className="py-1 px-2 bg-dark border-0"
-                >
-                  <i className="fab fa-instagram"></i>
-                </CDBBtn>
-              </div>
-            </footer>
           </div>
         </div>
       </div>

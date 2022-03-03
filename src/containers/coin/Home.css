@@ -101,6 +101,10 @@
 	.dashboard .footer {
 		width:90%;
 	}
+	.dashboard .element-width{
+		width: '50%';
+	  }
+  
 }
 
 @media (max-width:920px) {
@@ -161,4 +165,31 @@
 
   .w-70 {
     width: 70% !important;
+}
+
+.w-60 {
+    width: 60% !important;
+}
+
+@media (max-width: 600px) {
+	.element-to-hide {
+	  display: none;
+	}
+
+	/* .element-width{
+		width: '50%';
+	  }
+   */
+	.dashboard .mob-table {
+	  margin:0px 0px;
+	  margin-left: 0px;
+	  margin-right: 0px;
+  }
+  }
+
+  @media (max-width:1720px) {
+	.dashboard .element-width{
+		width: '500px';
+	  }
+  
 }
