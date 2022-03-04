@@ -40,10 +40,17 @@ export const Home = () => {
           flexFlow: "column",
           height: "100vh",
           overflowY: "hidden",
+          color: "#3F729B",
         }}
       >
         <div style={{ height: "100%" }}>
-          <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
+          <div
+            style={{
+              height: "calc(100% - 64px)",
+              overflowY: "scroll",
+              color: "#3F729B",
+            }}
+          >
             <div className="d-flex card-section">
               <div
                 className="cards-container"
@@ -51,25 +58,10 @@ export const Home = () => {
               >
                 <div className="card-bg w-100 d-flex flex-column wide border d-flex flex-column">
                   <div className="d-flex flex-column p-0 h-100">
-                    <div className="mx-4 mt-3 d-flex justify-content-between align-items-center">
+                    <div className="mx-1 mt-3 d-flex justify-content-between align-items-center">
                       <h4 className="font-weight-bold text-dark h5">
                         Promoted
                       </h4>
-                      <div className="p-1 bg-grey rounded-circle">
-                        <input
-                          type="search"
-                          className="form-control rounded"
-                          placeholder="Search"
-                          aria-label="Search"
-                          aria-describedby="search-addon"
-                        />
-                        <span
-                          className="input-group-text border-0"
-                          id="search-addon"
-                        >
-                          <i className="fas fa-search"></i>
-                        </span>
-                      </div>
                     </div>
                     <CoinTable values={coins} />
                     <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
@@ -78,6 +70,7 @@ export const Home = () => {
                     </p>
                   </div>
                 </div>
+                <div style={{ height: "50px", width: "100%" }}></div>
                 <div className="card-bg w-100 d-flex flex-column wide border d-flex flex-column">
                   <div className="d-flex flex-column p-0 h-100">
                     <MDBTabs className="mb-3">
@@ -121,7 +114,7 @@ export const Home = () => {
 
                     <MDBTabsContent>
                       <MDBTabsPane show={fillActive === "newTab"}>
-                        <div className="mx-4 mt-3 d-flex justify-content-between align-items-center">
+                        <div className="mx-1 mt-0 d-flex justify-content-between align-items-center">
                           <h4 className="font-weight-bold text-dark h5">New</h4>
                           <div className="p-1 bg-grey rounded-circle">
                             <i className="fas fa-sticky-note"></i>
@@ -134,7 +127,7 @@ export const Home = () => {
                         </p>
                       </MDBTabsPane>
                       <MDBTabsPane show={fillActive === "altTab"}>
-                        <div className="mx-4 mt-3 d-flex justify-content-between align-items-center">
+                        <div className="mx-1 mt-0 d-flex justify-content-between align-items-center">
                           <h4 className="font-weight-bold text-dark h5">
                             All Time Best
                           </h4>
@@ -149,7 +142,7 @@ export const Home = () => {
                         </p>
                       </MDBTabsPane>
                       <MDBTabsPane show={fillActive === "normalTab"}>
-                        <div className="mx-4 mt-3 d-flex justify-content-between align-items-center">
+                        <div className="mx-1 mt-0 d-flex justify-content-between align-items-center">
                           <h4 className="font-weight-bold text-dark h5">
                             Normal
                           </h4>
@@ -164,7 +157,7 @@ export const Home = () => {
                         </p>
                       </MDBTabsPane>
                       <MDBTabsPane show={fillActive === "presaleTab"}>
-                        <div className="mx-4 mt-3 d-flex justify-content-between align-items-center">
+                        <div className="mx-1 mt-0 d-flex justify-content-between align-items-center">
                           <h4 className="font-weight-bold text-dark h5">
                             Presale
                           </h4>

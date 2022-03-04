@@ -14,7 +14,13 @@ const CoinNavbar = () => {
             fontSize: 30,
           }}
         >
-          ᴄᴏɪɴʟɪsᴛɪɴɢ
+          <a
+            href="/"
+            className="text-decoration-none  mx-4"
+            style={{ color: "inherit" }}
+          >
+            ᴄᴏɪɴʟɪsᴛɪɴɢ
+          </a>
         </div>
         <div className="ml-auto">
           <a
@@ -22,29 +28,45 @@ const CoinNavbar = () => {
             className="text-decoration-none  mx-4"
             style={{ color: "inherit" }}
           >
-            <span className="table-rem element-to-hide">Home</span>&nbsp;
-            <i className="fas fa-house-damage"></i>
+            <span
+              className="table-rem element-to-hide"
+              style={{ marginRight: "0.5rem" }}
+            >
+              Home
+            </span>
+            &nbsp;
+            <i className="fas fa-house-damage fa-2x"></i>
           </a>
-          &nbsp;
           <a
             href="/login"
             className="text-decoration-none  mx-4"
             style={{ color: "inherit" }}
           >
-            <span className="table-rem element-to-hide">Login</span>&nbsp;
-            <i className="fas fa-sign-in-alt"></i>
+            <span
+              className="table-rem element-to-hide"
+              style={{ marginRight: "0.5rem" }}
+            >
+              Login
+            </span>
+            &nbsp;
+            <i className="fas fa-sign-in-alt fa-2x"></i>
           </a>
-          &nbsp;
           <a
             href="/addCoin"
             className="text-decoration-none  mx-4"
             style={{ color: "inherit" }}
           >
-            <span className="table-rem element-to-hide">Add Coin</span>&nbsp;
-            <i className="fas fa-plus-square"></i>
+            <span
+              className="table-rem element-to-hide"
+              style={{ marginRight: "0.5rem" }}
+            >
+              Add Coin
+            </span>
+            &nbsp;
+            <i className="fas fa-plus-square fa-2x"></i>
           </a>
           <input type="text" className="table-rem" />
-          <i className="fas fa-search mx-4 table-rem"></i>
+          <i className="fas fa-search mx-4 table-rem  fa-2x"></i>
         </div>
       </CDBNavbar>
     </Header>

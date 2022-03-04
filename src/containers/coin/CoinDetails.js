@@ -1,10 +1,17 @@
 import React, { useContext, useState } from "react";
-import { CDBBtn, CDBTable, CDBTableHeader, CDBTableBody } from "cdbreact";
+import {
+  CDBBtn,
+  CDBTable,
+  CDBTableHeader,
+  CDBTableBody,
+  CDBLink,
+} from "cdbreact";
+import Sidebar from "../../components/CoinSidebar";
+import Navbar from "../../components/CoinNavbar";
 import "../coin/Home.css";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { CoinContext } from "../contexts/CoinContext";
-import { MDBNavbarLink } from "mdb-react-ui-kit";
-import { MDBLink } from "mdbreact";
+// import { SocialMediaIconsReact } from "social-media-icons-react";
 
 const CoinDetails = () => {
   const { coin } = useContext(CoinContext);
@@ -187,17 +194,12 @@ const CoinDetails = () => {
                         marginRight: 3,
                       }}
                     >
-                      {/* <a
-                        href="https://elonmoon.games"
-                        target="_blank"
+                      <CDBBtn
                         color="white"
                         className="m-0"
                         outline
-                        style={{ textDecoration: "none" }}
+                        active={coin.website}
                       >
-                        <i className="fas fa-globe-africa fa-2x"></i>
-                      </a> */}
-                      <CDBBtn color="white" className="m-0" outline>
                         <i className="fas fa-globe-africa fa-2x"></i>
                       </CDBBtn>
                       <CDBBtn color="white" className="m-0" outline>

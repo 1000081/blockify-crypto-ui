@@ -140,3 +140,39 @@ export const coinTable = {
     },
   ],
 };
+
+export const option = [
+  {
+    text: "Binance Smart Chain (BSC)",
+    value: "BSC",
+  },
+  {
+    text: "Ethereum (ETH)",
+    value: "ETH",
+  },
+  {
+    text: "Polygon (MATIC)",
+    value: "MATIC",
+  },
+  {
+    text: "Tron (TRX)",
+    value: "TRX",
+  },
+  {
+    text: "Fantom (FTM)",
+    value: "FTM",
+  },
+  {
+    text: "Solana (SOL)",
+    value: "SOL",
+    icon: "question-circle",
+  },
+  {
+    text: "Kucoin Chain (KCC)",
+    value: "KCC",
+  },
+  {
+    text: "Other",
+    value: "OTHER",
+  },
+];
