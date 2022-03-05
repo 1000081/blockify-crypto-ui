@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { CoinContext } from "../contexts/CoinContext";
 import useBreakpoint from "../../components/Breakpoint";
 import { option } from "./tableData";
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
 
 const AddCoin = () => {
   const { addCoin } = useContext(CoinContext);
@@ -97,6 +99,11 @@ const AddCoin = () => {
       errors.push("telegram");
     }
 
+    if (coin.launchDt === "") {
+      // inputRef.current.setFocus();
+      errors.push("launchDt");
+    }
+
     setErrors(errors);
 
     if (errors.length > 0) {
@@ -111,6 +118,12 @@ const AddCoin = () => {
   };
 
   const point = useBreakpoint();
+
+  const today = new Date();
+
+  const handleDatepickerChange = (value) => {
+    setCoin({ ...coin, ["launchDt"]: value });
+  };
 
   return (
     <div className="dashboard d-flex">
@@ -219,19 +232,33 @@ const AddCoin = () => {
                     </div>
                   </div>
                   <br />
+                  <br></br>
                   <div className="form-row mb-n4">
                     <div className="col">
-                      <CDBInput
-                        label="Launch Date (*)"
-                        type="text"
-                        value={coin.launchDt}
+                      <p className="text-center m-0">Launch Date (*)</p>
+                      <DatePicker
+                        selected={coin.launchDt}
+                        onChange={handleDatepickerChange}
                         id="launchDt"
                         name="launchDt"
-                        onChange={handleInputChange}
-                      />
+                        className="form-control"
+                        label="Launch Date (*)"
+                        // minDate={today}
+                        customInput={
+                          <input type="text" id="launchDt" placeholder="" />
+                        }
+                      >
+                        <span
+                          className={
+                            hasError("launchDt") ? "text-error" : "hidden"
+                          }
+                        >
+                          * Required
+                        </span>
+                      </DatePicker>
                     </div>
                   </div>
-
+                  <br></br>
                   <div className="form-row mb-n4">
                     <div className="col">
                       <CDBInput
