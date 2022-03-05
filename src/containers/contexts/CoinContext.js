@@ -28,14 +28,23 @@ const CoinContextProvider = (props) => {
   const [coins, setCoins] = useState([]);
   const [coin, setCoin] = useState(initialCoin);
 
+  const [preSaleCoins, setPreSaleCoins] = useState([]);
+  const [newCoins, setNewCoins] = useState([]);
+  const [promotedCoins, setPromotedCoins] = useState([]);
+  const [normalCoins, setNormalCoins] = useState([]);
+  const [atbCoins, setAtbCoins] = useState([]);
+
   useEffect(() => {
     retrieveAllCoins();
   }, []);
 
+  // filteredList(coinList, coinType)
+
   const retrieveAllCoins = () => {
     ApiService.findAll("/coins")
       .then((response) => {
-        setCoins(response.data);
+        let allCoins = response.data;
+        setCoins(allCoins);
       })
       .catch((e) => {
         console.log(e);
@@ -47,6 +56,18 @@ const CoinContextProvider = (props) => {
     ApiService.update("coins", coin._id, vote)
       .then((response) => {
         console.log(response.data);
+        retrieveAllCoins();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const editCoin = (coin) => {
+    console.log("coinContext--------------------------" + JSON.stringify(coin));
+    ApiService.update("coins", coin._id, coin)
+      .then((response) => {
+        console.log("-----response" + response.data);
         retrieveAllCoins();
       })
       .catch((e) => {
@@ -83,6 +104,7 @@ const CoinContextProvider = (props) => {
         retrieveAllCoins,
         addCoin,
         showCoinDetails,
+        editCoin,
       }}
     >
       {props.children}

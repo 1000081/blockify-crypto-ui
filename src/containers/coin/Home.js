@@ -11,6 +11,8 @@ import useBreakpoint from "../../components/Breakpoint";
 import "./Home.css";
 import CoinTable from "../../components/CoinTable";
 import { CoinContext } from "../contexts/CoinContext";
+import { filteredList } from "../../util/Stringutil";
+import * as types from "./../../Constants";
 
 export const Home = () => {
   const { coins } = useContext(CoinContext);
@@ -63,7 +65,9 @@ export const Home = () => {
                         Promoted
                       </h4>
                     </div>
-                    <CoinTable values={coins} />
+                    <CoinTable
+                      values={filteredList(coins, types.COIN_TYPE_PROMOTED)}
+                    />
                     <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
                       See More
                       <i className="fas fa-arrow-right ml-1"></i>
@@ -120,7 +124,9 @@ export const Home = () => {
                             <i className="fas fa-sticky-note"></i>
                           </div>
                         </div>
-                        <CoinTable values={coins} />
+                        <CoinTable
+                          values={filteredList(coins, types.COIN_TYPE_NEW)}
+                        />
                         <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
                           See More
                           <i className="fas fa-arrow-right ml-1"></i>
@@ -135,7 +141,9 @@ export const Home = () => {
                             <i className="fas fa-sticky-note"></i>
                           </div>
                         </div>
-                        <CoinTable values={coins} />
+                        <CoinTable
+                          values={filteredList(coins, types.COIN_TYPE_ATB)}
+                        />
                         <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
                           See More
                           <i className="fas fa-arrow-right ml-1"></i>
@@ -150,7 +158,9 @@ export const Home = () => {
                             <i className="fas fa-sticky-note"></i>
                           </div>
                         </div>
-                        <CoinTable values={coins} />
+                        <CoinTable
+                          values={filteredList(coins, types.COIN_TYPE_NORMAL)}
+                        />
                         <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
                           See More
                           <i className="fas fa-arrow-right ml-1"></i>
@@ -165,7 +175,9 @@ export const Home = () => {
                             <i className="fas fa-sticky-note"></i>
                           </div>
                         </div>
-                        <CoinTable values={coins} />
+                        <CoinTable
+                          values={filteredList(coins, types.COIN_TYPE_PRE_SALE)}
+                        />
                         <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
                           See More
                           <i className="fas fa-arrow-right ml-1"></i>

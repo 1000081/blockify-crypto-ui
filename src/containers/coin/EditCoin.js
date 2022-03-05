@@ -9,9 +9,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { coinTable } from "./tableData";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
-
+import { stringToDate } from "../../util/Stringutil";
 const EditCoin = () => {
-  const { addCoin } = useContext(CoinContext);
+  const { editCoin } = useContext(CoinContext);
   const inputRef = useRef();
 
   const initialCoin = {
@@ -42,6 +42,7 @@ const EditCoin = () => {
 
   const [coin, setCoin] = useState(initialCoin);
   const [errors, setErrors] = useState([]);
+  const { coins } = useContext(CoinContext);
 
   const handleInputChange = (event) => {
     const { name, value, checked, selectedIndex } = event.target;
@@ -110,7 +111,7 @@ const EditCoin = () => {
     if (errors.length > 0) {
       return false;
     } else {
-      addCoin(coin);
+      editCoin(coin);
     }
   };
 
@@ -136,8 +137,9 @@ const EditCoin = () => {
 
   const handleOnSelect = (item) => {
     console.log("selected item--------------" + JSON.stringify(item));
+    console.log("Coin before set--------------" + JSON.stringify(coin));
     setCoin(item);
-    console.log("Coin--------------" + JSON.stringify(coin));
+    console.log("Coin after set--------------" + JSON.stringify(coin));
   };
 
   const handleOnFocus = () => {
@@ -175,7 +177,7 @@ const EditCoin = () => {
                         Select Coin to edit
                       </p>
                       <ReactSearchAutocomplete
-                        items={coinTable.data}
+                        items={coins}
                         onSearch={handleOnSearch}
                         onHover={handleOnHover}
                         onSelect={handleOnSelect}
@@ -298,7 +300,7 @@ const EditCoin = () => {
                     <div className="col">
                       <p className="text-center m-0">Launch Date (*)</p>
                       <DatePicker
-                        // selected={coin.launchDt}
+                        // selected={stringToDate(coin.launchD)}
                         onChange={handleDatepickerChange}
                         id="launchDt"
                         name="launchDt"

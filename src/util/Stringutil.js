@@ -1,4 +1,5 @@
 import moment from "moment";
+import * as types from "../Constants";
 
 export function formatDate(date, format) {
   let given = moment(date, format);
@@ -43,4 +44,39 @@ export function formatDate(date, format) {
     }
   }
   return daysToDisplay;
+}
+
+export function stringToDate(string) {
+  return moment("2018-05-18T04:00:00.000Z").format("DD MMM, YYYY");
+}
+
+export function filteredList(coinList, coinType) {
+  const results = coinList.filter((coin) => {
+    let filteredCoin = "";
+    if (coinType === types.COIN_TYPE_NEW && coin.isNew === types.STRING_Y) {
+      filteredCoin = coin;
+    } else if (
+      coinType === types.COIN_TYPE_PROMOTED &&
+      coin.isPromoted === types.STRING_Y
+    ) {
+      filteredCoin = coin;
+    } else if (
+      coinType === types.COIN_TYPE_NORMAL &&
+      coin.isNormal === types.STRING_Y
+    ) {
+      filteredCoin = coin;
+    } else if (
+      coinType === types.COIN_TYPE_ATB &&
+      coin.isATB === types.STRING_Y
+    ) {
+      filteredCoin = coin;
+    } else if (
+      coinType === types.COIN_TYPE_PRE_SALE &&
+      coin.isPresale === types.STRING_Y
+    ) {
+      filteredCoin = coin;
+    }
+    return filteredCoin;
+  });
+  return results;
 }
