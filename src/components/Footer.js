@@ -12,11 +12,24 @@ const Footer = () => {
 
   return (
     <MDBFooter bgColor="dark" className="text-center text-white text-lg-left">
-      <MDBContainer className="p-4 pb-0">
+      <MDBContainer className="p-4 pb-0 w-100">
         <form action="">
           <MDBRow className="d-flex justify-content-center">
-            <MDBCol size="auto" className="mb-4 mb-md-0">
-              <CDBBtn color="black" className="m-0">
+            <MDBCol size="auto" className="mb-4 mb-md-0" center>
+              <CDBBtn
+                className="m-3"
+                color="black"
+                outline
+                circle
+                style={{
+                  fontWeight: "bold",
+                  fontColor: "white",
+                  borderColor: "white",
+                  borderWidth: 1,
+                  borderStyle: "solid",
+                }}
+                onClick={handleEditButton}
+              >
                 Edit Coin
               </CDBBtn>
 

@@ -132,6 +132,7 @@ const AddCoin = () => {
           flexFlow: "column",
           height: "100vh",
           overflowY: "hidden",
+          backgroundColor: "#424242",
         }}
       >
         <div style={{ height: "100%" }}>
@@ -141,7 +142,13 @@ const AddCoin = () => {
                 className="add-cards-container"
                 style={point !== "sm" ? { width: "60%" } : { width: "100%" }}
               >
-                <div className="col-md-12 card-bg w-100 d-flex flex-column wide border d-flex flex-column">
+                <div
+                  className="col-md-12 card-bg w-100 d-flex flex-column wide border d-flex flex-column"
+                  border="dark"
+                  background="dark"
+                  style={{ background: "dark" }}
+                  // className="mt-3 mb-3 text-white"
+                >
                   <div className="mx-0 mt-3 d-flex justify-content-between">
                     <h4 className="font-weight-bold text-dark h5">
                       Coin information

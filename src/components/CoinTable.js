@@ -5,7 +5,7 @@ import { coinTableMeta } from "./TableMetaData";
 const CoinTable = (data) => {
   return (
     <>
-      <CDBTable striped responsive className="fw-bold">
+      <CDBTable striped>
         <CDBTableHeader color="dark">
           <tr>
             <th>{coinTableMeta[0].header}</th>

@@ -54,7 +54,7 @@ export const Home = () => {
               color: "#3F729B",
             }}
           >
-            <div className="d-flex card-section">
+            <div className="d-flex card-section w-100 ">
               <div
                 className="cards-container"
                 style={point !== "sm" ? { width: "80%" } : { width: "100%" }}
@@ -121,11 +121,11 @@ export const Home = () => {
                       <MDBTabsPane show={fillActive === "newTab"}>
                         <div className="mx-1 mt-0 d-flex justify-content-between align-items-center">
                           <h4 className="font-weight-bold text-dark h5">New</h4>
-                          <div className="col-md-4 p-1 bg-grey rounded-circle">
+                          {/* <div className="col-md-4 p-1 bg-grey rounded-circle">
                             <CoinSearch
                               coins={filteredList(coins, types.COIN_TYPE_NEW)}
                             />
-                          </div>
+                          </div> */}
                         </div>
                         <CoinTable
                           values={filteredList(coins, types.COIN_TYPE_NEW)}

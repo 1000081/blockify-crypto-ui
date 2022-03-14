@@ -87,6 +87,20 @@ const CoinContextProvider = (props) => {
       });
   };
 
+  const retrieveCoinByName = (name) => {
+    ApiService.findAll("/coins?name=" + name)
+      .then((response) => {
+        console.log(
+          "selected coin--------------------------" +
+            JSON.stringify(response.data)
+        );
+        setCoin(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   // let navigate = useNavigate();
   const showCoinDetails = (coin) => {
     setCoin(coin);
@@ -105,6 +119,7 @@ const CoinContextProvider = (props) => {
         addCoin,
         showCoinDetails,
         editCoin,
+        retrieveCoinByName,
       }}
     >
       {props.children}

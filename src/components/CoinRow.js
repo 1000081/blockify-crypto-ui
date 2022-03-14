@@ -14,7 +14,7 @@ const CoinRow = ({ coin }) => {
   const history = useHistory();
   const handleDetailClick = (coin) => {
     showCoinDetails(coin);
-    history.push("/coinDetails");
+    history.push("/coinDetails/" + coin.name);
   };
 
   return (
