@@ -12,6 +12,7 @@ import CoinDetails from "./containers/coin/CoinDetails";
 import CoinNavbar from "./components/CoinNavbar";
 import Footer from "./components/Footer";
 import AdminHome from "./containers/admin/AdminHome";
+import ForgotPassword from "./containers/auth/ForgotPassword";
 
 const Routes = () => {
   return (
@@ -28,6 +29,8 @@ const Routes = () => {
         <Route path="/editCoin" component={EditCoin} />
         <Route path="/coinDetails" component={CoinDetails} />
         <Route path="/adminHome" component={AdminHome} />
+        <Route path="/forgotPassword" component={ForgotPassword} />
+
         <Footer />
       </BrowserRouter>
     </Fragment>

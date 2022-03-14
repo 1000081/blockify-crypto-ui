@@ -16,7 +16,7 @@ import { Link, useHistory } from "react-router-dom";
 const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const { login, logout } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -30,7 +30,11 @@ const Login = () => {
       await login(emailRef.current.value, passwordRef.current.value)
         .then((res) => {
           console.log("validUser ------" + JSON.stringify(res));
-          history.push("/");
+          if (res && res.user.emailVerified) {
+            history.push("/");
+          } else {
+            logout();
+          }
         })
         .catch((err) => {
           console.log("errorUser ------" + JSON.stringify(err));
@@ -73,7 +77,7 @@ const Login = () => {
               </Form.Group>
               <div className="mt-5 d-flex flex-wrap justify-content-center align-items-center">
                 <p className="m-0">Remember me</p>
-                <CDBLink to="#">Forgot Password ?</CDBLink>
+                <CDBLink to="/forgotPassword">Forgot Password ?</CDBLink>
               </div>
               <CDBBtn
                 color="dark"

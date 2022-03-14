@@ -16,56 +16,12 @@ import { Form, Button, Card, Alert } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 
 const Register = () => {
-  const { signup } = useAuth();
-  const [errors, setErrors] = useState([]);
-
-  const initialLogin = { email: "", password: "", confirmPassword: "" };
-
-  const [login, setLogin] = useState(initialLogin);
+  const { signup, logout } = useAuth();
 
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setLogin({ ...login, [name]: value });
-  };
-
-  const handleSubmitButtonClick = () => {
-    var errors = [];
-
-    if (login.email === "") {
-      // inputRef.current.setFocus();
-      errors.push("email");
-    }
-    if (login.password === "") {
-      // inputRef.current.setFocus();
-      errors.push("password");
-    }
-    if (login.confirmPassword === "") {
-      // inputRef.current.setFocus();
-      errors.push("confirmPassword");
-    }
-
-    setErrors(errors);
-
-    if (errors.length > 0) {
-      return false;
-    } else {
-      signup(login.email, login.password);
-      // history.push("/");
-    }
-  };
-
-  const hasError = (key) => {
-    return errors.indexOf(key) !== -1;
-  };
-
-  // const emailRef = useRef()
-  // const passwordRef = useRef()
-  // const passwordConfirmRef = useRef()
-  // const { signup } = useAuth()
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -83,7 +39,8 @@ const Register = () => {
       await signup(emailRef.current.value, passwordRef.current.value)
         .then((res) => {
           console.log("validUser ------" + JSON.stringify(res));
-          history.push("/");
+          logout();
+          return res;
         })
         .catch((err) => {
           console.log("errorUser ------" + JSON.stringify(err));

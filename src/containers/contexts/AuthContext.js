@@ -11,6 +11,7 @@ import {
   signOut,
   sendPasswordResetEmail,
   onAuthStateChanged,
+  sendEmailVerification,
 } from "firebase/auth";
 
 const AuthContext = React.createContext();
@@ -26,13 +27,13 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   function signup(email, password) {
-    const meesage = createUserWithEmailAndPassword(auth, email, password).catch(
-      (err) => {
-        console.log(err);
-      }
-    );
-    console.log("message----" + meesage);
-    return meesage;
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        sendEmailVerification(userCredential.user);
+        signOut(auth);
+        alert("Email sent");
+      })
+      .catch(alert);
   }
 
   function login(email, password) {
