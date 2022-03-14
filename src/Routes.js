@@ -11,6 +11,7 @@ import EditCoin from "./containers/coin/EditCoin";
 import CoinDetails from "./containers/coin/CoinDetails";
 import CoinNavbar from "./components/CoinNavbar";
 import Footer from "./components/Footer";
+import AdminHome from "./containers/admin/AdminHome";
 
 const Routes = () => {
   return (
@@ -26,6 +27,7 @@ const Routes = () => {
         <Route path="/addCoin" component={AddCoin} />
         <Route path="/editCoin" component={EditCoin} />
         <Route path="/coinDetails" component={CoinDetails} />
+        <Route path="/adminHome" component={AdminHome} />
         <Footer />
       </BrowserRouter>
     </Fragment>

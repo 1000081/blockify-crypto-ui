@@ -8,14 +8,13 @@ import {
 } from "mdb-react-ui-kit";
 
 import useBreakpoint from "../../components/Breakpoint";
-import "./Home.css";
+import "./AdminHome.css";
 import CoinTable from "../../components/CoinTable";
 import { CoinContext } from "../contexts/CoinContext";
 import { filteredList } from "../../util/Stringutil";
 import * as types from "../../Constants";
-import CoinSearch from "../../components/CoinSearch";
 
-export const Home = () => {
+const AdminHome = () => {
   const { coins } = useContext(CoinContext);
   const tabSelected = {
     fontWeight: "bold",
@@ -59,7 +58,7 @@ export const Home = () => {
                 className="cards-container"
                 style={point !== "sm" ? { width: "80%" } : { width: "100%" }}
               >
-                <div className="card-bg w-100 d-flex flex-column wide border d-flex flex-column">
+                {/* <div className="card-bg w-100 d-flex flex-column wide border d-flex flex-column">
                   <div className="d-flex flex-column p-0 h-100">
                     <div className="mx-1 mt-3 d-flex justify-content-between align-items-center">
                       <h4 className="font-weight-bold text-dark h5">
@@ -74,11 +73,20 @@ export const Home = () => {
                       <i className="fas fa-arrow-right ml-1"></i>
                     </p>
                   </div>
-                </div>
+                </div> */}
                 <div style={{ height: "50px", width: "100%" }}></div>
                 <div className="card-bg w-100 d-flex flex-column wide border d-flex flex-column">
                   <div className="d-flex flex-column p-0 h-100">
                     <MDBTabs className="mb-3">
+                      <MDBTabsItem>
+                        <MDBTabsLink
+                          onClick={() => handleFillClick("approveTab")}
+                          active={fillActive === "altTab"}
+                          style={fillActive === "altTab" ? tabSelected : {}}
+                        >
+                          Yet to Approve
+                        </MDBTabsLink>
+                      </MDBTabsItem>
                       <MDBTabsItem>
                         <MDBTabsLink
                           onClick={() => handleFillClick("newTab")}
@@ -118,13 +126,28 @@ export const Home = () => {
                     </MDBTabs>
 
                     <MDBTabsContent>
+                      <MDBTabsPane show={fillActive === "approveTab"}>
+                        <div className="mx-1 mt-0 d-flex justify-content-between align-items-center">
+                          <h4 className="font-weight-bold text-dark h5">
+                            Yet To Approve
+                          </h4>
+                          <div className="p-1 bg-grey rounded-circle">
+                            <i className="fas fa-sticky-note"></i>
+                          </div>
+                        </div>
+                        <CoinTable
+                          values={filteredList(coins, types.COIN_TYPE_LISTED)}
+                        />
+                        <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
+                          See More
+                          <i className="fas fa-arrow-right ml-1"></i>
+                        </p>
+                      </MDBTabsPane>
                       <MDBTabsPane show={fillActive === "newTab"}>
                         <div className="mx-1 mt-0 d-flex justify-content-between align-items-center">
                           <h4 className="font-weight-bold text-dark h5">New</h4>
-                          <div className="col-md-4 p-1 bg-grey rounded-circle">
-                            <CoinSearch
-                              coins={filteredList(coins, types.COIN_TYPE_NEW)}
-                            />
+                          <div className="p-1 bg-grey rounded-circle">
+                            <i className="fas fa-sticky-note"></i>
                           </div>
                         </div>
                         <CoinTable
@@ -136,14 +159,12 @@ export const Home = () => {
                         </p>
                       </MDBTabsPane>
                       <MDBTabsPane show={fillActive === "altTab"}>
-                        <div className="mx-1 mt-0 d-flex justify-content-between align-items-center p-1">
+                        <div className="mx-1 mt-0 d-flex justify-content-between align-items-center">
                           <h4 className="font-weight-bold text-dark h5">
                             All Time Best
                           </h4>
-                          <div className="col-md-4 p-1 bg-grey rounded-circle">
-                            <CoinSearch
-                              coins={filteredList(coins, types.COIN_TYPE_NEW)}
-                            />
+                          <div className="p-1 bg-grey rounded-circle">
+                            <i className="fas fa-sticky-note"></i>
                           </div>
                         </div>
                         <CoinTable
@@ -159,10 +180,8 @@ export const Home = () => {
                           <h4 className="font-weight-bold text-dark h5">
                             Normal
                           </h4>
-                          <div className="col-md-4 p-1 bg-grey rounded-circle">
-                            <CoinSearch
-                              coins={filteredList(coins, types.COIN_TYPE_NEW)}
-                            />
+                          <div className="p-1 bg-grey rounded-circle">
+                            <i className="fas fa-sticky-note"></i>
                           </div>
                         </div>
                         <CoinTable
@@ -178,10 +197,8 @@ export const Home = () => {
                           <h4 className="font-weight-bold text-dark h5">
                             Presale
                           </h4>
-                          <div className="col-md-4 p-1 bg-grey rounded-circle">
-                            <CoinSearch
-                              coins={filteredList(coins, types.COIN_TYPE_NEW)}
-                            />
+                          <div className="p-1 bg-grey rounded-circle">
+                            <i className="fas fa-sticky-note"></i>
                           </div>
                         </div>
                         <CoinTable
@@ -203,3 +220,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default AdminHome;

@@ -1,53 +1,33 @@
 import { SocialMediaIconsReact } from "social-media-icons-react";
 import { CDBBtn } from "cdbreact";
+import SocialMediaAuth from "../../config/SocialMediaAuth";
+import { facebookProvider, googleProvider } from "../../config/AuthMethods";
+import firebaseConfig from "../../config/FirebaseConfig";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { loginSocialMedia } from "../../config/SocialMediaAuth";
+import { useAuth } from "../contexts/AuthContext";
+
 const SocialSignin = () => {
+  const { handleSocialLogin } = useAuth();
+
   return (
     <>
       <div className="row my-3 d-flex justify-content-center">
-        <CDBBtn color="black" className="m-0" outline>
-          <SocialMediaIconsReact
-            borderColor="rgba(0,0,0,0.25)"
-            borderWidth="1"
-            borderStyle="solid"
-            icon="facebook"
-            iconColor="rgba(255,255,255,1)"
-            backgroundColor="rgba(11,11,15,1)"
-            iconSize="5"
-            roundness="25%"
-            url="/"
-            size="43"
-          />
+        <CDBBtn
+          color="black"
+          className="m-0"
+          outline
+          onClick={handleSocialLogin("facebookProvider")}
+        >
+          <i className="fab fa-facebook-square fa-3x"></i>
         </CDBBtn>
-        <CDBBtn color="white" className="m-0" outline>
-          <i className="fab fa-google"></i>
-        </CDBBtn>
-        <CDBBtn color="white" className="m-0" outline>
-          <SocialMediaIconsReact
-            borderColor="rgba(0,0,0,0.25)"
-            borderWidth="1"
-            borderStyle="solid"
-            icon="linkedin"
-            iconColor="rgba(255,255,255,1)"
-            backgroundColor="rgba(11,11,15,1)"
-            iconSize="5"
-            roundness="25%"
-            url="/"
-            size="43"
-          />
-        </CDBBtn>
-        <CDBBtn color="white" className="m-0" outline>
-          <SocialMediaIconsReact
-            borderColor="rgba(0,0,0,0.25)"
-            borderWidth="1"
-            borderStyle="solid"
-            icon="twitter"
-            iconColor="rgba(255,255,255,1)"
-            backgroundColor="rgba(11,11,15,1)"
-            iconSize="5"
-            roundness="25%"
-            url="/"
-            size="43"
-          />
+        <CDBBtn
+          color="white"
+          className="m-0"
+          outline
+          onClick={handleSocialLogin("googleProvider")}
+        >
+          <i className="fab fa-google-plus-square fa-3x"></i>
         </CDBBtn>
       </div>
     </>

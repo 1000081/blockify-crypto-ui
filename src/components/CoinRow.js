@@ -3,6 +3,7 @@ import { CoinContext } from "../containers/contexts/CoinContext";
 import { useContext } from "react";
 import { MDBLink } from "mdbreact";
 import { useHistory } from "react-router-dom";
+import { CDBInput } from "cdbreact";
 const CoinRow = ({ coin }) => {
   const { voteCoin, showCoinDetails } = useContext(CoinContext);
 

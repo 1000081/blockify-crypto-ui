@@ -1,4 +1,3 @@
-import React from "react";
 import {
   CDBInput,
   CDBCard,
@@ -9,8 +8,40 @@ import {
 } from "cdbreact";
 // import { SocialMediaIconsReact } from "social-media-icons-react";
 import SocialSignin from "./SocialMediaSignin";
+import React, { useRef, useState } from "react";
+import { Form, Button, Card, Alert } from "react-bootstrap";
+import { useAuth } from "../contexts/AuthContext";
+import { Link, useHistory } from "react-router-dom";
 
 const Login = () => {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const { login } = useAuth();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      setError("");
+      setLoading(true);
+      await login(emailRef.current.value, passwordRef.current.value)
+        .then((res) => {
+          console.log("validUser ------" + JSON.stringify(res));
+          history.push("/");
+        })
+        .catch((err) => {
+          console.log("errorUser ------" + JSON.stringify(err));
+        });
+    } catch {
+      setError("Failed to log in");
+    }
+
+    setLoading(false);
+  }
+
   return (
     <div
       style={{
@@ -30,20 +61,30 @@ const Login = () => {
             <p className="h5 mt-2 py-4 font-weight-bold">Sign in</p>
           </div>
           <CDBCardBody className="mx-4">
-            <CDBInput label="Email" type="email" />
-            <CDBInput label="Password" type="password" />
-            <div className="mt-5 d-flex flex-wrap justify-content-center align-items-center">
-              <p className="m-0">Remember me</p>
-              <CDBLink to="#">Forgot Password ?</CDBLink>
-            </div>
-            <CDBBtn
-              color="dark"
-              outline
-              className="btn-block my-3 mx-0"
-              action="/"
-            >
-              Sign in
-            </CDBBtn>
+            {error && <Alert variant="danger">{error}</Alert>}
+            <Form onSubmit={handleSubmit}>
+              <Form.Group id="email">
+                <Form.Label>Email</Form.Label>
+                <Form.Control type="email" ref={emailRef} required />
+              </Form.Group>
+              <Form.Group id="password">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" ref={passwordRef} required />
+              </Form.Group>
+              <div className="mt-5 d-flex flex-wrap justify-content-center align-items-center">
+                <p className="m-0">Remember me</p>
+                <CDBLink to="#">Forgot Password ?</CDBLink>
+              </div>
+              <CDBBtn
+                color="dark"
+                outline
+                className="btn-block my-3 mx-0"
+                disabled={loading}
+                type="submit"
+              >
+                Sign in
+              </CDBBtn>
+            </Form>
             <p className="text-center">
               Not a member?{" "}
               <CDBLink className="d-inline p-0" to="/signup">

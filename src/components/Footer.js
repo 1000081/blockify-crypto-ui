@@ -2,6 +2,7 @@ import React from "react";
 import { MDBFooter, MDBContainer, MDBCol, MDBRow } from "mdb-react-ui-kit";
 import { useHistory } from "react-router-dom";
 import { CDBBtn } from "cdbreact";
+import { SocialMediaIconsReact } from "social-media-icons-react";
 
 const Footer = () => {
   const history = useHistory();
@@ -15,23 +16,47 @@ const Footer = () => {
         <form action="">
           <MDBRow className="d-flex justify-content-center">
             <MDBCol size="auto" className="mb-4 mb-md-0">
+              <CDBBtn color="black" className="m-0">
+                Edit Coin
+              </CDBBtn>
+
               <CDBBtn
-                flat
-                color="dark"
-                className="py-1 px-2 bg-dark border-0"
-                onClick={handleEditButton}
+                color="black"
+                className="m-0"
+                outline
+                // onClick={handleOnLoginClick(facebookProvider)}
               >
-                <span className="mx-2 mt-3">Edit Coin</span>
-                <i className="fas fa-edit fa-2x"></i>
+                <SocialMediaIconsReact
+                  borderColor="white"
+                  borderWidth="1"
+                  borderStyle="solid"
+                  icon="googleplus"
+                  iconColor="rgba(255,255,255,1)"
+                  backgroundColor="rgba(11,11,15,1)"
+                  iconSize="5"
+                  roundness="25%"
+                  // url="/"
+                  size="43"
+                />
               </CDBBtn>
-              <CDBBtn flat color="dark" className="py-1 px-2 bg-dark border-0">
-                <i className="fab fa-instagram fa-2x"></i>
-              </CDBBtn>
-              <CDBBtn flat color="dark" className="py-1 px-2 bg-dark border-0">
-                <i className="fab fa-facebook-f  fa-2x"></i>
-              </CDBBtn>
-              <CDBBtn flat color="dark" className="py-1 px-2 bg-dark border-0">
-                <i className="fab fa-twitter  fa-2x"></i>
+              <CDBBtn
+                color="black"
+                className="m-0"
+                outline
+                // onClick={handleOnLoginClick(facebookProvider)}
+              >
+                <SocialMediaIconsReact
+                  borderColor="white"
+                  borderWidth="1"
+                  borderStyle="solid"
+                  icon="facebook"
+                  iconColor="rgba(255,255,255,1)"
+                  backgroundColor="rgba(11,11,15,1)"
+                  iconSize="5"
+                  roundness="25%"
+                  // url="/"
+                  size="43"
+                />
               </CDBBtn>
             </MDBCol>
           </MDBRow>

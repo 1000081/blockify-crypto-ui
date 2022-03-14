@@ -7,6 +7,7 @@ import useBreakpoint from "../../components/Breakpoint";
 import { option } from "./tableData";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
+import { useHistory } from "react-router-dom";
 
 const AddCoin = () => {
   const { addCoin } = useContext(CoinContext);
@@ -44,12 +45,6 @@ const AddCoin = () => {
 
   const handleInputChange = (event) => {
     const { name, value, checked, selectedIndex } = event.target;
-
-    console.log("Name----------------" + name);
-    console.log("value----------------" + value);
-    console.log("checked----------------" + checked);
-    // console.log("selected----------------" + option[selectedIndex].value);
-
     if (name === "presale") {
       if (checked) {
         setCoin({ ...coin, [name]: "T" });
@@ -62,6 +57,8 @@ const AddCoin = () => {
       setCoin({ ...coin, [name]: value });
     }
   };
+
+  const history = useHistory();
 
   const handleSubmitButtonClick = () => {
     var errors = [];
@@ -110,6 +107,7 @@ const AddCoin = () => {
       return false;
     } else {
       addCoin(coin);
+      history.push("/");
     }
   };
 

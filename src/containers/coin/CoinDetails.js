@@ -73,7 +73,7 @@ const CoinDetails = () => {
                             onCopy={() => setCopied({ copied: true })}
                           >
                             <button>
-                              <i class="fas fa-copy"></i>
+                              <i className="fas fa-copy"></i>
                             </button>
                           </CopyToClipboard>
 

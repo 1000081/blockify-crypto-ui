@@ -75,6 +75,11 @@ export function filteredList(coinList, coinType) {
       coin.isPresale === types.STRING_Y
     ) {
       filteredCoin = coin;
+    } else if (
+      coinType === types.COIN_TYPE_LISTED &&
+      coin.isListed === types.STRING_Y
+    ) {
+      filteredCoin = coin;
     }
     return filteredCoin;
   });

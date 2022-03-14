@@ -17,9 +17,12 @@ const CoinNavbar = () => {
           <a
             href="/"
             className="text-decoration-none  mx-4"
-            style={{ color: "inherit" }}
+            style={{
+              color: "inherit",
+              fontWeight: "bold",
+            }}
           >
-            ᴄᴏɪɴʟɪsᴛɪɴɢ
+            ʟɪsᴛɪɴɢ
           </a>
         </div>
         <div className="ml-auto">
@@ -35,7 +38,7 @@ const CoinNavbar = () => {
               Home
             </span>
             &nbsp;
-            <i className="fas fa-house-damage fa-2x"></i>
+            <i className="fas fa-house-damage fa-1x"></i>
           </a>
           <a
             href="/login"
@@ -49,7 +52,7 @@ const CoinNavbar = () => {
               Login
             </span>
             &nbsp;
-            <i className="fas fa-sign-in-alt fa-2x"></i>
+            <i className="fas fa-sign-in-alt fa-1x"></i>
           </a>
           <a
             href="/addCoin"
@@ -63,10 +66,10 @@ const CoinNavbar = () => {
               Add Coin
             </span>
             &nbsp;
-            <i className="fas fa-plus-square fa-2x"></i>
+            <i className="fas fa-plus-square fa-1x"></i>
           </a>
           <input type="text" className="table-rem" />
-          <i className="fas fa-search mx-4 table-rem  fa-2x"></i>
+          <i className="fas fa-search mx-4 table-rem  fa-1x"></i>
         </div>
       </CDBNavbar>
     </Header>
