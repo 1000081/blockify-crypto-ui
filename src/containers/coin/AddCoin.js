@@ -1,130 +1,106 @@
 import React, { useState, useContext, useRef } from "react";
 import "./Home.css";
-import { CDBBtn, CDBInput, CDBSelect } from "cdbreact";
+import { CDBBtn } from "cdbreact";
 import "react-datepicker/dist/react-datepicker.css";
 import { CoinContext } from "../contexts/CoinContext";
 import useBreakpoint from "../../components/Breakpoint";
-import { option } from "./tableData";
+import { networOptions } from "./tableData";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { useHistory } from "react-router-dom";
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardHeader,
+  MDBCol,
+  MDBRow,
+} from "mdb-react-ui-kit";
+import { Form } from "react-bootstrap";
 
 const AddCoin = () => {
   const { addCoin } = useContext(CoinContext);
-  const inputRef = useRef();
+  const nameRef = useRef();
+  const logoRef = useRef();
+  const chainRef = useRef();
+  const presaleRef = useRef();
+  const descriptionRef = useRef();
+  const contAddressRef = useRef();
+  const launchDtRef = useRef();
+  const marketCapRef = useRef();
+  const priceRef = useRef();
+  const telegramRef = useRef();
+  const twitterRef = useRef();
+  const redditRef = useRef();
+  const discordRef = useRef();
+  const dexTooolsRef = useRef();
+  const symbolRef = useRef();
+  const websiteRef = useRef();
+  const auditRef = useRef();
 
-  const initialCoin = {
-    _id: "",
-    name: "",
-    logo: "",
-    chain: "",
-    presale: "",
-    description: "",
-    contAddress: "",
-    launchDt: "",
-    marketCap: "",
-    price: "",
-    telegram: "",
-    twitter: "",
-    reddit: "",
-    discord: "",
-    otherChains: "",
-    dexToools: "",
-    swap: "",
-    vote: 0,
-    symbol: "",
-    website: "",
-    audit: "",
-    email: "",
-    contTelegram: "",
-  };
+  const [coin, setCoin] = useState({});
 
-  const [coin, setCoin] = useState(initialCoin);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const [errors, setErrors] = useState([]);
+    console.log(e.target[4].value);
 
-  const handleInputChange = (event) => {
-    const { name, value, checked, selectedIndex } = event.target;
-    if (name === "presale") {
-      if (checked) {
-        setCoin({ ...coin, [name]: "T" });
-      } else {
-        setCoin({ ...coin, [name]: "F" });
-      }
-    } else if (name === "chain") {
-      setCoin({ ...coin, [name]: option[selectedIndex].value });
-    } else {
-      setCoin({ ...coin, [name]: value });
+    //console.log(e.target["input#launchDt.form-control"].value);
+
+    const populatedCoin = {
+      name: nameRef.current.value,
+      logo: logoRef.current.value,
+      chain: chainRef.current.value,
+      presale: presaleRef.current.value,
+      description: descriptionRef.current.value,
+      contAddress: contAddressRef.current.value,
+      launchDt: e.target[4].value,
+      marketCap: marketCapRef.current.value,
+      price: priceRef.current.value,
+      telegram: telegramRef.current.value,
+      twitter: twitterRef.current.value,
+      reddit: redditRef.current.value,
+      discord: discordRef.current.value,
+      dexToools: dexTooolsRef.current.value,
+      symbol: symbolRef.current.value,
+      website: websiteRef.current.value,
+      audit: auditRef.current.value,
+    };
+
+    // if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+    //   return setError("Passwords do not match");
+    // }
+
+    try {
+      // setError("");
+      // setLoading(true);
+      console.log(
+        "validUser ------" + populatedCoin && JSON.stringify(populatedCoin)
+      );
+      await addCoin(populatedCoin)
+        .then((res) => {
+          console.log("validUser ------" + JSON.stringify(res));
+          // logout();
+          return res;
+        })
+        .catch((err) => {
+          console.log("errorUser ------" + JSON.stringify(err));
+        });
+    } catch {
+      // setError("Failed to create an account");
     }
   };
 
-  const history = useHistory();
-
-  const handleSubmitButtonClick = () => {
-    var errors = [];
-
-    if (coin.name === "") {
-      // inputRef.current.setFocus();
-      errors.push("name");
-    }
-    if (coin.symbol === "") {
-      // inputRef.current.setFocus();
-      errors.push("symbol");
-    }
-    if (coin.description === "") {
-      // inputRef.current.setFocus();
-      errors.push("description");
-    }
-
-    if (coin.chain === "") {
-      // inputRef.current.setFocus();
-      errors.push("chain");
-    }
-
-    if (coin.contAddress === "") {
-      // inputRef.current.setFocus();
-      errors.push("contAddress");
-    }
-
-    if (coin.logo === "") {
-      // inputRef.current.setFocus();
-      errors.push("logo");
-    }
-
-    if (coin.telegram === "") {
-      // inputRef.current.setFocus();
-      errors.push("telegram");
-    }
-
-    if (coin.launchDt === "") {
-      // inputRef.current.setFocus();
-      errors.push("launchDt");
-    }
-
-    setErrors(errors);
-
-    if (errors.length > 0) {
-      return false;
-    } else {
-      addCoin(coin);
-      history.push("/");
-    }
-  };
-
-  const hasError = (key) => {
-    return errors.indexOf(key) !== -1;
-  };
+  // setLoading(false);};
 
   const point = useBreakpoint();
 
-  const today = new Date();
-
   const handleDatepickerChange = (value) => {
     setCoin({ ...coin, ["launchDt"]: value });
+    // launchDtRef.current = value;
   };
 
   return (
-    <div className="dashboard d-flex">
+    <div className="dashboard d-flex" style={{ align: "center" }}>
       <div
         style={{
           flex: "1 1 auto",
@@ -136,359 +112,280 @@ const AddCoin = () => {
         }}
       >
         <div style={{ height: "100%" }}>
-          <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
+          <div
+            style={{
+              height: "calc(100% - 10px)",
+              overflowY: "scroll",
+              align: "center",
+            }}
+          >
             <div className="d-flex card-section">
-              <div
-                className="add-cards-container"
-                style={point !== "sm" ? { width: "60%" } : { width: "100%" }}
-              >
-                <div
-                  className="col-md-12 card-bg w-100 d-flex flex-column wide border d-flex flex-column"
-                  border="dark"
-                  background="dark"
-                  style={{ background: "dark" }}
-                  // className="mt-3 mb-3 text-white"
-                >
-                  <div className="mx-0 mt-3 d-flex justify-content-between">
-                    <h4 className="font-weight-bold text-dark h5">
-                      Coin information
-                    </h4>
-                  </div>
-                  <div className="form-row mb-n4">
-                    <div className="col">
-                      <CDBInput
-                        label="Name (*)"
-                        type="text"
-                        value={coin.name}
-                        id="name"
-                        name="name"
-                        onChange={handleInputChange}
-                        ref={inputRef}
+              <div className="detail-cards-container">
+                <MDBRow className="row d-flex justify-content-center">
+                  <MDBCol sm={point !== "sm" ? "7" : "12"}>
+                    <Form onSubmit={handleSubmit}>
+                      <MDBCard
+                        style={{
+                          background: "dark",
+                        }}
+                        border="dark"
+                        background="dark"
+                        className="mt-3 mb-3 text-white"
                       >
-                        <span
-                          className={hasError("name") ? "text-error" : "hidden"}
-                        >
-                          * Required
-                        </span>
-                      </CDBInput>
-                    </div>
-                  </div>
-                  <div className="form-row mb-n4">
-                    <div className="col">
-                      <CDBInput
-                        label="Symbol (*)"
-                        type="text"
-                        value={coin.symbol}
-                        id="symbol"
-                        name="symbol"
-                        onChange={handleInputChange}
-                        // className={
-                        //   hasError("symbol")
-                        //     ? "form-control is-invalid"
-                        //     : "form-control"
-                        // }
+                        <MDBCardBody>
+                          <MDBCardHeader
+                            style={{ fontWeight: "bold" }}
+                            className="ml-0"
+                          >
+                            Coin information
+                          </MDBCardHeader>
+                          {/* <{error && <Alert variant="danger">{error}</Alert>} */}
+
+                          <Form.Group id="name">
+                            <Form.Label>
+                              Name
+                              <span
+                                style={{ color: "red", fontSize: 15 }}
+                                className="ml-2"
+                              >
+                                (Required)
+                              </span>
+                            </Form.Label>
+                            <Form.Control type="text" ref={nameRef} required />
+                          </Form.Group>
+                          <Form.Group id="symbol">
+                            <Form.Label>
+                              Symbol{" "}
+                              <span
+                                style={{ color: "red", fontSize: 15 }}
+                                className="ml-2"
+                              >
+                                (Required)
+                              </span>
+                            </Form.Label>
+                            <Form.Control
+                              type="text"
+                              ref={symbolRef}
+                              required
+                            />
+                          </Form.Group>
+                          <Form.Group id="description">
+                            <Form.Label>
+                              Description
+                              <span
+                                style={{ color: "red", fontSize: 15 }}
+                                className="ml-2"
+                              >
+                                (Required)
+                              </span>
+                            </Form.Label>
+                            <Form.Control
+                              as="textarea"
+                              required
+                              rows={10}
+                              ref={descriptionRef}
+                            />
+                          </Form.Group>
+                          <Form.Group id="presale" className="mt-3 mb-3">
+                            <Form.Check
+                              type="checkbox"
+                              ref={presaleRef}
+                              label="Project in presale phase?"
+                            />
+                          </Form.Group>
+
+                          <Form.Group id="launchDt" className="mt-3 mb-3">
+                            <Form.Label>
+                              Launch Date
+                              <span
+                                style={{ color: "red", fontSize: 15 }}
+                                className="ml-2"
+                              >
+                                (Required)
+                              </span>
+                            </Form.Label>
+                            <DatePicker
+                              selected={coin.launchDt}
+                              onChange={handleDatepickerChange}
+                              id="launchDt"
+                              name="launchDt"
+                              className="form-control"
+                              label="Launch Date"
+                              required
+                              ref={launchDtRef}
+                              // minDate={today}
+                              customInput={
+                                // <input
+                                //   type="text"
+                                //   id="launchDt"
+                                //   placeholder=""
+                                //   ref={launchDtRef}
+                                //   required
+                                // />
+                                <Form.Control
+                                  id="launchDt"
+                                  type="text"
+                                  ref={launchDtRef}
+                                  required
+                                />
+                              }
+                            />
+                          </Form.Group>
+                          <Form.Group id="marketCap">
+                            <Form.Label>Market Cap in USD</Form.Label>
+                            <Form.Control type="text" ref={marketCapRef} />
+                          </Form.Group>
+                          <Form.Group id="price">
+                            <Form.Label>Price in USD</Form.Label>
+                            <Form.Control type="text" ref={priceRef} />
+                          </Form.Group>
+                        </MDBCardBody>
+                      </MDBCard>
+
+                      <MDBCard
+                        style={{
+                          background: "dark",
+                        }}
+                        border="dark"
+                        background="dark"
+                        className="mt-3 mb-3 text-white"
                       >
-                        <span
-                          className={
-                            hasError("symbol") ? "text-error" : "hidden"
-                          }
-                        >
-                          * Required
-                        </span>
-                      </CDBInput>
-                    </div>
-                  </div>
-                  <div className="form-row mb-n4">
-                    <div className="col">
-                      <CDBInput
-                        label="Description (*)"
-                        type="textarea"
-                        rows={5}
-                        cols={10}
-                        value={coin.description}
-                        id="description"
-                        name="description"
-                        onChange={handleInputChange}
-                        // className={
-                        //   hasError("description")
-                        //     ? "form-control is-invalid"
-                        //     : "form-control"
-                        // }
+                        <MDBCardBody>
+                          <MDBCardHeader
+                            style={{ fontWeight: "bold" }}
+                            className="ml-0"
+                          >
+                            Contract address
+                          </MDBCardHeader>
+                          <Form.Group id="chain">
+                            <Form.Label>
+                              Network/Chain{" "}
+                              <span
+                                style={{ color: "red", fontSize: 15 }}
+                                className="ml-2"
+                              >
+                                (Required)
+                              </span>
+                            </Form.Label>
+                            <Form.Control as="select" required ref={chainRef}>
+                              <option vale="">Select Network</option>
+                              {networOptions &&
+                                networOptions.map((currentOption) => (
+                                  <option
+                                    value={currentOption.value}
+                                    key={currentOption.value}
+                                  >
+                                    {currentOption.text}
+                                  </option>
+                                ))}
+                            </Form.Control>
+                          </Form.Group>
+                          <Form.Group id="contAddress">
+                            <Form.Label>
+                              Contract Address
+                              <span
+                                style={{ color: "red", fontSize: 15 }}
+                                className="ml-2"
+                              >
+                                (Required)
+                              </span>
+                            </Form.Label>
+                            <Form.Control
+                              type="text"
+                              ref={contAddressRef}
+                              required
+                            />
+                          </Form.Group>
+                        </MDBCardBody>
+                      </MDBCard>
+
+                      <MDBCard
+                        style={{
+                          background: "dark",
+                        }}
+                        border="dark"
+                        background="dark"
+                        className="mt-3 mb-3 text-white"
                       >
-                        <span
-                          className={
-                            hasError("description") ? "text-error" : "hidden"
-                          }
-                        >
-                          * Required
-                        </span>
-                      </CDBInput>
-                    </div>
-                  </div>
-                  <br />
-                  <div className="form-row mb-n4">
-                    <div className="col d-flex flex-wrap justify-content-center align-items-center">
-                      <CDBInput
-                        label="Project in presale phase?"
-                        type="checkbox"
-                        name="presale"
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
-                  <br />
-                  <br></br>
-                  <div className="form-row mb-n4">
-                    <div className="col">
-                      <p className="text-center m-0">Launch Date (*)</p>
-                      <DatePicker
-                        selected={coin.launchDt}
-                        onChange={handleDatepickerChange}
-                        id="launchDt"
-                        name="launchDt"
-                        className="form-control"
-                        label="Launch Date (*)"
-                        // minDate={today}
-                        customInput={
-                          <input type="text" id="launchDt" placeholder="" />
-                        }
-                      >
-                        <span
-                          className={
-                            hasError("launchDt") ? "text-error" : "hidden"
-                          }
-                        >
-                          * Required
-                        </span>
-                      </DatePicker>
-                    </div>
-                  </div>
-                  <br></br>
-                  <div className="form-row mb-n4">
-                    <div className="col">
-                      <CDBInput
-                        label="Market Cap in USD"
-                        type="text"
-                        value={coin.marketCap}
-                        id="marketCap"
-                        name="marketCap"
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="form-row mb-n4">
-                    <div className="col">
-                      <CDBInput
-                        label="Price in USD"
-                        type="text"
-                        value={coin.price}
-                        id="price"
-                        name="price"
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="mx-4 mt-3 d-flex justify-content-between align-items-center">
-                    <h4 className="font-weight-bold text-dark h5">&nbsp;</h4>
-                  </div>
-                </div>
-                <div className="col-md-12 card-bg w-100 d-flex flex-column wide border d-flex flex-column">
-                  <div className="mx-0 mt-3 d-flex justify-content-between align-items-center">
-                    <h4 className="font-weight-bold text-dark h5">
-                      Contract address
-                    </h4>
-                  </div>
-                  <div className="form-row mb-n4">
-                    <div className="col">
-                      <p className="text-center m-0">Network/Chain (*)</p>
-                      <CDBSelect
-                        id="chain"
-                        name="chain"
-                        options={option}
-                        selected={coin.chain}
-                        onChange={handleInputChange}
-                        // className={
-                        //   hasError("chain")
-                        //     ? "form-control is-invalid"
-                        //     : "form-control"
-                        // }
-                      >
-                        <span
-                          className={
-                            hasError("chain") ? "text-error" : "hidden"
-                          }
-                        >
-                          * Required
-                        </span>
-                      </CDBSelect>
-                    </div>
-                  </div>
-                  <br></br>
-                  <div className="form-row mb-n4">
-                    <div className="col">
-                      <CDBInput
-                        label="Contract Address (*)"
-                        type="text"
-                        value={coin.contAddress}
-                        id="contAddress"
-                        name="contAddress"
-                        onChange={handleInputChange}
-                        // className={
-                        //   hasError("contAddress")
-                        //     ? "form-control is-invalid"
-                        //     : "form-control"
-                        // }
-                      >
-                        <span
-                          className={
-                            hasError("contAddress") ? "text-error" : "hidden"
-                          }
-                        >
-                          * Required
-                        </span>
-                      </CDBInput>
-                    </div>
-                  </div>
-                  <div className="mx-4 mt-3 d-flex justify-content-between align-items-center">
-                    <h4 className="font-weight-bold text-dark h5">&nbsp;</h4>
-                  </div>
-                </div>
-                <div className="col-md-12 card-bg w-100 d-flex flex-column wide border d-flex flex-column">
-                  <div className="mx-0 mt-3 d-flex justify-content-between align-items-center">
-                    <h4 className="font-weight-bold text-dark h5">Links</h4>
-                  </div>
-                  <div className="form-row mb-n4">
-                    <div className="col">
-                      <CDBInput
-                        label="Website"
-                        type="text"
-                        value={coin.website}
-                        id="website"
-                        name="website"
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="form-row mb-n4">
-                    <div className="col">
-                      <CDBInput
-                        label="Audit"
-                        type="text"
-                        value={coin.audit}
-                        id="audit"
-                        name="audit"
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="form-row mb-n4">
-                    <div className="col">
-                      <CDBInput
-                        label="Telegram (*)"
-                        type="text"
-                        value={coin.telegram}
-                        id="telegram"
-                        name="telegram"
-                        onChange={handleInputChange}
-                        // className={
-                        //   hasError("telegram")
-                        //     ? "form-control is-invalid"
-                        //     : "form-control"
-                        // }
-                      >
-                        <span
-                          className={
-                            hasError("telegram") ? "text-error" : "hidden"
-                          }
-                        >
-                          * Required
-                        </span>
-                      </CDBInput>
-                    </div>
-                  </div>
-                  <div className="form-row mb-n4">
-                    <div className="col">
-                      <CDBInput
-                        label="Twitter"
-                        type="text"
-                        value={coin.twitter}
-                        id="twitter"
-                        name="twitter"
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="form-row mb-n4">
-                    <div className="col">
-                      <CDBInput
-                        label="Discord"
-                        type="text"
-                        value={coin.discord}
-                        id="discord"
-                        name="discord"
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="form-row mb-n4">
-                    <div className="col">
-                      <CDBInput
-                        label="Reddit"
-                        type="text"
-                        value={coin.reddit}
-                        id="reddit"
-                        name="reddit"
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="form-row mb-n4">
-                    <div className="col">
-                      <CDBInput
-                        label="Logo URL (Required)"
-                        type="text"
-                        value={coin.logo}
-                        id="logo"
-                        name="logo"
-                        onChange={handleInputChange}
-                        // className={
-                        //   hasError("logo")
-                        //     ? "form-control is-invalid"
-                        //     : "form-control"
-                        // }
-                      >
-                        <span
-                          className={hasError("logo") ? "text-error" : "hidden"}
-                        >
-                          * Required
-                        </span>
-                      </CDBInput>
-                    </div>
-                  </div>
-                  <div className="form-row mb-n4">
-                    <div className="col">
-                      <CDBInput
-                        label="Dextools link"
-                        type="text"
-                        value={coin.dexToools}
-                        id="dexToools"
-                        name="dexToools"
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                    <CDBBtn
-                      type="submit"
-                      color="dark"
-                      className="btn-block my-3 mx-0 d-flex justify-content-center align-items-center"
-                      onClick={() => handleSubmitButtonClick()}
-                    >
-                      Add Coin
-                    </CDBBtn>
-                  </div>
-                  <div className="mx-4 mt-3 d-flex justify-content-between align-items-center">
-                    <h4 className="font-weight-bold text-dark h5">&nbsp;</h4>
-                  </div>
-                </div>
+                        <MDBCardBody>
+                          <MDBCardHeader
+                            style={{ fontWeight: "bold" }}
+                            className="ml-0"
+                          >
+                            Links
+                          </MDBCardHeader>
+                          <Form.Group id="website">
+                            <Form.Label>Website</Form.Label>
+                            <Form.Control type="text" ref={websiteRef} />
+                          </Form.Group>
+                          <Form.Group id="audit">
+                            <Form.Label>Audit</Form.Label>
+                            <Form.Control type="text" ref={auditRef} />
+                          </Form.Group>
+                          <Form.Group id="telegram">
+                            <Form.Label>
+                              Telegram{" "}
+                              <span
+                                style={{ color: "red", fontSize: 15 }}
+                                className="ml-2"
+                              >
+                                (Required)
+                              </span>
+                            </Form.Label>
+                            <Form.Control
+                              type="text"
+                              ref={telegramRef}
+                              required
+                            />
+                          </Form.Group>
+                          <Form.Group id="twitter">
+                            <Form.Label>Twitter</Form.Label>
+                            <Form.Control type="text" ref={twitterRef} />
+                          </Form.Group>
+                          <Form.Group id="discord">
+                            <Form.Label>Discord</Form.Label>
+                            <Form.Control type="text" ref={discordRef} />
+                          </Form.Group>
+                          <Form.Group id="reddit">
+                            <Form.Label>Reddit</Form.Label>
+                            <Form.Control type="text" ref={redditRef} />
+                          </Form.Group>
+                          <Form.Group id="logo">
+                            <Form.Label>
+                              Logo URL{" "}
+                              <span
+                                style={{ color: "red", fontSize: 15 }}
+                                className="ml-2"
+                              >
+                                (Required)
+                              </span>
+                            </Form.Label>
+                            <Form.Control type="text" ref={logoRef} required />
+                          </Form.Group>
+                          <Form.Group id="dexToools">
+                            <Form.Label>Dextools link</Form.Label>
+                            <Form.Control type="text" ref={dexTooolsRef} />
+                          </Form.Group>
+                          <CDBBtn
+                            color="black"
+                            outline
+                            className="btn-block my-3 mx-0"
+                            type="submit"
+                            style={{
+                              fontWeight: "bold",
+                              fontColor: "black",
+                              borderColor: "white",
+                              borderWidth: 1,
+                              borderStyle: "solid",
+                            }}
+                          >
+                            Add Coin
+                          </CDBBtn>
+                        </MDBCardBody>
+                      </MDBCard>
+                    </Form>
+                  </MDBCol>
+                </MDBRow>
               </div>
             </div>
           </div>

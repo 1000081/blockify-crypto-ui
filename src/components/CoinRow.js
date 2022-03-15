@@ -32,7 +32,7 @@ const CoinRow = ({ coin }) => {
       </td>
       <td>{coin.symbol}</td>
       <td>{coin.chain}</td>
-      <td className="text-success text-center">
+      <td className="text-success">
         {/* <i className="fas fa-arrow-up"></i> 20% */}
         {formatDate(coin.launchDt)}
       </td>

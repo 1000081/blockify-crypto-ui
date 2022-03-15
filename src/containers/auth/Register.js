@@ -1,19 +1,10 @@
 import React, { useRef, useState } from "react";
-import {
-  CDBInput,
-  //   CDBCheckbox,
-  CDBCard,
-  CDBCardBody,
-  //   CDBIcon,
-  CDBBtn,
-  CDBLink,
-  CDBContainer,
-} from "cdbreact";
+import { CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from "cdbreact";
 import SocialSignin from "./SocialMediaSignin";
 import { useAuth } from "../contexts/AuthContext";
 
-import { Form, Button, Card, Alert } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Form, Alert } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 const Register = () => {
   const { signup, logout } = useAuth();

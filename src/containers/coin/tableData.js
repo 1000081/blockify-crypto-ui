@@ -141,7 +141,7 @@ export const coinTable = {
   ],
 };
 
-export const option = [
+export const networOptions = [
   {
     text: "Binance Smart Chain (BSC)",
     value: "BSC",

@@ -4,8 +4,12 @@ import { CDBNavbar, CDBInput } from "cdbreact";
 import { useAuth } from "../containers/contexts/AuthContext";
 
 const CoinNavbar = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
   console.log("currentUser-----" + currentUser && JSON.stringify(currentUser));
+
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <Header style={{ background: "#333", color: "#fff" }}>
@@ -54,10 +58,11 @@ const CoinNavbar = () => {
           </a>
 
           {currentUser ? (
-            <a
-              href="/login"
-              className="text-decoration-none  mx-4"
-              style={{ color: "inherit" }}
+            <button
+              type="button"
+              color="light"
+              className="btn btn-dark"
+              onClick={handleLogout}
             >
               <span
                 className="table-rem element-to-hide"
@@ -65,9 +70,8 @@ const CoinNavbar = () => {
               >
                 Logout
               </span>
-              &nbsp;
               <i className="fas fa-sign-in-alt fa-1x"></i>
-            </a>
+            </button>
           ) : (
             <a
               href="/login"

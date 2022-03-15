@@ -4,7 +4,7 @@ import { CDBBtn, CDBInput, CDBSelect } from "cdbreact";
 import "react-datepicker/dist/react-datepicker.css";
 import { CoinContext } from "../contexts/CoinContext";
 import useBreakpoint from "../../components/Breakpoint";
-import { option } from "./tableData";
+import { networOptions } from "./tableData";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { coinTable } from "./tableData";
@@ -50,7 +50,7 @@ const EditCoin = () => {
     console.log("Name----------------" + name);
     console.log("value----------------" + value);
     console.log("checked----------------" + checked);
-    // console.log("selected----------------" + option[selectedIndex].value);
+    // console.log("selected----------------" + networOptions[selectedIndex].value);
 
     if (name === "presale") {
       if (checked) {
@@ -59,7 +59,7 @@ const EditCoin = () => {
         setCoin({ ...coin, [name]: "F" });
       }
     } else if (name === "chain") {
-      setCoin({ ...coin, [name]: option[selectedIndex].value });
+      setCoin({ ...coin, [name]: networOptions[selectedIndex].value });
     } else {
       setCoin({ ...coin, [name]: value });
     }
@@ -362,7 +362,7 @@ const EditCoin = () => {
                       <CDBSelect
                         id="chain"
                         name="chain"
-                        options={option}
+                        options={networOptions}
                         selected={coin.chain}
                         onChange={handleInputChange}
                         // className={
