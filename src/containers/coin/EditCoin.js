@@ -1,8 +1,8 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useRef } from "react";
 import "./Home.css";
 import { CDBBtn, CDBInput, CDBSelect } from "cdbreact";
 import "react-datepicker/dist/react-datepicker.css";
-import { CoinContext } from "../contexts/CoinContext";
+import { useCoin } from "../contexts/CoinContext";
 import useBreakpoint from "../../components/Breakpoint";
 import { networOptions } from "./tableData";
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,7 +11,7 @@ import { coinTable } from "./tableData";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import { stringToDate } from "../../util/Stringutil";
 const EditCoin = () => {
-  const { editCoin } = useContext(CoinContext);
+  const { editCoin, coins } = useCoin();
   const inputRef = useRef();
 
   const initialCoin = {
@@ -42,7 +42,6 @@ const EditCoin = () => {
 
   const [coin, setCoin] = useState(initialCoin);
   const [errors, setErrors] = useState([]);
-  const { coins } = useContext(CoinContext);
 
   const handleInputChange = (event) => {
     const { name, value, checked, selectedIndex } = event.target;

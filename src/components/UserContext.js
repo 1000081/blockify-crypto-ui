@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 import throttle from "lodash.throttle";
 
 const getDeviceConfig = (width) => {

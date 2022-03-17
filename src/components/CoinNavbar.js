@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Header } from "./../Navbar.style";
 import { CDBNavbar, CDBInput } from "cdbreact";
 import { useAuth } from "../containers/contexts/AuthContext";
 
 const CoinNavbar = () => {
   const { currentUser, logout } = useAuth();
-  console.log("currentUser-----" + currentUser && JSON.stringify(currentUser));
+  console.log(
+    "NAv Bar currentUser-----" + currentUser && JSON.stringify(currentUser)
+  );
 
   const handleLogout = () => {
     logout();

@@ -1,8 +1,14 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useContext } from "react";
 import ApiService from "../../api/ApiService";
+import emailjs, { send } from "emailjs-com";
+
 export const CoinContext = createContext();
 
-const CoinContextProvider = (props) => {
+export function useCoin() {
+  return useContext(CoinContext);
+}
+
+export const CoinContextProvider = (props) => {
   const initialCoin = {
     _id: "",
     name: "",
@@ -64,7 +70,6 @@ const CoinContextProvider = (props) => {
   };
 
   const editCoin = (coin) => {
-    console.log("coinContext--------------------------" + JSON.stringify(coin));
     ApiService.update("coins", coin._id, coin)
       .then((response) => {
         console.log("-----response" + response.data);
@@ -76,7 +81,6 @@ const CoinContextProvider = (props) => {
   };
 
   const addCoin = (coin) => {
-    console.log("coinContext--------------------------" + JSON.stringify(coin));
     ApiService.save("coins", coin)
       .then((response) => {
         console.log("-----response" + response.data);
@@ -90,10 +94,6 @@ const CoinContextProvider = (props) => {
   const retrieveCoinByName = (name) => {
     ApiService.findAll("/coins?name=" + name)
       .then((response) => {
-        console.log(
-          "selected coin--------------------------" +
-            JSON.stringify(response.data)
-        );
         setCoin(response.data);
       })
       .catch((e) => {
@@ -127,4 +127,4 @@ const CoinContextProvider = (props) => {
   );
 };
 
-export default CoinContextProvider;
+// export default CoinContextProvider;

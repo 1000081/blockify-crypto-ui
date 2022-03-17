@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CDBBtn, CDBTable, CDBTableHeader, CDBTableBody } from "cdbreact";
 import "../coin/Home.css";
 import CopyToClipboard from "react-copy-to-clipboard";
-import { CoinContext } from "../contexts/CoinContext";
+import { useCoin } from "../contexts/CoinContext";
 import { useParams } from "react-router-dom";
 import useBreakpoint from "../../components/Breakpoint";
 import {
@@ -17,7 +17,7 @@ import {
 } from "mdb-react-ui-kit";
 
 const CoinDetails = () => {
-  const { coin, retrieveCoinByName } = useContext(CoinContext);
+  const { coin, retrieveCoinByName } = useCoin();
   const [copied, setCopied] = useState(false);
   const { coinName } = useParams();
 
@@ -48,19 +48,17 @@ const CoinDetails = () => {
           flexFlow: "column",
           height: "100vh",
           overflowY: "hidden",
-          backgroundColor: "#424242",
+          backgroundColor: "#616161",
         }}
       >
         <div style={{ height: "100%" }}>
           <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
             <div className="d-flex card-section">
               <div className="detail-cards-container">
-                <MDBRow className="ml-1 mr-1 mb-1 mt-1">
-                  <MDBCol sm="9">
+                <MDBRow className="justify-content-center">
+                  <MDBCol sm={point !== "sm" ? "7" : "12"}>
                     <MDBCard
-                      border="dark"
-                      background="dark"
-                      style={{ background: "dark" }}
+                      style={{ background: "#343a40" }}
                       className="mt-3 mb-3 text-white"
                     >
                       <MDBCardBody>
@@ -178,9 +176,7 @@ const CoinDetails = () => {
                     </MDBCard>
 
                     <MDBCard
-                      border="dark"
-                      background="dark"
-                      style={{ background: "dark" }}
+                      style={{ background: "#343a40" }}
                       className="mt-3 mb-3 text-white"
                     >
                       <MDBCardBody>
@@ -222,9 +218,7 @@ const CoinDetails = () => {
                   </MDBCol>
                   <MDBCol sm="3">
                     <MDBCard
-                      border="dark"
-                      background="dark"
-                      style={{ background: "dark" }}
+                      style={{ background: "#343a40" }}
                       className="mt-3 mb-3 text-white"
                     >
                       <MDBCardBody>
@@ -316,10 +310,8 @@ const CoinDetails = () => {
                       style={{
                         maxHeight: "250px",
                         minHeight: "250px",
-                        background: "dark",
+                        background: "#343a40",
                       }}
-                      border="dark"
-                      background="dark"
                       className="mt-3 mb-3 text-white"
                     >
                       <MDBCardBody>
@@ -332,10 +324,8 @@ const CoinDetails = () => {
                       style={{
                         maxHeight: "250px",
                         minHeight: "250px",
-                        background: "dark",
+                        background: "#343a40",
                       }}
-                      border="dark"
-                      background="dark"
                       className="mt-3 mb-3 text-white"
                     >
                       <MDBCardBody>

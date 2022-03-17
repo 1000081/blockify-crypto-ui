@@ -1,8 +1,8 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useRef } from "react";
 import "./Home.css";
 import { CDBBtn } from "cdbreact";
 import "react-datepicker/dist/react-datepicker.css";
-import { CoinContext } from "../contexts/CoinContext";
+import { useCoin } from "../contexts/CoinContext";
 import useBreakpoint from "../../components/Breakpoint";
 import { networOptions } from "./tableData";
 import "react-datepicker/dist/react-datepicker.css";
@@ -18,7 +18,7 @@ import {
 import { Form } from "react-bootstrap";
 
 const AddCoin = () => {
-  const { addCoin } = useContext(CoinContext);
+  const { addCoin } = useCoin();
   const nameRef = useRef();
   const logoRef = useRef();
   const chainRef = useRef();
@@ -108,7 +108,7 @@ const AddCoin = () => {
           flexFlow: "column",
           height: "100vh",
           overflowY: "hidden",
-          backgroundColor: "#424242",
+          backgroundColor: "#616161",
         }}
       >
         <div style={{ height: "100%" }}>
@@ -126,19 +126,16 @@ const AddCoin = () => {
                     <Form onSubmit={handleSubmit}>
                       <MDBCard
                         style={{
-                          background: "dark",
+                          background: "#343a40",
                         }}
-                        border="dark"
-                        background="dark"
                         className="mt-3 mb-3 text-white"
                       >
                         <MDBCardBody>
-                          <MDBCardHeader
-                            style={{ fontWeight: "bold" }}
-                            className="ml-0"
-                          >
-                            Coin information
-                          </MDBCardHeader>
+                          <div className="mx-1 d-flex justify-content-between align-items-center">
+                            <h4 className="font-weight-bold text-white h5 mt-2 mb-2">
+                              Coin Information
+                            </h4>
+                          </div>
                           {/* <{error && <Alert variant="danger">{error}</Alert>} */}
 
                           <Form.Group id="name">
@@ -244,19 +241,22 @@ const AddCoin = () => {
 
                       <MDBCard
                         style={{
-                          background: "dark",
+                          background: "#343a40",
                         }}
-                        border="dark"
-                        background="dark"
                         className="mt-3 mb-3 text-white"
                       >
                         <MDBCardBody>
-                          <MDBCardHeader
+                          {/* <MDBCardHeader
                             style={{ fontWeight: "bold" }}
                             className="ml-0"
                           >
                             Contract address
-                          </MDBCardHeader>
+                          </MDBCardHeader> */}
+                          <div className="mx-1 d-flex justify-content-between align-items-center">
+                            <h4 className="font-weight-bold text-white h5 mt-2 mb-2">
+                              Contract address
+                            </h4>
+                          </div>
                           <Form.Group id="chain">
                             <Form.Label>
                               Network/Chain{" "}
@@ -268,7 +268,7 @@ const AddCoin = () => {
                               </span>
                             </Form.Label>
                             <Form.Control as="select" required ref={chainRef}>
-                              <option vale="">Select Network</option>
+                              <option></option>
                               {networOptions &&
                                 networOptions.map((currentOption) => (
                                   <option
@@ -301,19 +301,22 @@ const AddCoin = () => {
 
                       <MDBCard
                         style={{
-                          background: "dark",
+                          background: "#343a40",
                         }}
-                        border="dark"
-                        background="dark"
                         className="mt-3 mb-3 text-white"
                       >
                         <MDBCardBody>
-                          <MDBCardHeader
+                          {/* <MDBCardHeader
                             style={{ fontWeight: "bold" }}
                             className="ml-0"
                           >
                             Links
-                          </MDBCardHeader>
+                          </MDBCardHeader> */}
+                          <div className="mx-1 d-flex justify-content-between align-items-center">
+                            <h4 className="font-weight-bold text-white h5 mt-2 mb-2">
+                              Links
+                            </h4>
+                          </div>
                           <Form.Group id="website">
                             <Form.Label>Website</Form.Label>
                             <Form.Control type="text" ref={websiteRef} />

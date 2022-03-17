@@ -8,13 +8,14 @@ import {
 } from "mdb-react-ui-kit";
 
 import useBreakpoint from "../../components/Breakpoint";
-import "./AdminHome.css";
+import "./Home.css";
 import CoinTable from "../../components/CoinTable";
 import { useCoin } from "../contexts/CoinContext";
 import { filteredList } from "../../util/Stringutil";
 import * as types from "../../Constants";
+import CoinSearch from "../../components/CoinSearch";
 
-const AdminHome = () => {
+const HomeOld = () => {
   const { coins } = useCoin();
   const tabSelected = {
     fontWeight: "bold",
@@ -53,12 +54,12 @@ const AdminHome = () => {
               color: "#3F729B",
             }}
           >
-            <div className="d-flex card-section">
+            <div className="d-flex card-section w-100 ">
               <div
                 className="cards-container"
                 style={point !== "sm" ? { width: "80%" } : { width: "100%" }}
               >
-                {/* <div className="card-bg w-100 d-flex flex-column wide border d-flex flex-column">
+                <div className="card-bg w-100 d-flex flex-column wide border d-flex flex-column">
                   <div className="d-flex flex-column p-0 h-100">
                     <div className="mx-1 mt-3 d-flex justify-content-between align-items-center">
                       <h4 className="font-weight-bold text-dark h5">
@@ -73,20 +74,11 @@ const AdminHome = () => {
                       <i className="fas fa-arrow-right ml-1"></i>
                     </p>
                   </div>
-                </div> */}
+                </div>
                 <div style={{ height: "50px", width: "100%" }}></div>
                 <div className="card-bg w-100 d-flex flex-column wide border d-flex flex-column">
                   <div className="d-flex flex-column p-0 h-100">
                     <MDBTabs className="mb-3">
-                      <MDBTabsItem>
-                        <MDBTabsLink
-                          onClick={() => handleFillClick("approveTab")}
-                          active={fillActive === "altTab"}
-                          style={fillActive === "altTab" ? tabSelected : {}}
-                        >
-                          Yet to Approve
-                        </MDBTabsLink>
-                      </MDBTabsItem>
                       <MDBTabsItem>
                         <MDBTabsLink
                           onClick={() => handleFillClick("newTab")}
@@ -126,29 +118,14 @@ const AdminHome = () => {
                     </MDBTabs>
 
                     <MDBTabsContent>
-                      <MDBTabsPane show={fillActive === "approveTab"}>
-                        <div className="mx-1 mt-0 d-flex justify-content-between align-items-center">
-                          <h4 className="font-weight-bold text-dark h5">
-                            Yet To Approve
-                          </h4>
-                          <div className="p-1 bg-grey rounded-circle">
-                            <i className="fas fa-sticky-note"></i>
-                          </div>
-                        </div>
-                        <CoinTable
-                          values={filteredList(coins, types.COIN_TYPE_LISTED)}
-                        />
-                        <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
-                          See More
-                          <i className="fas fa-arrow-right ml-1"></i>
-                        </p>
-                      </MDBTabsPane>
                       <MDBTabsPane show={fillActive === "newTab"}>
                         <div className="mx-1 mt-0 d-flex justify-content-between align-items-center">
                           <h4 className="font-weight-bold text-dark h5">New</h4>
-                          <div className="p-1 bg-grey rounded-circle">
-                            <i className="fas fa-sticky-note"></i>
-                          </div>
+                          {/* <div className="col-md-4 p-1 bg-grey rounded-circle">
+                            <CoinSearch
+                              coins={filteredList(coins, types.COIN_TYPE_NEW)}
+                            />
+                          </div> */}
                         </div>
                         <CoinTable
                           values={filteredList(coins, types.COIN_TYPE_NEW)}
@@ -159,12 +136,14 @@ const AdminHome = () => {
                         </p>
                       </MDBTabsPane>
                       <MDBTabsPane show={fillActive === "altTab"}>
-                        <div className="mx-1 mt-0 d-flex justify-content-between align-items-center">
+                        <div className="mx-1 mt-0 d-flex justify-content-between align-items-center p-1">
                           <h4 className="font-weight-bold text-dark h5">
                             All Time Best
                           </h4>
-                          <div className="p-1 bg-grey rounded-circle">
-                            <i className="fas fa-sticky-note"></i>
+                          <div className="col-md-4 p-1 bg-grey rounded-circle">
+                            <CoinSearch
+                              coins={filteredList(coins, types.COIN_TYPE_NEW)}
+                            />
                           </div>
                         </div>
                         <CoinTable
@@ -180,8 +159,10 @@ const AdminHome = () => {
                           <h4 className="font-weight-bold text-dark h5">
                             Normal
                           </h4>
-                          <div className="p-1 bg-grey rounded-circle">
-                            <i className="fas fa-sticky-note"></i>
+                          <div className="col-md-4 p-1 bg-grey rounded-circle">
+                            <CoinSearch
+                              coins={filteredList(coins, types.COIN_TYPE_NEW)}
+                            />
                           </div>
                         </div>
                         <CoinTable
@@ -197,8 +178,10 @@ const AdminHome = () => {
                           <h4 className="font-weight-bold text-dark h5">
                             Presale
                           </h4>
-                          <div className="p-1 bg-grey rounded-circle">
-                            <i className="fas fa-sticky-note"></i>
+                          <div className="col-md-4 p-1 bg-grey rounded-circle">
+                            <CoinSearch
+                              coins={filteredList(coins, types.COIN_TYPE_NEW)}
+                            />
                           </div>
                         </div>
                         <CoinTable
@@ -221,4 +204,4 @@ const AdminHome = () => {
   );
 };
 
-export default AdminHome;
+export default HomeOld;

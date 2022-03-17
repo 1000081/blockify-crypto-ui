@@ -62,6 +62,10 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log("Auth Details " + JSON.stringify(user));
+      // console.log(
+      //   "Auth Token " + JSON.stringify(user.stsTokenManager.accessToken)
+      // );
       setCurrentUser(user);
       setLoading(false);
     });
