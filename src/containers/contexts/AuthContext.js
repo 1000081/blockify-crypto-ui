@@ -69,7 +69,7 @@ export function AuthProvider({ children }) {
       // );
       setCurrentUser(user);
       setLoading(false);
-      localStorage.setItem("TOKEN", user.stsTokenManager.accessToken);
+      localStorage.setItem("TOKEN", user && user.stsTokenManager.accessToken);
     });
     return unsubscribe;
   }, []);
