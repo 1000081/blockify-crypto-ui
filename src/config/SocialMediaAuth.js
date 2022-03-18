@@ -5,8 +5,11 @@ import {
   FacebookAuthProvider,
 } from "firebase/auth";
 
+import { useHistory } from "react-router-dom";
+
 const SocialMediaAuth = (authType) => {
   const auth = getAuth();
+  const history = useHistory();
 
   console.log("authType==" + authType);
 
@@ -37,6 +40,8 @@ const SocialMediaAuth = (authType) => {
         // ...
 
         console.log("response user ==" + JSON.stringify(result));
+
+        history.push("/");
 
         return result;
       })

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://cryptolisting-api.herokuapp.com/api",
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
     "Content-type": "application/json",
     Authorization: "Bearer " + localStorage.getItem("TOKEN"),

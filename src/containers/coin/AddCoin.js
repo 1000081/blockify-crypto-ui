@@ -38,6 +38,7 @@ const AddCoin = () => {
   const auditRef = useRef();
 
   const [coin, setCoin] = useState({});
+  const [error, setError] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,7 +72,7 @@ const AddCoin = () => {
     // }
 
     try {
-      // setError("");
+      setError("");
       // setLoading(true);
       console.log(
         "validUser ------" + populatedCoin && JSON.stringify(populatedCoin)
@@ -267,12 +268,7 @@ const AddCoin = () => {
                                 (Required)
                               </span>
                             </Form.Label>
-                            <Form.Control
-                              as="select"
-                              required
-                              ref={chainRef}
-                              displayName="1231313"
-                            >
+                            <Form.Control as="select" required ref={chainRef}>
                               <option></option>
                               {networOptions &&
                                 networOptions.map((currentOption) => (

@@ -44,13 +44,9 @@ const CoinRow = ({ coin }) => {
       <td>${coin.price}</td>
       <td>${coin.marketCap}</td>
       <td>
-        <Button
-          variant="dark"
-          outline
-          onClick={() => handleVoteButtonClick(coin)}
-        >
+        <Button variant="dark" onClick={() => handleVoteButtonClick(coin)}>
           <span style={{ size: 10 }}>
-            <i class="fas fa-rocket fa-lg"></i>
+            <i className="fas fa-rocket fa-lg"></i>
           </span>
           <span className="ml-2">{coin.vote}</span>
         </Button>

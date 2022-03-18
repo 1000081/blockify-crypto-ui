@@ -4,9 +4,6 @@ import SocialMediaAuth from "../../config/SocialMediaAuth";
 // import { auth } from "../firebase";
 import {
   getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  FacebookAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
@@ -14,6 +11,8 @@ import {
   onAuthStateChanged,
   sendEmailVerification,
 } from "firebase/auth";
+
+import { useHistory } from "react-router-dom";
 
 const AuthContext = React.createContext();
 
@@ -38,7 +37,9 @@ export function AuthProvider({ children }) {
   }
 
   function login(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
+    const response = signInWithEmailAndPassword(auth, email, password);
+    console.log("response====================>" + response);
+    useHistory.push("/");
   }
 
   function logout() {
