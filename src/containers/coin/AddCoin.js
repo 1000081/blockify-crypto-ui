@@ -78,7 +78,7 @@ const AddCoin = () => {
       );
       await addCoin(populatedCoin)
         .then((res) => {
-          console.log("validUser ------" + JSON.stringify(res));
+          console.log("Add User ------" + JSON.stringify(res));
           // logout();
           return res;
         })
@@ -259,7 +259,7 @@ const AddCoin = () => {
                           </div>
                           <Form.Group id="chain">
                             <Form.Label>
-                              Network/Chain{" "}
+                              Network/Chain
                               <span
                                 style={{ color: "red", fontSize: 15 }}
                                 className="ml-2"
@@ -267,7 +267,12 @@ const AddCoin = () => {
                                 (Required)
                               </span>
                             </Form.Label>
-                            <Form.Control as="select" required ref={chainRef}>
+                            <Form.Control
+                              as="select"
+                              required
+                              ref={chainRef}
+                              displayName="1231313"
+                            >
                               <option></option>
                               {networOptions &&
                                 networOptions.map((currentOption) => (

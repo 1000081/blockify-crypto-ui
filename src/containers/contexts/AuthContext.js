@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
 import SocialMediaAuth from "../../config/SocialMediaAuth";
 // import { auth } from "../firebase";
@@ -68,8 +69,8 @@ export function AuthProvider({ children }) {
       // );
       setCurrentUser(user);
       setLoading(false);
+      localStorage.setItem("TOKEN", user.stsTokenManager.accessToken);
     });
-
     return unsubscribe;
   }, []);
 

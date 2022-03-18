@@ -111,7 +111,10 @@ export const Home = () => {
                   </div>
                 </div>
                 <div style={{ height: "50px", width: "100%" }}></div>
-                <div className="card-bg w-100 d-flex flex-column wide d-flex flex-column">
+                <div
+                  className="card w-100 d-flex flex-column wide d-flex flex-column"
+                  style={{ backgroundColor: "#343a40" }}
+                >
                   <div className="d-flex flex-column p-0 h-100">
                     <MDBTabs className="mb-3">
                       <MDBTabsItem>
@@ -167,7 +170,7 @@ export const Home = () => {
                               }}
                             >
                               <h4 className="font-weight-bold text-white h5 mt-2 ml-2">
-                                Promoted
+                                New
                               </h4>
                             </div>
                             <CoinTable
@@ -200,7 +203,7 @@ export const Home = () => {
                               }}
                             >
                               <h4 className="font-weight-bold text-white h5 mt-2 ml-2">
-                                Promoted
+                                All Time Best
                               </h4>
                             </div>
                             <CoinTable
@@ -233,7 +236,7 @@ export const Home = () => {
                               }}
                             >
                               <h4 className="font-weight-bold text-white h5 mt-2 ml-2">
-                                Promoted
+                                Normal
                               </h4>
                             </div>
                             <CoinTable
@@ -266,7 +269,7 @@ export const Home = () => {
                               }}
                             >
                               <h4 className="font-weight-bold text-white h5 mt-2 ml-2">
-                                Promoted
+                                Presale
                               </h4>
                             </div>
                             <CoinTable
@@ -284,80 +287,6 @@ export const Home = () => {
                           </div>
                         </div>
                       </MDBTabsPane>
-
-                      {/* <MDBTabsPane show={fillActive === "altTab"}>
-                        <div className="mx-1 mt-0 d-flex justify-content-between align-items-center p-1">
-                          <h4 className="font-weight-bold text-dark h5">
-                            All Time Best
-                          </h4>
-                          <div className="col-md-4 p-1 bg-grey rounded-circle">
-                            <CoinSearch
-                              // coins={filteredList(coins, types.COIN_TYPE_NEW)}
-                              values={filteredList(
-                                coins,
-                                types.COIN_TYPE_PROMOTED
-                              )}
-                            />
-                          </div>
-                        </div>
-                        <CoinTable
-                          // values={filteredList(coins, types.COIN_TYPE_ATB)}
-                          values={filteredList(coins, types.COIN_TYPE_PROMOTED)}
-                        />
-                        <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
-                          See More
-                          <i className="fas fa-arrow-right ml-1"></i>
-                        </p>
-                      </MDBTabsPane>
-                      <MDBTabsPane show={fillActive === "normalTab"}>
-                        <div className="mx-1 mt-0 d-flex justify-content-between align-items-center">
-                          <h4 className="font-weight-bold text-dark h5">
-                            Normal
-                          </h4>
-                          <div className="col-md-4 p-1 bg-grey rounded-circle">
-                            <CoinSearch
-                              // coins={filteredList(coins, types.COIN_TYPE_NEW)}
-                              values={filteredList(
-                                coins,
-                                types.COIN_TYPE_PROMOTED
-                              )}
-                            />
-                          </div>
-                        </div>
-
-                        <CoinTable
-                          // values={filteredList(coins, types.COIN_TYPE_NORMAL)}
-                          values={filteredList(coins, types.COIN_TYPE_PROMOTED)}
-                        />
-                        <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
-                          See More
-                          <i className="fas fa-arrow-right ml-1"></i>
-                        </p>
-                      </MDBTabsPane>
-                      <MDBTabsPane show={fillActive === "presaleTab"}>
-                        <div className="mx-1 mt-0 d-flex justify-content-between align-items-center">
-                          <h4 className="font-weight-bold text-dark h5">
-                            Presale
-                          </h4>
-                          <div className="col-md-4 p-1 bg-grey rounded-circle">
-                            <CoinSearch
-                              // coins={filteredList(coins, types.COIN_TYPE_NEW)}
-                              values={filteredList(
-                                coins,
-                                types.COIN_TYPE_PROMOTED
-                              )}
-                            />
-                          </div>
-                        </div>
-                        <CoinTable
-                          // values={filteredList(coins, types.COIN_TYPE_PRE_SALE)}
-                          values={filteredList(coins, types.COIN_TYPE_PROMOTED)}
-                        />
-                        <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
-                          See More
-                          <i className="fas fa-arrow-right ml-1"></i>
-                        </p>
-                      </MDBTabsPane> */}
                     </MDBTabsContent>
                   </div>
                 </div>
