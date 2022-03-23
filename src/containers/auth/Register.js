@@ -7,7 +7,7 @@ import { Form, Alert } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 const Register = () => {
-  const { signup, logout } = useAuth();
+  const { signup, logout, sendEmailVerification } = useAuth();
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -17,24 +17,32 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
+  // .then((userCredential) => {
+  //   sendEmailVerification(userCredential.user);
+  //   signOut(auth);
+  //   alert("Email sent");
+  // })
+  // .catch(alert);
+
   async function handleSubmit(e) {
     e.preventDefault();
-
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
     }
-
     try {
       setError("");
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value)
-        .then((res) => {
-          console.log("validUser ------" + JSON.stringify(res));
+        .then((userCredential) => {
+          sendEmailVerification(userCredential.user);
+          setError(
+            "Please confirm the email verification process before login."
+          );
           logout();
-          return res;
+          //history.push("/login");
         })
         .catch((err) => {
-          console.log("errorUser ------" + JSON.stringify(err));
+          setError("Failed to create an account");
         });
     } catch {
       setError("Failed to create an account");

@@ -21,25 +21,31 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-
     try {
       setError("");
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value)
-        .then((res) => {
-          console.log("validUser ------" + JSON.stringify(res));
-          if (res && res.user.emailVerified) {
+      login(emailRef.current.value, passwordRef.current.value)
+        .then((user) => {
+          if (user.user.emailVerified) {
             history.push("/");
           } else {
             logout();
+            setError("Please finish email verification.");
           }
         })
-        .catch((err) => {
-          console.log("errorUser ------" + JSON.stringify(err));
+        .catch((error) => {
+          if (error.code === "auth/user-not-found") {
+            setError("User not found");
+          } else if (error.code === "auth/wrong-password") {
+            setError("Invalid credential");
+          } else {
+            setError("Failed to log in");
+          }
         });
-    } catch {
+    } catch (e) {
+      console.log("error-----+e-" + e);
       setError("Failed to log in");
     }
 

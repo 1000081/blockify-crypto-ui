@@ -27,25 +27,11 @@ export function AuthProvider({ children }) {
   const [cryptoUser, setCryptoUser] = useState();
 
   function signup(email, password) {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        sendEmailVerification(userCredential.user);
-        signOut(auth);
-        alert("Email sent");
-      })
-      .catch(alert);
+    return createUserWithEmailAndPassword(auth, email, password);
   }
 
-  function login(email, password) {
-    const response = signInWithEmailAndPassword(auth, email, password);
-
-    if (!findCryptoUserByEmail(email)) {
-      addCryptoUser({ email: email });
-    }
-
-    console.log("response====================>" + response);
-
-    useHistory.push("/");
+  async function login(email, password) {
+    return signInWithEmailAndPassword(auth, email, password);
   }
 
   function logout() {
@@ -148,6 +134,7 @@ export function AuthProvider({ children }) {
     findCryptoUserByEmail,
     editCryptoUser,
     voteCryptoUser,
+    sendEmailVerification,
   };
 
   return (
