@@ -126,8 +126,10 @@ export function AuthProvider({ children }) {
       console.log("Auth Details " + JSON.stringify(user));
       setCurrentUser(user);
       setLoading(false);
-      findCryptoUserByEmail(user.email);
-      localStorage.setItem("TOKEN", user && user.stsTokenManager.accessToken);
+      if (user) {
+        findCryptoUserByEmail(user.email);
+        localStorage.setItem("TOKEN", user && user.stsTokenManager.accessToken);
+      }
     });
     return unsubscribe;
   }, []);
