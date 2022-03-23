@@ -12,27 +12,6 @@ import { coinTableMeta } from "./TableMetaData";
 const CoinTable = (data) => {
   return (
     <>
-      {/* <CDBTable className="text-white" responsiveSm borderless>
-        <CDBTableHeader color="black">
-          <tr>
-            <th>{coinTableMeta[0].header}</th>
-            <th>{coinTableMeta[1].header}</th>
-            <th>{coinTableMeta[2].header}</th>
-            <th>{coinTableMeta[3].header}</th>
-            <th>{coinTableMeta[4].header}</th>
-            <th>{coinTableMeta[5].header}</th>
-            <th>{coinTableMeta[6].header}</th>
-          </tr>
-        </CDBTableHeader>
-        <CDBTableBody textWhite>
-          {data &&
-            data.values.map((coin) => (
-              <tr key={coin.name} style={{ bgcolor: "white" }}>
-                <CoinRow coin={coin} />
-              </tr>
-            ))}
-        </CDBTableBody>
-      </CDBTable> */}
       <CDBTable className="text-white" responsiveSm>
         <MDBTableHead dark>
           <tr>
@@ -65,7 +44,7 @@ const CoinTable = (data) => {
           {data &&
             data.values.map((coin) => (
               <tr key={coin.name}>
-                <CoinRow coin={coin} />
+                <CoinRow coin={coin} isAdmin={data.isAdmin} />
               </tr>
             ))}
         </MDBTableBody>

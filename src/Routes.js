@@ -13,8 +13,7 @@ import CoinNavbar from "./components/CoinNavbar";
 import Footer from "./components/Footer";
 import AdminHome from "./containers/admin/AdminHome";
 import ForgotPassword from "./containers/auth/ForgotPassword";
-import HomeOld from "./containers/coin/HomeOld";
-// import { Dashboard } from "./pages/Dashboard";
+import AdminReview from "./containers/admin/AdminReview";
 
 const Routes = () => {
   return (
@@ -30,10 +29,11 @@ const Routes = () => {
         <Route path="/addCoin" component={AddCoin} />
         <Route path="/editCoin" component={EditCoin} />
         <Route path="/coinDetails/:coinName" component={CoinDetails} />
-        <Route path="/adminHome" component={AdminHome} />
         <Route path="/forgotPassword" component={ForgotPassword} />
-        <Route path="/homeOld" component={HomeOld} />
-        {/* <Route path="/d" component={Dashboard} /> */}
+
+        <Route path="/admin" component={AdminHome} />
+        <Route path="/review" component={AdminReview} />
+
         <Footer />
       </BrowserRouter>
     </Fragment>

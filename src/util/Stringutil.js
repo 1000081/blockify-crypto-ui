@@ -47,7 +47,7 @@ export function formatDate(date, format) {
 }
 
 export function stringToDate(string) {
-  return moment("2018-05-18T04:00:00.000Z").format("DD MMM, YYYY");
+  return moment(string).format("DD MMM, YYYY");
 }
 
 export function filteredList(coinList, coinType) {

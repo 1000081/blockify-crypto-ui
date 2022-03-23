@@ -22,7 +22,7 @@ const AdminHome = () => {
     bgcolor: "elegant-color-dark",
   };
 
-  const [fillActive, setFillActive] = useState("newTab");
+  const [fillActive, setFillActive] = useState("approveTab");
 
   const handleFillClick = (value) => {
     if (value === fillActive) {
@@ -43,6 +43,7 @@ const AdminHome = () => {
           height: "100vh",
           overflowY: "hidden",
           color: "#3F729B",
+          backgroundColor: "#616161",
         }}
       >
         <div style={{ height: "100%" }}>
@@ -58,31 +59,18 @@ const AdminHome = () => {
                 className="cards-container"
                 style={point !== "sm" ? { width: "80%" } : { width: "100%" }}
               >
-                {/* <div className="card-bg w-100 d-flex flex-column wide border d-flex flex-column">
-                  <div className="d-flex flex-column p-0 h-100">
-                    <div className="mx-1 mt-3 d-flex justify-content-between align-items-center">
-                      <h4 className="font-weight-bold text-dark h5">
-                        Promoted
-                      </h4>
-                    </div>
-                    <CoinTable
-                      values={filteredList(coins, types.COIN_TYPE_PROMOTED)}
-                    />
-                    <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
-                      See More
-                      <i className="fas fa-arrow-right ml-1"></i>
-                    </p>
-                  </div>
-                </div> */}
                 <div style={{ height: "50px", width: "100%" }}></div>
-                <div className="card-bg w-100 d-flex flex-column wide border d-flex flex-column">
+                <div
+                  className="card w-100 d-flex flex-column wide d-flex flex-column"
+                  style={{ backgroundColor: "#343a40" }}
+                >
                   <div className="d-flex flex-column p-0 h-100">
                     <MDBTabs className="mb-3">
                       <MDBTabsItem>
                         <MDBTabsLink
                           onClick={() => handleFillClick("approveTab")}
-                          active={fillActive === "altTab"}
-                          style={fillActive === "altTab" ? tabSelected : {}}
+                          active={fillActive === "approveTab"}
+                          style={fillActive === "approveTab" ? tabSelected : {}}
                         >
                           Yet to Approve
                         </MDBTabsLink>
@@ -127,87 +115,154 @@ const AdminHome = () => {
 
                     <MDBTabsContent>
                       <MDBTabsPane show={fillActive === "approveTab"}>
-                        <div className="mx-1 mt-0 d-flex justify-content-between align-items-center">
-                          <h4 className="font-weight-bold text-dark h5">
-                            Yet To Approve
-                          </h4>
-                          <div className="p-1 bg-grey rounded-circle">
-                            <i className="fas fa-sticky-note"></i>
+                        <div
+                          className="card w-100 d-flex flex-column wide d-flex flex-column"
+                          style={{ background: "#343a40" }}
+                        >
+                          <div className="d-flex flex-column p-0 h-100">
+                            <div
+                              className="mx-1 mt-0 d-flex justify-content-between align-items-center"
+                              style={{
+                                background: "black",
+                                height: "50px",
+                              }}
+                            >
+                              <h4 className="font-weight-bold text-white h5">
+                                Yet To Approve
+                              </h4>
+                            </div>
+                            <CoinTable
+                              values={filteredList(
+                                coins,
+                                types.COIN_TYPE_LISTED
+                              )}
+                              isAdmin={true}
+                            />
+                            <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
+                              See More
+                              <i className="fas fa-arrow-right ml-1"></i>
+                            </p>
                           </div>
                         </div>
-                        <CoinTable
-                          values={filteredList(coins, types.COIN_TYPE_LISTED)}
-                        />
-                        <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
-                          See More
-                          <i className="fas fa-arrow-right ml-1"></i>
-                        </p>
                       </MDBTabsPane>
                       <MDBTabsPane show={fillActive === "newTab"}>
-                        <div className="mx-1 mt-0 d-flex justify-content-between align-items-center">
-                          <h4 className="font-weight-bold text-dark h5">New</h4>
-                          <div className="p-1 bg-grey rounded-circle">
-                            <i className="fas fa-sticky-note"></i>
+                        <div
+                          className="card w-100 d-flex flex-column wide d-flex flex-column"
+                          style={{ background: "#343a40" }}
+                        >
+                          <div className="d-flex flex-column p-0 h-100">
+                            <div
+                              className="mx-1 d-flex justify-content-between align-items-center"
+                              style={{
+                                background: "black",
+                                height: "50px",
+                              }}
+                            >
+                              <h4 className="font-weight-bold text-white h5 mt-2 ml-2">
+                                New
+                              </h4>
+                            </div>
+                            <CoinTable
+                              values={filteredList(coins, types.COIN_TYPE_NEW)}
+                              point={point}
+                              isAdmin={true}
+                            />
+                            <p className="c-p text-white font-weight-bold text-right mt-auto mr-3">
+                              See More
+                              <i className="fas fa-arrow-right ml-1"></i>
+                            </p>
                           </div>
                         </div>
-                        <CoinTable
-                          values={filteredList(coins, types.COIN_TYPE_NEW)}
-                        />
-                        <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
-                          See More
-                          <i className="fas fa-arrow-right ml-1"></i>
-                        </p>
                       </MDBTabsPane>
+
                       <MDBTabsPane show={fillActive === "altTab"}>
-                        <div className="mx-1 mt-0 d-flex justify-content-between align-items-center">
-                          <h4 className="font-weight-bold text-dark h5">
-                            All Time Best
-                          </h4>
-                          <div className="p-1 bg-grey rounded-circle">
-                            <i className="fas fa-sticky-note"></i>
+                        <div
+                          className="card w-100 d-flex flex-column wide d-flex flex-column"
+                          style={{ background: "#343a40" }}
+                        >
+                          <div className="d-flex flex-column p-0 h-100">
+                            <div
+                              className="mx-1 d-flex justify-content-between align-items-center"
+                              style={{
+                                background: "black",
+                                height: "50px",
+                              }}
+                            >
+                              <h4 className="font-weight-bold text-white h5 mt-2 ml-2">
+                                All Time Best
+                              </h4>
+                            </div>
+                            <CoinTable
+                              values={filteredList(coins, types.COIN_TYPE_NEW)}
+                              point={point}
+                              isAdmin={true}
+                            />
+                            <p className="c-p text-white font-weight-bold text-right mt-auto mr-3">
+                              See More
+                              <i className="fas fa-arrow-right ml-1"></i>
+                            </p>
                           </div>
                         </div>
-                        <CoinTable
-                          values={filteredList(coins, types.COIN_TYPE_ATB)}
-                        />
-                        <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
-                          See More
-                          <i className="fas fa-arrow-right ml-1"></i>
-                        </p>
                       </MDBTabsPane>
+
                       <MDBTabsPane show={fillActive === "normalTab"}>
-                        <div className="mx-1 mt-0 d-flex justify-content-between align-items-center">
-                          <h4 className="font-weight-bold text-dark h5">
-                            Normal
-                          </h4>
-                          <div className="p-1 bg-grey rounded-circle">
-                            <i className="fas fa-sticky-note"></i>
+                        <div
+                          className="card w-100 d-flex flex-column wide d-flex flex-column"
+                          style={{ background: "#343a40" }}
+                        >
+                          <div className="d-flex flex-column p-0 h-100">
+                            <div
+                              className="mx-1 d-flex justify-content-between align-items-center"
+                              style={{
+                                background: "black",
+                                height: "50px",
+                              }}
+                            >
+                              <h4 className="font-weight-bold text-white h5 mt-2 ml-2">
+                                Normal
+                              </h4>
+                            </div>
+                            <CoinTable
+                              values={filteredList(coins, types.COIN_TYPE_NEW)}
+                              point={point}
+                              isAdmin={true}
+                            />
+                            <p className="c-p text-white font-weight-bold text-right mt-auto mr-3">
+                              See More
+                              <i className="fas fa-arrow-right ml-1"></i>
+                            </p>
                           </div>
                         </div>
-                        <CoinTable
-                          values={filteredList(coins, types.COIN_TYPE_NORMAL)}
-                        />
-                        <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
-                          See More
-                          <i className="fas fa-arrow-right ml-1"></i>
-                        </p>
                       </MDBTabsPane>
+
                       <MDBTabsPane show={fillActive === "presaleTab"}>
-                        <div className="mx-1 mt-0 d-flex justify-content-between align-items-center">
-                          <h4 className="font-weight-bold text-dark h5">
-                            Presale
-                          </h4>
-                          <div className="p-1 bg-grey rounded-circle">
-                            <i className="fas fa-sticky-note"></i>
+                        <div
+                          className="card w-100 d-flex flex-column wide d-flex flex-column"
+                          style={{ background: "#343a40" }}
+                        >
+                          <div className="d-flex flex-column p-0 h-100">
+                            <div
+                              className="mx-1 d-flex justify-content-between align-items-center"
+                              style={{
+                                background: "black",
+                                height: "50px",
+                              }}
+                            >
+                              <h4 className="font-weight-bold text-white h5 mt-2 ml-2">
+                                Presale
+                              </h4>
+                            </div>
+                            <CoinTable
+                              values={filteredList(coins, types.COIN_TYPE_NEW)}
+                              point={point}
+                              isAdmin={true}
+                            />
+                            <p className="c-p text-white font-weight-bold text-right mt-auto mr-3">
+                              See More
+                              <i className="fas fa-arrow-right ml-1"></i>
+                            </p>
                           </div>
                         </div>
-                        <CoinTable
-                          values={filteredList(coins, types.COIN_TYPE_PRE_SALE)}
-                        />
-                        <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
-                          See More
-                          <i className="fas fa-arrow-right ml-1"></i>
-                        </p>
                       </MDBTabsPane>
                     </MDBTabsContent>
                   </div>

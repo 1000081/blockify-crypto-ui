@@ -14,6 +14,7 @@ import { useCoin } from "../contexts/CoinContext";
 import { filteredList } from "../../util/Stringutil";
 import * as types from "../../Constants";
 import CoinSearch from "../../components/CoinSearch";
+import { useAuth } from "../contexts/AuthContext";
 
 import emaijs from "emailjs-com";
 
@@ -27,6 +28,9 @@ export const Home = () => {
 
   const [fillActive, setFillActive] = useState("newTab");
 
+  const { findCryptoUserByEmail, currentUser, cryptoUser } = useAuth();
+  const [cryptUser, setCryptUser] = useState();
+
   const handleFillClick = (value) => {
     if (value === fillActive) {
       return;
@@ -34,27 +38,42 @@ export const Home = () => {
     setFillActive(value);
   };
 
-  // useEffect(() => {
-  //   const templateParam = {
-  //     fromName: "Blockify",
-  //     toName: "Srini",
-  //     message: "Test",
-  //   };
+  useEffect(() => {
+    console.log(
+      "Home==cryptoUser from AuthContext===>>>" + JSON.stringify(cryptoUser)
+    );
+    // const templateParam = {
+    //   fromName: "Blockify",
+    //   toName: "Srini",
+    //   message: "Test",
+    // };
 
-  //   emaijs
-  //     .send(
-  //       "service_xk0xp0z",
-  //       "template_6qy0n08",
-  //       templateParam,
-  //       "AOGTvVt2qixzf5_Qd"
-  //     )
-  //     .then((res) => {
-  //       console.log(res && JSON.stringify(res));
+    // emaijs
+    //   .send(
+    //     "service_xk0xp0z",
+    //     "template_6qy0n08",
+    //     templateParam,
+    //     "AOGTvVt2qixzf5_Qd"
+    //   )
+    //   .then((res) => {
+    //     console.log(res && JSON.stringify(res));
+    //   })
+    //   .catch((err) => {
+    //     console.log(err && JSON.stringify(err));
+    //   });
+    // findCryptoUser();
+  }, []);
+
+  // const findCryptoUser = () => {
+  //   findCryptoUserByEmail(currentUser.email)
+  //     .then((response) => {
+  //       console.log("Home==findCryptoUser===>>>" + JSON.stringify(response));
+  //       setCryptUser(response);
   //     })
-  //     .catch((err) => {
-  //       console.log(err && JSON.stringify(err));
+  //     .catch((e) => {
+  //       console.log(e);
   //     });
-  // }, []);
+  // };
 
   const point = useBreakpoint();
 

@@ -176,3 +176,18 @@ export const networOptions = [
     value: "OTHER",
   },
 ];
+
+export const actionOptions = [
+  {
+    text: "Approve",
+    value: "A",
+  },
+  {
+    text: "Reject",
+    value: "R",
+  },
+  {
+    text: "Promote",
+    value: "P",
+  },
+];

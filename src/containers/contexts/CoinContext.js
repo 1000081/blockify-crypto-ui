@@ -1,6 +1,8 @@
 import { createContext, useEffect, useState, useContext } from "react";
 import ApiService from "../../api/ApiService";
 import emailjs, { send } from "emailjs-com";
+import { useHistory } from "react-router-dom";
+import { useAuth } from "./AuthContext";
 
 export const CoinContext = createContext();
 
@@ -33,6 +35,9 @@ export const CoinContextProvider = (props) => {
 
   const [coins, setCoins] = useState([]);
   const [coin, setCoin] = useState(initialCoin);
+  const [cryptoUser, setCryptoUser] = useState({});
+  const { currentUser, findCryptoUserByEmail } = useAuth();
+  const history = useHistory();
 
   const [preSaleCoins, setPreSaleCoins] = useState([]);
   const [newCoins, setNewCoins] = useState([]);
@@ -41,13 +46,16 @@ export const CoinContextProvider = (props) => {
   const [atbCoins, setAtbCoins] = useState([]);
 
   useEffect(() => {
+    console.log(
+      "CoinContext======================>>>" + JSON.stringify(currentUser)
+    );
     retrieveAllCoins();
   }, []);
 
   // filteredList(coinList, coinType)
 
-  const retrieveAllCoins = () => {
-    ApiService.findAll("/coins")
+  const retrieveAllCoins = async () => {
+    await ApiService.findAll("/coins")
       .then((response) => {
         let allCoins = response.data;
         setCoins(allCoins);
@@ -57,20 +65,21 @@ export const CoinContextProvider = (props) => {
       });
   };
 
-  const voteCoin = (coin) => {
+  const voteCoin = async (coin) => {
     let vote = { vote: coin.vote + 1 };
-    ApiService.update("coins", coin._id, vote)
+    await ApiService.update("coins", coin._id, vote)
       .then((response) => {
         console.log(response.data);
         retrieveAllCoins();
+        findCryptoUserByEmail(currentUser.email);
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
-  const editCoin = (coin) => {
-    ApiService.update("coins", coin._id, coin)
+  const editCoin = async (coin) => {
+    await ApiService.update("coins", coin._id, coin)
       .then((response) => {
         console.log("-----response" + response.data);
         retrieveAllCoins();
@@ -80,8 +89,8 @@ export const CoinContextProvider = (props) => {
       });
   };
 
-  const addCoin = (coin) => {
-    ApiService.save("coins", coin)
+  const addCoin = async (coin) => {
+    await ApiService.save("coins", coin)
       .then((response) => {
         console.log("-----response" + response.data);
         retrieveAllCoins();
@@ -91,8 +100,8 @@ export const CoinContextProvider = (props) => {
       });
   };
 
-  const retrieveCoinByName = (name) => {
-    ApiService.findAll("/coins?name=" + name)
+  const retrieveCoinByName = async (name) => {
+    await ApiService.findAll("/coins?name=" + name)
       .then((response) => {
         setCoin(response.data);
       })
@@ -109,6 +118,12 @@ export const CoinContextProvider = (props) => {
     // return navigate("/coinDetails");
   };
 
+  const adminReviewCoin = (coin) => {
+    setCoin(coin);
+    console.log("Review Page--------" + JSON.stringify(coin));
+    // history.push("/review");
+  };
+
   return (
     <CoinContext.Provider
       value={{
@@ -120,6 +135,8 @@ export const CoinContextProvider = (props) => {
         showCoinDetails,
         editCoin,
         retrieveCoinByName,
+        adminReviewCoin,
+        cryptoUser,
       }}
     >
       {props.children}

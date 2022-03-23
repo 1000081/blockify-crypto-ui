@@ -1,13 +1,10 @@
 import React from "react";
 import { Header } from "./../Navbar.style";
-import { CDBNavbar, CDBInput } from "cdbreact";
+import { CDBNavbar } from "cdbreact";
 import { useAuth } from "../containers/contexts/AuthContext";
 
 const CoinNavbar = () => {
   const { currentUser, logout } = useAuth();
-  console.log(
-    "NAv Bar currentUser-----" + currentUser && JSON.stringify(currentUser)
-  );
 
   const handleLogout = () => {
     logout();
@@ -72,7 +69,7 @@ const CoinNavbar = () => {
               >
                 Logout
               </span>
-              <i className="fas fa-sign-in-alt fa-1x"></i>
+              <i className="fas fa-sign-out-alt"></i>
             </button>
           ) : (
             <a
@@ -103,6 +100,20 @@ const CoinNavbar = () => {
             </span>
             &nbsp;
             <i className="fas fa-plus-square fa-1x"></i>
+          </a>
+          <a
+            href="/admin"
+            className="text-decoration-none  mx-4"
+            style={{ color: "inherit" }}
+          >
+            <span
+              className="table-rem element-to-hide"
+              style={{ marginRight: "0.5rem" }}
+            >
+              Admin
+            </span>
+            &nbsp;
+            <i className="fas fa-tools"></i>
           </a>
           <input type="text" className="table-rem" />
           <i className="fas fa-search mx-4 table-rem  fa-1x"></i>
