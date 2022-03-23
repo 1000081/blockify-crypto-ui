@@ -193,11 +193,7 @@ export const Home = () => {
                               </h4>
                             </div>
                             <CoinTable
-                              // values={filteredList(coins, types.COIN_TYPE_NEW)}
-                              values={filteredList(
-                                coins,
-                                types.COIN_TYPE_PROMOTED
-                              )}
+                              values={filteredList(coins, types.COIN_TYPE_NEW)}
                               point={point}
                             />
                             <p className="c-p text-white font-weight-bold text-right mt-auto mr-3">
@@ -226,11 +222,7 @@ export const Home = () => {
                               </h4>
                             </div>
                             <CoinTable
-                              // values={filteredList(coins, types.COIN_TYPE_NEW)}
-                              values={filteredList(
-                                coins,
-                                types.COIN_TYPE_PROMOTED
-                              )}
+                              values={filteredList(coins, types.COIN_TYPE_ATB)}
                               point={point}
                             />
                             <p className="c-p text-white font-weight-bold text-right mt-auto mr-3">
@@ -259,10 +251,9 @@ export const Home = () => {
                               </h4>
                             </div>
                             <CoinTable
-                              // values={filteredList(coins, types.COIN_TYPE_NEW)}
                               values={filteredList(
                                 coins,
-                                types.COIN_TYPE_PROMOTED
+                                types.COIN_TYPE_NORMAL
                               )}
                               point={point}
                             />
@@ -292,10 +283,9 @@ export const Home = () => {
                               </h4>
                             </div>
                             <CoinTable
-                              // values={filteredList(coins, types.COIN_TYPE_NEW)}
                               values={filteredList(
                                 coins,
-                                types.COIN_TYPE_PROMOTED
+                                types.COIN_TYPE_PRE_SALE
                               )}
                               point={point}
                             />

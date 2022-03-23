@@ -10,7 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { useHistory } from "react-router-dom";
 import { MDBCard, MDBCardBody, MDBCol, MDBRow } from "mdb-react-ui-kit";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, Modal, ModalBody } from "react-bootstrap";
 import CoinModal from "../../components/CoinModal";
 
 const AddCoin = () => {
@@ -36,7 +36,10 @@ const AddCoin = () => {
   const [coin, setCoin] = useState({});
   const [error, setError] = useState({});
   const { currentUser } = useAuth();
-  const [modalShow, setModalShow] = useState(false);
+
+  const [open, setOpen] = useState(false);
+  const [modelHead, setModelHead] = useState("");
+  const [modelBody, setModelBody] = useState("");
 
   const history = useHistory();
 
@@ -61,7 +64,7 @@ const AddCoin = () => {
       symbol: symbolRef.current.value,
       website: websiteRef.current.value,
       audit: auditRef.current.value,
-      addedBy: currentUser.email,
+      addedBy: currentUser ? currentUser.email : "",
     };
 
     // if (passwordRef.current.value !== passwordConfirmRef.current.value) {
@@ -70,13 +73,22 @@ const AddCoin = () => {
 
     setError("");
     // setLoading(true);
-    console.log(
-      "validUser ------" + populatedCoin && JSON.stringify(populatedCoin)
-    );
-    addCoin(populatedCoin);
-    setModalShow(true);
-    history.push("/");
-    // setLoading(false);};
+    // console.log(
+    //   "validUser ------" + populatedCoin && JSON.stringify(populatedCoin)
+    // );
+    if (currentUser && currentUser.emailVerified) {
+      addCoin(populatedCoin);
+      setModelHead("Review");
+      setModelBody(
+        "Your coin is in review process, will receive email once coin is reviewed."
+      );
+      setOpen(true);
+      // setLoading(false);};
+    } else {
+      setModelHead("Login");
+      setModelBody("Please log in to Add Coin.");
+      setOpen(true);
+    }
   };
 
   const point = useBreakpoint();
@@ -86,13 +98,21 @@ const AddCoin = () => {
     // launchDtRef.current = value;
   };
 
+  const onCloseModal = () => {
+    setOpen(false);
+    if (currentUser) {
+      history.push("/");
+    }
+  };
+
   return (
     <>
-      {/* <Button variant="primary" onClick={() => setModalShow(true)}>
-        Launch vertically centered modal
-      </Button> */}
-
-      {/* <CoinModal show={modalShow} onHide={() => setModalShow(false)} /> */}
+      <CoinModal
+        open={open}
+        onCloseModal={onCloseModal}
+        head={modelHead}
+        body={modelBody}
+      />
 
       <div className="dashboard d-flex" style={{ align: "center" }}>
         <div

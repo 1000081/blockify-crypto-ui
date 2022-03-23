@@ -248,37 +248,17 @@ const AdminReview = () => {
                                 (Required)
                               </span> */}
                             </Form.Label>
-                            {/* <DatePicker
-                              selected={
-                                coin.launchDt &&
-                                new Date(coin.launchDt).toLocaleDateString()
-                              }
-                              onChange={handleDatepickerChange}
+                            <Form.Control
                               id="launchDt"
-                              name="launchDt"
-                              className="form-control"
-                              label="Launch Date"
-                              required
+                              type="text"
                               ref={launchDtRef}
+                              required
                               value={
                                 coin.launchDt &&
                                 new Date(coin.launchDt).toLocaleDateString()
                               }
-                              // moment(dateString, 'MM-DD-YYYY')
-                              startDate={
-                                coin.launchDt &&
-                                moment(coin.launchDt, "MM/DD/YYYY")
-                              }
                               disabled
-                              customInput={
-                                <Form.Control
-                                  id="launchDt"
-                                  type="text"
-                                  ref={launchDtRef}
-                                  required
-                                />
-                              }
-                            /> */}
+                            />
                           </Form.Group>
                           <Form.Group id="marketCap">
                             <Form.Label>Market Cap in USD</Form.Label>
@@ -490,7 +470,7 @@ const AdminReview = () => {
                               borderStyle: "solid",
                             }}
                           >
-                            Approve Coin
+                            Submit
                           </CDBBtn>
                         </MDBCardBody>
                       </MDBCard>
