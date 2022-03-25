@@ -10,12 +10,9 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 
-import { useHistory } from "react-router-dom";
 import ApiService from "../../api/ApiService";
 
 const AuthContext = React.createContext();
-
-// const auth = firebaseConfig.auth;
 
 export function useAuth() {
   return useContext(AuthContext);
@@ -24,7 +21,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
-  const [cryptoUser, setCryptoUser] = useState();
+  const [cryptoUser, setCryptoUser] = useState({});
 
   function signup(email, password) {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -35,6 +32,7 @@ export function AuthProvider({ children }) {
   }
 
   function logout() {
+    localStorage.removeItem("cryptoUser");
     return signOut(auth);
   }
 
@@ -64,10 +62,15 @@ export function AuthProvider({ children }) {
       });
   };
 
-  const findCryptoUserByEmail = async (email) => {
-    await ApiService.findAll("/users?email=" + email)
+  const findCryptoUserByEmail = (email) => {
+    ApiService.findAll("/users?email=" + email)
       .then((response) => {
         setCryptoUser(response.data);
+        console.log(
+          "AuthContext-----findCryptoUserByEmail" +
+            JSON.stringify(response.data)
+        );
+        localStorage.setItem("cryptoUser", JSON.stringify(response.data));
         return response.data;
       })
       .catch((e) => {
@@ -99,41 +102,17 @@ export function AuthProvider({ children }) {
       });
   };
 
-  function validateCryptoUser(response) {
-    findCryptoUserByEmail(response.user.email)
-      .then((cryptoUser) => {
-        if (!cryptoUser) {
-          const userPayload = {
-            email: response.user.email,
-          };
-          addCryptoUser(userPayload)
-            .then((rsponse) => {
-              console.log("User added successfully." + rsponse);
-              setCryptoUser(userPayload);
-              // history.push("/");
-            })
-            .catch((error) => {
-              console.log("Error occured while add user." + error);
-            });
-        } else {
-          setCryptoUser(cryptoUser);
-          // history.push("/");
-        }
-      })
-      .catch((error) => {
-        console.log("Error occured while fetch data" + JSON.stringify(error));
-      });
-  }
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log("Auth Details " + JSON.stringify(user));
+      // console.log("Auth Details " + JSON.stringify(user));
       setCurrentUser(user);
       setLoading(false);
+      console.log("======Before findCryptoUserByEmail Call============");
       if (user) {
-        setCryptoUser(findCryptoUserByEmail(user.email));
+        findCryptoUserByEmail(user.email);
         localStorage.setItem("TOKEN", user && user.stsTokenManager.accessToken);
       }
+      console.log("======After findCryptoUserByEmail Call============");
     });
     return unsubscribe;
   }, []);
@@ -154,7 +133,6 @@ export function AuthProvider({ children }) {
     voteCryptoUser,
     sendEmailVerification,
     setCryptoUser,
-    validateCryptoUser,
   };
 
   return (

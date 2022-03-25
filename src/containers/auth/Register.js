@@ -27,7 +27,7 @@ const Register = () => {
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value)
         .then((userCredential) => {
-          addCryptoUser({ email: emailRef.current.value });
+          addCryptoUser({ email: userCredential.user.email });
           sendEmailVerification(userCredential.user);
           setError(
             "Please confirm the email verification process before login."

@@ -10,11 +10,11 @@ import CoinModal from "./CoinModal";
 const CoinRow = ({ coin, isAdmin }) => {
   const { voteCoin, showCoinDetails, adminReviewCoin } = useCoin();
   const {
-    cryptoUser,
     editCryptoUser,
     currentUser,
     findCryptoUserByEmail,
     voteCryptoUser,
+    cryptoUser,
   } = useAuth();
   const [currentCoin, setVotableCoins] = useState([]);
   const [status, setStatus] = useState([]);
@@ -29,13 +29,17 @@ const CoinRow = ({ coin, isAdmin }) => {
   };
 
   useEffect(() => {
+    // findCryptoUserByEmail(currentUser.email);
+    console.log(
+      "CoinRow-----findCryptoUserByEmail" + JSON.stringify(cryptoUser)
+    );
     if (cryptoUser && cryptoUser.votes && cryptoUser.votes.length) {
       setSelectedVote(filterArrayElementByEdit(cryptoUser.votes, coin.name));
       handleCheck(filterArrayElementByEdit(cryptoUser.votes, coin.name));
     } else {
       setStatus(false);
     }
-  }, []);
+  }, [!cryptoUser]);
 
   const handleVoteButtonClick = (vote) => {
     if (!currentUser) {
@@ -140,12 +144,12 @@ const CoinRow = ({ coin, isAdmin }) => {
           <span className="ml-2">{coin.vote}</span>
         </Button>
       </td>
-      <CoinModal
+      {/* <CoinModal
         open={open}
         onCloseModal={onCloseModal}
         head={"Login"}
         body={"Please, login to vote"}
-      />
+      /> */}
     </>
   );
 };
