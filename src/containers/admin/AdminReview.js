@@ -7,8 +7,7 @@ import { networOptions, actionOptions } from "../coin/tableData";
 import { useAuth } from "../contexts/AuthContext";
 import { useCoin } from "../contexts/CoinContext";
 import "react-datepicker/dist/react-datepicker.css";
-import DatePicker from "react-datepicker";
-import moment from "moment";
+import CoinModal from "../../components/CoinModal";
 
 const AdminReview = () => {
   const { addCoin } = useCoin();
@@ -34,50 +33,85 @@ const AdminReview = () => {
   const [selectedCoin, setSelectedCoin] = useState({});
   const [error, setError] = useState({});
   const { currentUser } = useAuth();
-  const { coin } = useCoin();
-  // setSelectedCoin(coin);
-  // localStorage.setItem("coin", coin);
-  // console.log("selected coin =======>>>" + JSON.stringify(coin));
+  const { coin, editCoin } = useCoin();
+  const [open, setOpen] = useState(false);
+  const [modelHead, setModelHead] = useState("");
+  const [modelBody, setModelBody] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(e.target[4].value);
-    const populatedCoin = {
-      name: nameRef.current.value,
-      logo: logoRef.current.value,
-      chain: chainRef.current.value,
-      presale: presaleRef.current.value,
-      description: descriptionRef.current.value,
-      contAddress: contAddressRef.current.value,
-      launchDt: e.target[4].value,
-      marketCap: marketCapRef.current.value,
-      price: priceRef.current.value,
-      telegram: telegramRef.current.value,
-      twitter: twitterRef.current.value,
-      reddit: redditRef.current.value,
-      discord: discordRef.current.value,
-      dexToools: dexTooolsRef.current.value,
-      symbol: symbolRef.current.value,
-      website: websiteRef.current.value,
-      audit: auditRef.current.value,
-      addedBy: currentUser.email,
-      action: actionRef.current.value,
-    };
+    // const populatedCoin = {
+    //   name: nameRef.current.value,
+    //   logo: logoRef.current.value,
+    //   chain: chainRef.current.value,
+    //   presale: presaleRef.current.value,
+    //   description: descriptionRef.current.value,
+    //   contAddress: contAddressRef.current.value,
+    //   launchDt: e.target[4].value,
+    //   marketCap: marketCapRef.current.value,
+    //   price: priceRef.current.value,
+    //   telegram: telegramRef.current.value,
+    //   twitter: twitterRef.current.value,
+    //   reddit: redditRef.current.value,
+    //   discord: discordRef.current.value,
+    //   dexToools: dexTooolsRef.current.value,
+    //   symbol: symbolRef.current.value,
+    //   website: websiteRef.current.value,
+    //   audit: auditRef.current.value,
+    //   addedBy: currentUser.email,
+    //   action: actionRef.current.value,
+    // };
 
     // if (passwordRef.current.value !== passwordConfirmRef.current.value) {
     //   return setError("Passwords do not match");
     // }
 
     try {
+      let editPayload = {};
+
+      if (actionRef.current.value === "A") {
+        editPayload = {
+          _id: selectedCoin._id,
+          isNewCoin: "Y",
+          isListed: "N",
+        };
+      } else if (actionRef.current.value === "R") {
+        editPayload = {
+          _id: selectedCoin._id,
+          isRejectedCoin: "Y",
+          isListed: "N",
+        };
+      } else if (actionRef.current.value === "P") {
+        editPayload = {
+          _id: selectedCoin._id,
+          isPromoted: "Y",
+          isListed: "N",
+        };
+      } else if (actionRef.current.value === "NOR") {
+        editPayload = {
+          _id: selectedCoin._id,
+          isNormal: "Y",
+          isListed: "N",
+        };
+      } else if (actionRef.current.value === "ATB") {
+        editPayload = {
+          _id: selectedCoin._id,
+          isATB: "Y",
+          isListed: "N",
+        };
+      }
+
       setError("");
       // setLoading(true);
       console.log(
-        "validUser ------" + populatedCoin && JSON.stringify(populatedCoin)
+        "validUser ------" + editPayload && JSON.stringify(editPayload)
       );
-      await addCoin(populatedCoin)
+      editCoin(editPayload)
         .then((res) => {
           console.log("Add User ------" + JSON.stringify(res));
           // logout();
+          setOpen(true);
           return res;
         })
         .catch((err) => {
@@ -92,22 +126,36 @@ const AdminReview = () => {
 
   const point = useBreakpoint();
 
-  const handleDatepickerChange = (value) => {
-    // setCoin({ ...coin, ["launchDt"]: value });
-    // launchDtRef.current = value;
-  };
-
   useEffect(() => {
-    if (!coin) {
-      setSelectedCoin(localStorage.getItem("coin"));
-    } else {
-      localStorage.setItem("coin", coin);
+    if (coin && coin.name !== "") {
+      localStorage.setItem("coin", JSON.stringify(coin));
       setSelectedCoin(coin);
+    } else {
+      const coin = localStorage.getItem("coin");
+      setSelectedCoin(coin && JSON.parse(coin));
     }
   }, []);
 
+  const disableStyle = {
+    background: "#cfd8dc",
+    fontWeight: "bold",
+  };
+
+  const onCloseModal = () => {
+    setOpen(false);
+    // if (currentUser) {
+    //   history.push("/");
+    // }
+  };
+
   return (
     <div className="dashboard d-flex" style={{ align: "center" }}>
+      <CoinModal
+        open={open}
+        onCloseModal={onCloseModal}
+        head={"Coin Approval"}
+        body={"Coin updated successfully."}
+      />
       <div
         style={{
           flex: "1 1 auto",
@@ -143,7 +191,7 @@ const AdminReview = () => {
                               Coin Information
                             </h4>
 
-                            <Form.Group id="chain">
+                            <Form.Group id="action">
                               <Form.Label>
                                 Action
                                 <span
@@ -156,8 +204,11 @@ const AdminReview = () => {
                               <Form.Control
                                 as="select"
                                 required
-                                ref={chainRef}
-                                value={coin.chain}
+                                ref={actionRef}
+                                size="md"
+                                style={{
+                                  fontWeight: "bold",
+                                }}
                               >
                                 <option></option>
                                 {actionOptions &&
@@ -190,6 +241,7 @@ const AdminReview = () => {
                               required
                               value={selectedCoin.name}
                               disabled
+                              style={disableStyle}
                             />
                           </Form.Group>
                           <Form.Group id="symbol">
@@ -205,9 +257,10 @@ const AdminReview = () => {
                             <Form.Control
                               type="text"
                               ref={symbolRef}
-                              value={coin.symbol}
+                              value={selectedCoin.symbol}
                               required
                               disabled
+                              style={disableStyle}
                             />
                           </Form.Group>
                           <Form.Group id="description">
@@ -225,8 +278,9 @@ const AdminReview = () => {
                               required
                               rows={10}
                               ref={descriptionRef}
-                              value={coin.description}
+                              value={selectedCoin.description}
                               disabled
+                              style={disableStyle}
                             />
                           </Form.Group>
                           <Form.Group id="presale" className="mt-3 mb-3">
@@ -254,10 +308,13 @@ const AdminReview = () => {
                               ref={launchDtRef}
                               required
                               value={
-                                coin.launchDt &&
-                                new Date(coin.launchDt).toLocaleDateString()
+                                selectedCoin.launchDt &&
+                                new Date(
+                                  selectedCoin.launchDt
+                                ).toLocaleDateString()
                               }
                               disabled
+                              style={disableStyle}
                             />
                           </Form.Group>
                           <Form.Group id="marketCap">
@@ -265,8 +322,9 @@ const AdminReview = () => {
                             <Form.Control
                               type="text"
                               ref={marketCapRef}
-                              value={coin.marketCap}
+                              value={selectedCoin.marketCap}
                               disabled
+                              style={disableStyle}
                             />
                           </Form.Group>
                           <Form.Group id="price">
@@ -274,8 +332,9 @@ const AdminReview = () => {
                             <Form.Control
                               type="text"
                               ref={priceRef}
-                              value={coin.price}
+                              value={selectedCoin.price}
                               disabled
+                              style={disableStyle}
                             />
                           </Form.Group>
                         </MDBCardBody>
@@ -313,8 +372,9 @@ const AdminReview = () => {
                               as="select"
                               required
                               ref={chainRef}
-                              value={coin.chain}
+                              value={selectedCoin.chain}
                               disabled
+                              style={disableStyle}
                             >
                               <option></option>
                               {networOptions &&
@@ -342,8 +402,9 @@ const AdminReview = () => {
                               type="text"
                               ref={contAddressRef}
                               required
-                              value={coin.contAddress}
+                              value={selectedCoin.contAddress}
                               disabled
+                              style={disableStyle}
                             />
                           </Form.Group>
                         </MDBCardBody>
@@ -372,8 +433,9 @@ const AdminReview = () => {
                             <Form.Control
                               type="text"
                               ref={websiteRef}
-                              value={coin.website}
+                              value={selectedCoin.website}
                               disabled
+                              style={disableStyle}
                             />
                           </Form.Group>
                           <Form.Group id="audit">
@@ -381,8 +443,9 @@ const AdminReview = () => {
                             <Form.Control
                               type="text"
                               ref={auditRef}
-                              value={coin.audit}
+                              value={selectedCoin.audit}
                               disabled
+                              style={disableStyle}
                             />
                           </Form.Group>
                           <Form.Group id="telegram">
@@ -399,8 +462,9 @@ const AdminReview = () => {
                               type="text"
                               ref={telegramRef}
                               required
-                              value={coin.telegram}
+                              value={selectedCoin.telegram}
                               disabled
+                              style={disableStyle}
                             />
                           </Form.Group>
                           <Form.Group id="twitter">
@@ -408,8 +472,9 @@ const AdminReview = () => {
                             <Form.Control
                               type="text"
                               ref={twitterRef}
-                              value={coin.twitter}
+                              value={selectedCoin.twitter}
                               disabled
+                              style={disableStyle}
                             />
                           </Form.Group>
                           <Form.Group id="discord">
@@ -417,8 +482,9 @@ const AdminReview = () => {
                             <Form.Control
                               type="text"
                               ref={discordRef}
-                              value={coin.telegram}
+                              value={selectedCoin.telegram}
                               disabled
+                              style={disableStyle}
                             />
                           </Form.Group>
                           <Form.Group id="reddit">
@@ -426,8 +492,9 @@ const AdminReview = () => {
                             <Form.Control
                               type="text"
                               ref={redditRef}
-                              value={coin.reddit}
+                              value={selectedCoin.reddit}
                               disabled
+                              style={disableStyle}
                             />
                           </Form.Group>
                           <Form.Group id="logo">
@@ -444,8 +511,9 @@ const AdminReview = () => {
                               type="text"
                               ref={logoRef}
                               required
-                              value={coin.logoRef}
+                              value={selectedCoin.logoRef}
                               disabled
+                              style={disableStyle}
                             />
                           </Form.Group>
                           <Form.Group id="dexToools">
@@ -453,8 +521,9 @@ const AdminReview = () => {
                             <Form.Control
                               type="text"
                               ref={dexTooolsRef}
-                              value={coin.dexToools}
+                              value={selectedCoin.dexToools}
                               disabled
+                              style={disableStyle}
                             />
                           </Form.Group>
                           <CDBBtn

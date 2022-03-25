@@ -1,17 +1,9 @@
-import {
-  CDBInput,
-  CDBCard,
-  CDBCardBody,
-  CDBBtn,
-  CDBLink,
-  CDBContainer,
-} from "cdbreact";
-// import { SocialMediaIconsReact } from "social-media-icons-react";
+import { CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from "cdbreact";
 import SocialSignin from "./SocialMediaSignin";
 import React, { useRef, useState } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import { Form, Alert } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const emailRef = useRef();
@@ -27,8 +19,8 @@ const Login = () => {
       setError("");
       setLoading(true);
       login(emailRef.current.value, passwordRef.current.value)
-        .then((user) => {
-          if (user.user.emailVerified) {
+        .then((response) => {
+          if (response.user.emailVerified) {
             history.push("/");
           } else {
             logout();
@@ -48,7 +40,6 @@ const Login = () => {
       console.log("error-----+e-" + e);
       setError("Failed to log in");
     }
-
     setLoading(false);
   }
 

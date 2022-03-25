@@ -7,7 +7,7 @@ import { Form, Alert } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 const Register = () => {
-  const { signup, logout, sendEmailVerification } = useAuth();
+  const { signup, logout, sendEmailVerification, addCryptoUser } = useAuth();
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -16,13 +16,6 @@ const Register = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-
-  // .then((userCredential) => {
-  //   sendEmailVerification(userCredential.user);
-  //   signOut(auth);
-  //   alert("Email sent");
-  // })
-  // .catch(alert);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -34,6 +27,7 @@ const Register = () => {
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value)
         .then((userCredential) => {
+          addCryptoUser({ email: emailRef.current.value });
           sendEmailVerification(userCredential.user);
           setError(
             "Please confirm the email verification process before login."
@@ -41,8 +35,12 @@ const Register = () => {
           logout();
           //history.push("/login");
         })
-        .catch((err) => {
-          setError("Failed to create an account");
+        .catch((error) => {
+          if (error.code === "auth/email-already-in-use") {
+            setError("Email already registered, Please login");
+          } else {
+            setError("Failed to create an account");
+          }
         });
     } catch {
       setError("Failed to create an account");

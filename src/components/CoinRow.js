@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useAuth } from "../containers/contexts/AuthContext";
+import CoinModal from "./CoinModal";
 
 const CoinRow = ({ coin, isAdmin }) => {
   const { voteCoin, showCoinDetails, adminReviewCoin } = useCoin();
@@ -15,8 +16,10 @@ const CoinRow = ({ coin, isAdmin }) => {
     findCryptoUserByEmail,
     voteCryptoUser,
   } = useAuth();
-  const [votableCoins, setVotableCoins] = useState([]);
+  const [currentCoin, setVotableCoins] = useState([]);
   const [status, setStatus] = useState([]);
+  const [selectedVote, setSelectedVote] = useState([]);
+  const [open, setOpen] = useState(false);
   const history = useHistory();
 
   const filterVotableCoins = (votes) => {
@@ -26,13 +29,19 @@ const CoinRow = ({ coin, isAdmin }) => {
   };
 
   useEffect(() => {
-    if (cryptoUser && cryptoUser.votes.length) {
-      filterVotableCoins(cryptoUser.votes);
-      handleCheck(coin.name);
+    if (cryptoUser && cryptoUser.votes && cryptoUser.votes.length) {
+      setSelectedVote(filterArrayElementByEdit(cryptoUser.votes, coin.name));
+      handleCheck(filterArrayElementByEdit(cryptoUser.votes, coin.name));
+    } else {
+      setStatus(false);
     }
   }, []);
 
   const handleVoteButtonClick = (vote) => {
+    if (!currentUser) {
+      setOpen(true);
+      return;
+    }
     voteCoin(vote);
 
     const user = {
@@ -41,19 +50,14 @@ const CoinRow = ({ coin, isAdmin }) => {
       votes: [{ coin: vote.name, votedAt: Date.now() }],
     };
 
-    const selectedVote = filterArrayElementByEdit(cryptoUser.votes, vote.name);
+    const selectedVote = filterArrayElementByEdit(cryptoUser.votes, coin.name);
 
-    if (
-      cryptoUser &&
-      cryptoUser.votes.length &&
-      selectedVote.length &&
-      selectedVote[0].coin === vote.name
-    ) {
+    if (selectedVote && selectedVote.length > 0) {
       voteCryptoUser(user);
     } else {
       editCryptoUser(user);
     }
-    handleCheck(vote.name);
+    handleCheck(selectedVote);
   };
 
   const filterArrayElementByEdit = (votes, name) => {
@@ -72,8 +76,7 @@ const CoinRow = ({ coin, isAdmin }) => {
     history.push("/review");
   };
 
-  const handleCheck = (val) => {
-    const selectedVote = filterArrayElementByEdit(cryptoUser.votes, val);
+  const handleCheck = (selectedVote) => {
     if (selectedVote && selectedVote.length) {
       var date1 = selectedVote && new Date(selectedVote[0].votedAt);
       var date2 = new Date();
@@ -91,6 +94,10 @@ const CoinRow = ({ coin, isAdmin }) => {
 
   const handleMouseOver = (e) => {
     console.log("========MouseOver" + JSON.stringify(e));
+  };
+
+  const onCloseModal = () => {
+    setOpen(false);
   };
 
   return (
@@ -133,6 +140,12 @@ const CoinRow = ({ coin, isAdmin }) => {
           <span className="ml-2">{coin.vote}</span>
         </Button>
       </td>
+      <CoinModal
+        open={open}
+        onCloseModal={onCloseModal}
+        head={"Login"}
+        body={"Please, login to vote"}
+      />
     </>
   );
 };

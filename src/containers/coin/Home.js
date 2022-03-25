@@ -38,45 +38,8 @@ export const Home = () => {
     setFillActive(value);
   };
 
-  useEffect(() => {
-    console.log(
-      "Home==cryptoUser from AuthContext===>>>" + JSON.stringify(cryptoUser)
-    );
-    // const templateParam = {
-    //   fromName: "Blockify",
-    //   toName: "Srini",
-    //   message: "Test",
-    // };
-
-    // emaijs
-    //   .send(
-    //     "service_xk0xp0z",
-    //     "template_6qy0n08",
-    //     templateParam,
-    //     "AOGTvVt2qixzf5_Qd"
-    //   )
-    //   .then((res) => {
-    //     console.log(res && JSON.stringify(res));
-    //   })
-    //   .catch((err) => {
-    //     console.log(err && JSON.stringify(err));
-    //   });
-    // findCryptoUser();
-  }, []);
-
-  // const findCryptoUser = () => {
-  //   findCryptoUserByEmail(currentUser.email)
-  //     .then((response) => {
-  //       console.log("Home==findCryptoUser===>>>" + JSON.stringify(response));
-  //       setCryptUser(response);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // };
-
+  useEffect(() => {}, []);
   const point = useBreakpoint();
-
   return (
     <div className="dashboard d-flex">
       <div

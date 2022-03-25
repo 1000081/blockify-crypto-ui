@@ -68,19 +68,11 @@ export function AuthProvider({ children }) {
     await ApiService.findAll("/users?email=" + email)
       .then((response) => {
         setCryptoUser(response.data);
-        if (!response.data.email) {
-          addCryptoUser({ email: response.data.email });
-        }
-        console.log(
-          "findCryptoUserByEmail-----response" + JSON.stringify(response.data)
-        );
         return response.data;
       })
       .catch((e) => {
         console.log(e);
       });
-
-    return cryptoUser;
   };
 
   const editCryptoUser = (user) => {
@@ -107,13 +99,39 @@ export function AuthProvider({ children }) {
       });
   };
 
+  function validateCryptoUser(response) {
+    findCryptoUserByEmail(response.user.email)
+      .then((cryptoUser) => {
+        if (!cryptoUser) {
+          const userPayload = {
+            email: response.user.email,
+          };
+          addCryptoUser(userPayload)
+            .then((rsponse) => {
+              console.log("User added successfully." + rsponse);
+              setCryptoUser(userPayload);
+              // history.push("/");
+            })
+            .catch((error) => {
+              console.log("Error occured while add user." + error);
+            });
+        } else {
+          setCryptoUser(cryptoUser);
+          // history.push("/");
+        }
+      })
+      .catch((error) => {
+        console.log("Error occured while fetch data" + JSON.stringify(error));
+      });
+  }
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       console.log("Auth Details " + JSON.stringify(user));
       setCurrentUser(user);
       setLoading(false);
       if (user) {
-        findCryptoUserByEmail(user.email);
+        setCryptoUser(findCryptoUserByEmail(user.email));
         localStorage.setItem("TOKEN", user && user.stsTokenManager.accessToken);
       }
     });
@@ -135,6 +153,8 @@ export function AuthProvider({ children }) {
     editCryptoUser,
     voteCryptoUser,
     sendEmailVerification,
+    setCryptoUser,
+    validateCryptoUser,
   };
 
   return (

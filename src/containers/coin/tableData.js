@@ -190,4 +190,12 @@ export const actionOptions = [
     text: "Promote",
     value: "P",
   },
+  {
+    text: "Normal",
+    value: "NOR",
+  },
+  {
+    text: "All Time Best",
+    value: "ATB",
+  },
 ];
