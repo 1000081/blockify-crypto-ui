@@ -36,7 +36,7 @@ export const CoinContextProvider = (props) => {
   const [coins, setCoins] = useState([]);
   const [coin, setCoin] = useState(initialCoin);
   const [cryptoUser, setCryptoUser] = useState({});
-  const { currentUser } = useAuth();
+  const { currentUser, findCryptoUserByEmail } = useAuth();
   const history = useHistory();
 
   const [preSaleCoins, setPreSaleCoins] = useState([]);
@@ -66,6 +66,7 @@ export const CoinContextProvider = (props) => {
       .then((response) => {
         console.log(response.data);
         retrieveAllCoins();
+        findCryptoUserByEmail(currentUser.email);
       })
       .catch((e) => {
         console.log(e);

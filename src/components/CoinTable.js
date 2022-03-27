@@ -6,12 +6,31 @@ import {
   MDBTableHead,
   MDBTableFoot,
 } from "mdb-react-ui-kit";
+import { useState } from "react";
+import CoinModal from "./CoinModal";
 import CoinRow from "./CoinRow";
 import { coinTableMeta } from "./TableMetaData";
 
 const CoinTable = (data) => {
+  const [open, setOpen] = useState(false);
+
+  const onCloseModal = () => {
+    setOpen(false);
+  };
+
   return (
     <>
+      {open && (
+        <div>
+          <CoinModal
+            open={open}
+            onCloseModal={onCloseModal}
+            head={"Login"}
+            body={"Please, login to vote"}
+          />
+        </div>
+      )}
+
       <CDBTable className="text-white" responsiveSm>
         <MDBTableHead dark>
           <tr>
@@ -44,7 +63,7 @@ const CoinTable = (data) => {
           {data &&
             data.values.map((coin) => (
               <tr key={coin.name}>
-                <CoinRow coin={coin} isAdmin={data.isAdmin} />
+                <CoinRow coin={coin} isAdmin={data.isAdmin} setOpen={setOpen} />
               </tr>
             ))}
         </MDBTableBody>

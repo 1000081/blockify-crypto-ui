@@ -2,13 +2,16 @@ import React from "react";
 import { MDBFooter, MDBContainer, MDBCol, MDBRow } from "mdb-react-ui-kit";
 import { useHistory } from "react-router-dom";
 import { CDBBtn } from "cdbreact";
-import { SocialMediaIconsReact } from "social-media-icons-react";
 
 const Footer = () => {
   const history = useHistory();
   const handleEditButton = () => {
     history.push("/editCoin");
   };
+
+  // const handleSocialLogin = (url) => {
+  //   history.push(url);
+  // };
 
   return (
     <MDBFooter bgColor="dark" className="text-center text-white text-lg-left">
@@ -32,44 +35,21 @@ const Footer = () => {
               >
                 Edit Coin
               </CDBBtn>
-
               <CDBBtn
                 color="black"
                 className="m-0"
                 outline
-                // onClick={handleOnLoginClick(facebookProvider)}
+                // onClick={handleSocialLogin("www.facebook.com")}
               >
-                <SocialMediaIconsReact
-                  borderColor="white"
-                  borderWidth="1"
-                  borderStyle="solid"
-                  icon="googleplus"
-                  iconColor="rgba(255,255,255,1)"
-                  backgroundColor="rgba(11,11,15,1)"
-                  iconSize="5"
-                  roundness="25%"
-                  // url="/"
-                  size="43"
-                />
+                <i className="fab fa-facebook-square fa-3x"></i>
               </CDBBtn>
               <CDBBtn
                 color="black"
                 className="m-0"
                 outline
-                // onClick={handleOnLoginClick(facebookProvider)}
+                // onClick={handleSocialLogin("www.google.com")}
               >
-                <SocialMediaIconsReact
-                  borderColor="white"
-                  borderWidth="1"
-                  borderStyle="solid"
-                  icon="facebook"
-                  iconColor="rgba(255,255,255,1)"
-                  backgroundColor="rgba(11,11,15,1)"
-                  iconSize="5"
-                  roundness="25%"
-                  // url="/"
-                  size="43"
-                />
+                <i className="fab fa-google-plus-square fa-3x"></i>
               </CDBBtn>
             </MDBCol>
           </MDBRow>

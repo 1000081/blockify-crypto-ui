@@ -77,6 +77,17 @@ const AdminHome = () => {
                       </MDBTabsItem>
                       <MDBTabsItem>
                         <MDBTabsLink
+                          onClick={() => handleFillClick("rejectedTab")}
+                          active={fillActive === "rejectedTab"}
+                          style={
+                            fillActive === "rejectedTab" ? tabSelected : {}
+                          }
+                        >
+                          Rejected
+                        </MDBTabsLink>
+                      </MDBTabsItem>
+                      <MDBTabsItem>
+                        <MDBTabsLink
                           onClick={() => handleFillClick("newTab")}
                           active={fillActive === "newTab"}
                           style={fillActive === "newTab" ? tabSelected : {}}
@@ -89,6 +100,7 @@ const AdminHome = () => {
                           onClick={() => handleFillClick("altTab")}
                           active={fillActive === "altTab"}
                           style={fillActive === "altTab" ? tabSelected : {}}
+                          color="red"
                         >
                           All Time Best
                         </MDBTabsLink>
@@ -115,6 +127,37 @@ const AdminHome = () => {
 
                     <MDBTabsContent>
                       <MDBTabsPane show={fillActive === "approveTab"}>
+                        <div
+                          className="card w-100 d-flex flex-column wide d-flex flex-column"
+                          style={{ background: "#343a40" }}
+                        >
+                          <div className="d-flex flex-column p-0 h-100">
+                            <div
+                              className="mx-1 mt-0 d-flex justify-content-between align-items-center"
+                              style={{
+                                background: "black",
+                                height: "50px",
+                              }}
+                            >
+                              <h4 className="font-weight-bold text-white h5">
+                                Yet To Approve
+                              </h4>
+                            </div>
+                            <CoinTable
+                              values={filteredList(
+                                coins,
+                                types.COIN_TYPE_LISTED
+                              )}
+                              isAdmin={true}
+                            />
+                            <p className="c-p text-dark font-weight-bold text-right mt-auto mr-3">
+                              See More
+                              <i className="fas fa-arrow-right ml-1"></i>
+                            </p>
+                          </div>
+                        </div>
+                      </MDBTabsPane>
+                      <MDBTabsPane show={fillActive === "rejectedTab"}>
                         <div
                           className="card w-100 d-flex flex-column wide d-flex flex-column"
                           style={{ background: "#343a40" }}
@@ -193,7 +236,7 @@ const AdminHome = () => {
                               </h4>
                             </div>
                             <CoinTable
-                              values={filteredList(coins, types.COIN_TYPE_NEW)}
+                              values={filteredList(coins, types.COIN_TYPE_ATB)}
                               point={point}
                               isAdmin={true}
                             />
@@ -223,7 +266,10 @@ const AdminHome = () => {
                               </h4>
                             </div>
                             <CoinTable
-                              values={filteredList(coins, types.COIN_TYPE_NEW)}
+                              values={filteredList(
+                                coins,
+                                types.COIN_TYPE_NORMAL
+                              )}
                               point={point}
                               isAdmin={true}
                             />
@@ -253,7 +299,10 @@ const AdminHome = () => {
                               </h4>
                             </div>
                             <CoinTable
-                              values={filteredList(coins, types.COIN_TYPE_NEW)}
+                              values={filteredList(
+                                coins,
+                                types.COIN_TYPE_PRE_SALE
+                              )}
                               point={point}
                               isAdmin={true}
                             />

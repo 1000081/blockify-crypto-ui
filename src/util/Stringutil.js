@@ -53,7 +53,7 @@ export function stringToDate(string) {
 export function filteredList(coinList, coinType) {
   const results = coinList.filter((coin) => {
     let filteredCoin = "";
-    if (coinType === types.COIN_TYPE_NEW && coin.isNew === types.STRING_Y) {
+    if (coinType === types.COIN_TYPE_NEW && coin.isNewCoin === types.STRING_Y) {
       filteredCoin = coin;
     } else if (
       coinType === types.COIN_TYPE_PROMOTED &&
@@ -78,6 +78,11 @@ export function filteredList(coinList, coinType) {
     } else if (
       coinType === types.COIN_TYPE_LISTED &&
       coin.isListed === types.STRING_Y
+    ) {
+      filteredCoin = coin;
+    } else if (
+      coinType === types.COIN_TYPE_REJECTED &&
+      coin.isRejectedCoin === types.STRING_Y
     ) {
       filteredCoin = coin;
     }

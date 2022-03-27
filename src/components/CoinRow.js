@@ -5,34 +5,16 @@ import { useHistory } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useAuth } from "../containers/contexts/AuthContext";
-import CoinModal from "./CoinModal";
 
-const CoinRow = ({ coin, isAdmin }) => {
+const CoinRow = ({ coin, isAdmin, setOpen }) => {
   const { voteCoin, showCoinDetails, adminReviewCoin } = useCoin();
-  const {
-    editCryptoUser,
-    currentUser,
-    findCryptoUserByEmail,
-    voteCryptoUser,
-    cryptoUser,
-  } = useAuth();
+  const { editCryptoUser, currentUser, voteCryptoUser, cryptoUser } = useAuth();
   const [currentCoin, setVotableCoins] = useState([]);
   const [status, setStatus] = useState([]);
   const [selectedVote, setSelectedVote] = useState([]);
-  const [open, setOpen] = useState(false);
   const history = useHistory();
 
-  const filterVotableCoins = (votes) => {
-    const filteredCoins =
-      votes && votes.filter((vote) => vote.votedAt > new Date());
-    return filteredCoins.coin;
-  };
-
   useEffect(() => {
-    // findCryptoUserByEmail(currentUser.email);
-    console.log(
-      "CoinRow-----findCryptoUserByEmail" + JSON.stringify(cryptoUser)
-    );
     if (cryptoUser && cryptoUser.votes && cryptoUser.votes.length) {
       setSelectedVote(filterArrayElementByEdit(cryptoUser.votes, coin.name));
       handleCheck(filterArrayElementByEdit(cryptoUser.votes, coin.name));
@@ -95,15 +77,6 @@ const CoinRow = ({ coin, isAdmin }) => {
       setStatus(false);
     }
   };
-
-  const handleMouseOver = (e) => {
-    console.log("========MouseOver" + JSON.stringify(e));
-  };
-
-  const onCloseModal = () => {
-    setOpen(false);
-  };
-
   return (
     <>
       <td>
@@ -136,7 +109,6 @@ const CoinRow = ({ coin, isAdmin }) => {
           variant="dark"
           onClick={() => handleVoteButtonClick(coin)}
           disabled={status}
-          onMouseOver={(e) => handleMouseOver}
         >
           <span style={{ size: 10 }}>
             <i className="fas fa-rocket fa-lg"></i>
@@ -144,12 +116,6 @@ const CoinRow = ({ coin, isAdmin }) => {
           <span className="ml-2">{coin.vote}</span>
         </Button>
       </td>
-      {/* <CoinModal
-        open={open}
-        onCloseModal={onCloseModal}
-        head={"Login"}
-        body={"Please, login to vote"}
-      /> */}
     </>
   );
 };

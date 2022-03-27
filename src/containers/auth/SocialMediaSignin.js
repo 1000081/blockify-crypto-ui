@@ -1,10 +1,4 @@
-import { SocialMediaIconsReact } from "social-media-icons-react";
 import { CDBBtn } from "cdbreact";
-import SocialMediaAuth from "../../config/SocialMediaAuth";
-import { facebookProvider, googleProvider } from "../../config/AuthMethods";
-import firebaseConfig from "../../config/FirebaseConfig";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { loginSocialMedia } from "../../config/SocialMediaAuth";
 import { useAuth } from "../contexts/AuthContext";
 
 const SocialSignin = () => {

@@ -40,32 +40,6 @@ const AdminReview = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target[4].value);
-    // const populatedCoin = {
-    //   name: nameRef.current.value,
-    //   logo: logoRef.current.value,
-    //   chain: chainRef.current.value,
-    //   presale: presaleRef.current.value,
-    //   description: descriptionRef.current.value,
-    //   contAddress: contAddressRef.current.value,
-    //   launchDt: e.target[4].value,
-    //   marketCap: marketCapRef.current.value,
-    //   price: priceRef.current.value,
-    //   telegram: telegramRef.current.value,
-    //   twitter: twitterRef.current.value,
-    //   reddit: redditRef.current.value,
-    //   discord: discordRef.current.value,
-    //   dexToools: dexTooolsRef.current.value,
-    //   symbol: symbolRef.current.value,
-    //   website: websiteRef.current.value,
-    //   audit: auditRef.current.value,
-    //   addedBy: currentUser.email,
-    //   action: actionRef.current.value,
-    // };
-
-    // if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-    //   return setError("Passwords do not match");
-    // }
 
     try {
       let editPayload = {};
@@ -276,7 +250,7 @@ const AdminReview = () => {
                             <Form.Control
                               as="textarea"
                               required
-                              rows={10}
+                              rows={15}
                               ref={descriptionRef}
                               value={selectedCoin.description}
                               disabled
