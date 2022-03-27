@@ -6,10 +6,8 @@ import { useCoin } from "../contexts/CoinContext";
 import { useParams } from "react-router-dom";
 import useBreakpoint from "../../components/Breakpoint";
 import {
-  MDBBtn,
   MDBCard,
   MDBCardBody,
-  MDBCardHeader,
   MDBCardText,
   MDBCardTitle,
   MDBCol,

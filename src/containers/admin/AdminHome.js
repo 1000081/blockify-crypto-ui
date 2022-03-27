@@ -171,13 +171,13 @@ const AdminHome = () => {
                               }}
                             >
                               <h4 className="font-weight-bold text-white h5">
-                                Yet To Approve
+                                Rejected
                               </h4>
                             </div>
                             <CoinTable
                               values={filteredList(
                                 coins,
-                                types.COIN_TYPE_LISTED
+                                types.COIN_TYPE_REJECTED
                               )}
                               isAdmin={true}
                             />
